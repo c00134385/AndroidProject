@@ -9,6 +9,7 @@ import android.view.animation.ScaleAnimation;
 import com.gyf.barlibrary.BarHide;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
+import com.hjq.demo.ui.act.NewHomeActivity;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
@@ -93,7 +94,7 @@ public final class LauncherActivity extends MyActivity
 
     @Override
     public void hasPermission(List<String> granted, boolean isAll) {
-        startActivity(HomeActivity.class);
+        startActivity(NewHomeActivity.class);
         finish();
     }
 

@@ -4,6 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.hjq.demo.mananger.HardwareManager;
+import com.hjq.demo.mananger.MachineManager;
+import com.hjq.demo.mananger.NetworkManager;
+import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.other.EventBusManager;
 import com.hjq.image.ImageLoader;
 import com.hjq.toast.ToastUtils;
@@ -23,12 +27,13 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initSDK(this);
+        initManagers();
     }
 
     /**
      * 初始化一些第三方框架
      */
-    public static void initSDK(Application application) {
+    private void initSDK(Application application) {
         /**
          * 必须在 Application 的 onCreate 方法中执行 BGASwipeBackHelper.init 来初始化滑动返回
          * 第一个参数：应用程序上下文
@@ -47,6 +52,14 @@ public class MyApplication extends Application {
 
         // 初始化友盟 SDK
         UmengClient.init(application);
+    }
+
+    private void initManagers() {
+        MachineManager.init(MyApplication.this);
+        NetworkManager.init(MyApplication.this);
+        HardwareManager.init(MyApplication.this);
+        OrthManager.init(MyApplication.this);
+        OrthManager.getInstance().start();
     }
 
     @Override

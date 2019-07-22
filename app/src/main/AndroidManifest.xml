@@ -54,6 +54,18 @@
 
         </activity>
 
+        <!-- 新加界面 -->
+        <activity android:name=".ui.act.NewHomeActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTask" />
+
+        <activity android:name=".ui.act.MachineActivity"/>
+        <activity android:name=".ui.act.NetworkActivity"/>
+        <activity android:name=".ui.act.AndroidActivity"/>
+        <activity android:name=".ui.act.HardwareActivity"/>
+        <activity android:name=".ui.act.TestHomeActivity"/>
+        <activity android:name=".ui.act.t.ScreenActivity"/>
+
         <!-- 主页界面 -->
         <activity
             android:name=".ui.activity.HomeActivity"

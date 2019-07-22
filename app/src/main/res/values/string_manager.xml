@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">硬件管家</string>
+    <string name="machine">本机</string>
+    <string name="network">网络</string>
+    <string name="android">安卓</string>
+    <string name="hardware">硬件</string>
+    <string name="gotest">启动测试</string>
+
+    <string name="model">型号</string>
+    <string name="sn">SN码</string>
+    <string name="version_code">硬件管家版本号</string>
+    <string name="ip">IP地址</string>
+    <string name="wlan_mac">WLAN MAC地址</string>
+    <string name="ba">蓝牙地址</string>
+    <string name="imei">IMEI信息</string>
+    <string name="worktime">已开机时间</string>
+    <string name="extra_info">扩展设备信息</string>
+    <string name="battery">电池状态</string>
+
+    <string name="wifi_statue">状态</string>
+    <string name="wifi_ssid">SSID</string>
+    <string name="wifi_mac">MAC地址</string>
+    <string name="wifi_ip">IP地址</string>
+    <string name="wifi_gateway">网关</string>
+    <string name="wifi_dns1">DNS</string>
+    <string name="wifi_level">信号强度</string>
+
+    <string name="eth_statue">状态</string>
+    <string name="eth_mac">MAC地址</string>
+    <string name="eth_ip">IP地址</string>
+    <string name="eth_gateway">网关</string>
+    <string name="eth_dns1">DNS</string>
+    <string name="eth_level">信号强度</string>
+
+    <string name="android_version">安卓版本</string>
+    <string name="firmware_version">版本号</string>
+    <string name="firmware_info">固件日期、大小</string>
+
+    <string name="screen_resolve">主屏分辨率</string>
+    <string name="screen_size">屏幕尺寸</string>
+    <string name="camera_front">前置摄像头</string>
+    <string name="camera_back">后置摄像头</string>
+    <string name="memory">运行内存</string>
+    <string name="flash">EMMC容量</string>
+    <string name="cpu">CPU类型</string>
+    <string name="cpu_hz">主频HZ</string>
+
+    <string name="exit">退  出</string>
+
+    <string name="screen">屏幕</string>
+    <string name="speaker">喇叭</string>
+    <string name="keypad">按键</string>
+    <string name="back_light">背光亮度</string>
+
+    <string name="state_not_test">待测</string>
+    <string name="state_success">成功</string>
+    <string name="state_failed">失败</string>
+</resources>

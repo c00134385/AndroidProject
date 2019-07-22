@@ -31,21 +31,21 @@ android {
     }
 
     //APK 签名的那些事：https://www.jianshu.com/p/a1f8e5896aa2
-//    signingConfigs {
-//        release {
-//            keyAlias '密钥别称'
-//            keyPassword '密钥密码'
-//            storeFile file('E:/MySign.jks')
-//            storePassword '密钥库密码'
-//        }
-//
-//        debug {
-//            keyAlias '密钥别称'
-//            keyPassword '密钥密码'
-//            storeFile file('E:/MySign.jks')
-//            storePassword '密钥库密码'
-//        }
-//    }
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword '1111111'
+            storeFile file('D:\\github\\AndroidProject\\key.jks')
+            storePassword '1111111'
+        }
+
+        debug {
+            keyAlias 'key0'
+            keyPassword '1111111'
+            storeFile file('D:\\github\\AndroidProject\\key.jks')
+            storePassword '1111111'
+        }
+    }
     buildTypes {
         release {
             // 不显示Log
@@ -57,7 +57,7 @@ android {
             // 设置混淆
             minifyEnabled true
             // 正式环境签名
-            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
 
         debug {
@@ -66,19 +66,20 @@ android {
             // 设置混淆
             minifyEnabled false
             // 开发环境签名
-            //signingConfig signingConfigs.debug
+            signingConfig signingConfigs.debug
         }
     }
 
     flavorDimensions "default" // 这个名字貌似随便取，也可以有多个，总之一定要有
     // 友盟多渠道打包
     productFlavors {
-        kuan {}     // 酷安
-        tencent {}  // 应用宝
-        baidu {}    // 百度
-        xiaomi {}   // 小米
-        huawei {}   // 华为
-        google {}   // 谷歌
+//        kuan {}     // 酷安
+//        tencent {}  // 应用宝
+//        baidu {}    // 百度
+//        xiaomi {}   // 小米
+//        huawei {}   // 华为
+//        google {}   // 谷歌
+        rock {}   // rock
 
         productFlavors.all { flavor ->
             flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
@@ -109,7 +110,7 @@ android {
         variant.outputs[0].processManifest.doLast {
             def manifestFile = "${manifestOutputDirectory}/AndroidManifest.xml"
             def updatedContent = new File(manifestFile).getText('UTF-8')
-                    .replaceAll("UMENG_APPKEY_VALUE", "5cb16d93570df399fd0014e2") // 友盟 AppKey
+                    .replaceAll("UMENG_APPKEY_VALUE", "5d3443bd0cafb2e0860008d6") // 友盟 AppKey
                     .replaceAll("QQ_APPID_VALUE", "100424468") // QQ AppId
                     .replaceAll("QQ_APPKEY_VALUE", "c7394704798a158208a74ab60104f0ba") // QQ Key
                     .replaceAll("WX_APPID_VALUE", "wxdc1e388c3822c80b") // 微信 AppId
@@ -189,4 +190,16 @@ dependencies {
     // 第三方支付：https://github.com/getActivity/RxPay
     // Log 打印：https://github.com/JakeWharton/timber
     // 重要数据存储：https://github.com/Tencent/MMKV
+
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    // (see https://github.com/ReactiveX/RxJava/releases for latest 2.x.x version)
+    implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
+    implementation 'org.apache.commons:commons-lang3:3.6'
+
+    // https://mvnrepository.com/artifact/org.jsoup/jsoup
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
 }
