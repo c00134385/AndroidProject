@@ -47,6 +47,7 @@
     <string name="cpu_hz">主频HZ</string>
 
     <string name="exit">退  出</string>
+    <string name="clear">清  除</string>
 
     <string name="screen">屏幕</string>
     <string name="speaker">喇叭</string>

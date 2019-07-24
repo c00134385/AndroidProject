@@ -66,6 +66,7 @@
         <activity android:name=".ui.act.TestHomeActivity"/>
         <activity android:name=".ui.act.t.DemoTestActivity"/>
         <activity android:name=".ui.act.t.ScreenTestActivity"/>
+        <activity android:name=".ui.act.t.TouchTestActivity"/>
 
         <!-- 主页界面 -->
         <activity

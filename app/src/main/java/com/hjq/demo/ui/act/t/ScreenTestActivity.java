@@ -38,7 +38,7 @@ public class ScreenTestActivity extends BaseTestActivity {
         colors.add(R.color.blue);
         colors.add(R.color.black);
 
-        Observable.intervalRange(0, colors.size(), 1, 3, TimeUnit.SECONDS)
+        Observable.intervalRange(0, colors.size() + 1, 1, 3, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
