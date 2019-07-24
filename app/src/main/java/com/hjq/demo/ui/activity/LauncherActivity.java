@@ -16,7 +16,7 @@ import com.hjq.demo.mananger.HardwareManager;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.mananger.OrthManager;
-import com.hjq.demo.ui.act.NewHomeActivity;
+import com.hjq.demo.ui.act.t.DemoTestActivity;
 import com.hjq.demo.utils.CommonUtils;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
@@ -168,7 +168,7 @@ public final class LauncherActivity extends MyActivity
                 .doOnNext(new Consumer<Integer>() {
                     @Override
                     public void accept(Integer integer) throws Exception {
-                        Thread.sleep(10000);
+//                        Thread.sleep(10000);
                     }
                 })
                 .doOnComplete(new Action() {
@@ -193,7 +193,7 @@ public final class LauncherActivity extends MyActivity
         handler.sendEmptyMessage(MSG_WAITING);
     }
     private void goHome() {
-        startActivity(NewHomeActivity.class);
+        startActivity(DemoTestActivity.class);
         finish();
     }
 

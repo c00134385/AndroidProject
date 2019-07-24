@@ -1,26 +1,51 @@
 package com.hjq.demo.ui.act.t;
 
-import com.hjq.demo.R;
+import android.view.View;
+
+import androidx.annotation.Nullable;
+
 import com.hjq.demo.common.MyActivity;
+import com.hjq.demo.ui.widget.BottomBar;
+import com.hjq.toast.ToastUtils;
 
-public class BaseTestActivity extends MyActivity {
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_screen;
-    }
+import timber.log.Timber;
 
-    @Override
-    protected int getTitleId() {
-        return 0;
-    }
+abstract public class BaseTestActivity extends MyActivity {
 
     @Override
-    protected void initView() {
+    protected void initLayout() {
+        super.initLayout();
+        if(getBottomBarId() > 0) {
+            if (findViewById(getBottomBarId()) instanceof BottomBar) {
+                ((BottomBar) findViewById(getBottomBarId())).setClickListener(new BottomBar.OnClickListener() {
+                    @Override
+                    public void onLeftClick(View v) {
+                        ToastUtils.show("left is clicked");
+                    }
 
+                    @Override
+                    public void onMiddleClick(View v) {
+                        ToastUtils.show("middle is clicked");
+                    }
+
+                    @Override
+                    public void onRightClick(View v) {
+                        ToastUtils.show("right is clicked");
+                    }
+                });
+            }
+        }
     }
 
-    @Override
-    protected void initData() {
-
+    @Nullable
+    public BottomBar getBottomBar() {
+        if (getBottomBarId() > 0 && findViewById(getBottomBarId()) instanceof BottomBar) {
+            return findViewById(getBottomBarId());
+        }
+        return null;
     }
+
+    // 标题栏
+    protected abstract int getBottomBarId();
+
 }

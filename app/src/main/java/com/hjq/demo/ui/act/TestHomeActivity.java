@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
-import com.hjq.demo.ui.act.t.ScreenActivity;
+import com.hjq.demo.ui.act.t.DemoTestActivity;
 import com.hjq.demo.ui.widget.CardView;
 
 import butterknife.BindView;
@@ -54,11 +54,11 @@ public class TestHomeActivity extends MyActivity {
         }
         switch (view.getId()) {
             case R.id.card_screen:
-                startActivity(ScreenActivity.class);
+                startActivity(DemoTestActivity.class);
                 break;
 
             case R.id.card_network:
-                startActivity(ScreenActivity.class);
+                startActivity(DemoTestActivity.class);
                 break;
 
             case R.id.card_speaker:

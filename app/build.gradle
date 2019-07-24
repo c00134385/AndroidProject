@@ -120,6 +120,10 @@ android {
             new File(manifestFile).write(updatedContent, 'UTF-8')
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
 }
 
 // api 与 implementation 的区别：https://www.jianshu.com/p/8962d6ba936e
@@ -139,6 +143,8 @@ dependencies {
     implementation project(':image')
     // 友盟隔离
     implementation project(':umeng')
+
+    implementation 'androidx.annotation:annotation:1.1.0'
 
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:design:$rootProject.ext.supportLibraryVersion"
