@@ -9,7 +9,7 @@ public class DemoTestActivity extends BaseTestActivity {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        return R.layout.activity_damo_test;
+        return R.layout.activity_test_demo;
     }
 
     @Override

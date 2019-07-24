@@ -65,6 +65,7 @@
         <activity android:name=".ui.act.HardwareActivity"/>
         <activity android:name=".ui.act.TestHomeActivity"/>
         <activity android:name=".ui.act.t.DemoTestActivity"/>
+        <activity android:name=".ui.act.t.ScreenTestActivity"/>
 
         <!-- 主页界面 -->
         <activity

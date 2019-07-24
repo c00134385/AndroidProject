@@ -16,7 +16,7 @@ import com.hjq.demo.mananger.HardwareManager;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.mananger.OrthManager;
-import com.hjq.demo.ui.act.t.DemoTestActivity;
+import com.hjq.demo.ui.act.t.ScreenTestActivity;
 import com.hjq.demo.utils.CommonUtils;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
@@ -193,7 +193,7 @@ public final class LauncherActivity extends MyActivity
         handler.sendEmptyMessage(MSG_WAITING);
     }
     private void goHome() {
-        startActivity(DemoTestActivity.class);
+        startActivity(ScreenTestActivity.class);
         finish();
     }
 

@@ -61,5 +61,10 @@
     <string name="middle">middle</string>
     <string name="right">right</string>
 
-    <string name="screen_test">screen</string>
+    <string name="damo">damo</string>
+    <string name="red">红</string>
+    <string name="green">绿</string>
+    <string name="blue">蓝</string>
+    <string name="black">黑</string>
+    <string name="white">白</string>
 </resources>

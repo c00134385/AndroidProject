@@ -1,5 +1,7 @@
 package com.hjq.demo.ui.act.t;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -12,6 +14,14 @@ import timber.log.Timber;
 
 abstract public class BaseTestActivity extends MyActivity {
 
+    protected boolean isTestRunning = false;
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
+
     @Override
     protected void initLayout() {
         super.initLayout();
@@ -20,17 +30,18 @@ abstract public class BaseTestActivity extends MyActivity {
                 ((BottomBar) findViewById(getBottomBarId())).setClickListener(new BottomBar.OnClickListener() {
                     @Override
                     public void onLeftClick(View v) {
-                        ToastUtils.show("left is clicked");
+//                        ToastUtils.show("left is clicked");
+                        onTestStart();
                     }
 
                     @Override
                     public void onMiddleClick(View v) {
-                        ToastUtils.show("middle is clicked");
+//                        ToastUtils.show("middle is clicked");
                     }
 
                     @Override
                     public void onRightClick(View v) {
-                        ToastUtils.show("right is clicked");
+//                        ToastUtils.show("right is clicked");
                     }
                 });
             }
@@ -48,4 +59,11 @@ abstract public class BaseTestActivity extends MyActivity {
     // 标题栏
     protected abstract int getBottomBarId();
 
+    protected void onTestStart(){
+
+    };
+
+    protected void onTestEnd() {
+
+    }
 }

@@ -26,7 +26,7 @@ public class TestHomeActivity extends MyActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_testhome;
+        return R.layout.activity_test_home;
     }
 
     @Override
