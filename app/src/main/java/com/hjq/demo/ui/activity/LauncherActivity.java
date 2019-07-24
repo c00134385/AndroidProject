@@ -1,5 +1,7 @@
 package com.hjq.demo.ui.activity;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -9,14 +11,27 @@ import android.view.animation.ScaleAnimation;
 import com.gyf.barlibrary.BarHide;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
+import com.hjq.demo.common.MyApplication;
+import com.hjq.demo.mananger.HardwareManager;
+import com.hjq.demo.mananger.MachineManager;
+import com.hjq.demo.mananger.NetworkManager;
+import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.ui.act.NewHomeActivity;
+import com.hjq.demo.utils.CommonUtils;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  *    author : Android 轮子哥
@@ -33,6 +48,41 @@ public final class LauncherActivity extends MyActivity
     View mIconView;
     @BindView(R.id.iv_launcher_name)
     View mTextView;
+
+    private static final String[] permissions = new String[]{
+            Permission.READ_EXTERNAL_STORAGE,
+            Permission.WRITE_EXTERNAL_STORAGE,
+            Permission.CAMERA};
+
+    private static long startTimestamp;
+    private boolean isInitialized = false;
+
+    private static final int MSG_CHECK_PERMISSION = 0x1000;
+    private static final int MSG_WAITING = 0x1001;
+    private static final int MSG_INIT_JOB = 0x1002;
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MSG_CHECK_PERMISSION:
+//                    requestPermission();
+                    break;
+                case MSG_INIT_JOB:
+                    initJobManager();
+                    break;
+                case MSG_WAITING:
+                    if(System.currentTimeMillis() - startTimestamp < TimeUnit.SECONDS.toMillis(2) || !isInitialized) {
+                        handler.sendEmptyMessageDelayed(MSG_WAITING, 500);
+                    } else {
+                        goHome();
+                    }
+                    break;
+            }
+
+        }
+    };
 
     @Override
     protected int getLayoutId() {
@@ -58,7 +108,6 @@ public final class LauncherActivity extends MyActivity
 
     @Override
     protected void initData() {
-
     }
 
     private static final int ANIM_TIME = 1000;
@@ -84,7 +133,8 @@ public final class LauncherActivity extends MyActivity
 
     private void requestPermission() {
         XXPermissions.with(this)
-                .permission(Permission.Group.STORAGE)
+//                .permission(Permission.Group.STORAGE)
+                .permission(permissions)
                 .request(this);
     }
 
@@ -94,6 +144,55 @@ public final class LauncherActivity extends MyActivity
 
     @Override
     public void hasPermission(List<String> granted, boolean isAll) {
+        startTimestamp = System.currentTimeMillis();
+        handler.sendEmptyMessage(MSG_INIT_JOB);
+    }
+
+    private void initJobManager() {
+        isInitialized = false;
+        Observable<Integer> observable = Observable.just(2)
+                .map(new Function<Integer, Integer>() {
+                    @Override
+                    public Integer apply(Integer integer) throws Exception {
+                        MachineManager.init(MyApplication.getInstance());
+                        NetworkManager.init(MyApplication.getInstance());
+                        HardwareManager.init(MyApplication.getInstance());
+                        OrthManager.init(MyApplication.getInstance());
+                        OrthManager.getInstance().start();
+                        return integer;
+                    }
+                })
+                .subscribeOn(Schedulers.io());
+
+        observable
+                .doOnNext(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Thread.sleep(10000);
+                    }
+                })
+                .doOnComplete(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        Timber.d("init completed.");
+                        isInitialized = true;
+                    }
+                })
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Timber.d("init integer:%d. isMainThread:%b", integer, CommonUtils.isMainThread());
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Timber.e(throwable, throwable.getMessage());
+                    }
+                });
+
+        handler.sendEmptyMessage(MSG_WAITING);
+    }
+    private void goHome() {
         startActivity(NewHomeActivity.class);
         finish();
     }
@@ -123,7 +222,7 @@ public final class LauncherActivity extends MyActivity
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (XXPermissions.isHasPermission(LauncherActivity.this, Permission.Group.STORAGE)) {
+        if (XXPermissions.isHasPermission(LauncherActivity.this, permissions)) {
             hasPermission(null, true);
         }else {
             requestPermission();

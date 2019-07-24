@@ -2,8 +2,11 @@ package com.hjq.demo.common;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
+import com.hjq.demo.BuildConfig;
 import com.hjq.demo.mananger.HardwareManager;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
@@ -14,6 +17,7 @@ import com.hjq.toast.ToastUtils;
 import com.hjq.umeng.UmengClient;
 
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
+import timber.log.Timber;
 
 /**
  *    author : Android 轮子哥
@@ -23,11 +27,24 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
  */
 public class MyApplication extends Application {
 
+    private static MyApplication ourInstance;
+    public static MyApplication getInstance() {
+        return ourInstance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        ourInstance = MyApplication.this;
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        } else {
+            Timber.plant(new CrashReportingTree());
+        }
+
         initSDK(this);
-        initManagers();
+//        initManagers();
     }
 
     /**
@@ -67,5 +84,27 @@ public class MyApplication extends Application {
         super.attachBaseContext(base);
         // 使用 Dex分包
         MultiDex.install(this);
+    }
+
+    /** A tree which logs important information for crash reporting. */
+    private static class CrashReportingTree extends Timber.Tree {
+        @Override protected void log(int priority, String tag, @NonNull String message, Throwable t) {
+            if (priority == Log.VERBOSE || priority == Log.DEBUG) {
+                return;
+            }
+
+            Log.e(tag, message);
+            Log.e(tag, t.getMessage());
+
+//            FakeCrashLibrary.log(priority, tag, message);
+//
+//            if (t != null) {
+//                if (priority == Log.ERROR) {
+//                    FakeCrashLibrary.logError(t);
+//                } else if (priority == Log.WARN) {
+//                    FakeCrashLibrary.logWarning(t);
+//                }
+//            }
+        }
     }
 }
