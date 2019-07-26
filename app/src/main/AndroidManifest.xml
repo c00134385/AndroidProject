@@ -68,6 +68,7 @@
         <activity android:name=".ui.act.t.ScreenTestActivity"/>
         <activity android:name=".ui.act.t.TouchTestActivity"/>
         <activity android:name=".ui.act.t.SpeakerTestActivity"/>
+        <activity android:name=".ui.act.t.KeyTestActivity"/>
 
         <!-- 主页界面 -->
         <activity

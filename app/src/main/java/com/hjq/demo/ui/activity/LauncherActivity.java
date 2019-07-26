@@ -16,6 +16,7 @@ import com.hjq.demo.mananger.HardwareManager;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.mananger.OrthManager;
+import com.hjq.demo.ui.act.t.KeyTestActivity;
 import com.hjq.demo.ui.act.t.SpeakerTestActivity;
 import com.hjq.demo.utils.CommonUtils;
 import com.hjq.permissions.OnPermission;
@@ -193,7 +194,7 @@ public final class LauncherActivity extends MyActivity
         handler.sendEmptyMessage(MSG_WAITING);
     }
     private void goHome() {
-        startActivity(SpeakerTestActivity.class);
+        startActivity(KeyTestActivity.class);
         finish();
     }
 

@@ -68,4 +68,8 @@
     <string name="blue">蓝</string>
     <string name="black">黑</string>
     <string name="white">白</string>
+
+    <string name="key_add_v">音量+</string>
+    <string name="key_sub_v">音量-</string>
+    <string name="key_home">Home</string>
 </resources>
