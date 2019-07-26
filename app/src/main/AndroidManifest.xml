@@ -18,6 +18,10 @@
     <!-- 安装包的权限 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
+    <!--<uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>-->
+    <!--<uses-permission android:name="android.permission.WRITE_SETTINGS"/>-->
+
+
     <application
         android:name=".common.MyApplication"
         android:icon="@mipmap/ic_launcher"
@@ -69,6 +73,8 @@
         <activity android:name=".ui.act.t.TouchTestActivity"/>
         <activity android:name=".ui.act.t.SpeakerTestActivity"/>
         <activity android:name=".ui.act.t.KeyTestActivity"/>
+        <activity android:name=".ui.act.t.BacklightTestActivity"/>
+        <activity android:name=".ui.act.t.CameraTestActivity"/>
 
         <!-- 主页界面 -->
         <activity

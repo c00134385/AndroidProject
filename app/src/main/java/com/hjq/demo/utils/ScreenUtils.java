@@ -1,6 +1,9 @@
 package com.hjq.demo.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/speaker"
+        tools:ignore="MissingConstraints" />
+
+    <ProgressBar
+        android:id="@+id/level"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@+id/left_channel"
+        app:layout_constraintRight_toRightOf="@+id/stereo_channel"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar"
+        android:layout_marginTop="@dimen/space_120"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:max="100" />
+
+    <Button
+        android:id="@+id/left_channel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/right_channel"
+        app:layout_constraintTop_toBottomOf="@+id/level"
+        android:layout_marginTop="@dimen/space_80"
+        android:text="左声道"
+        android:visibility="invisible"
+        />
+
+    <Button
+        android:id="@+id/right_channel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/left_channel"
+        app:layout_constraintRight_toLeftOf="@+id/stereo_channel"
+        app:layout_constraintTop_toTopOf="@+id/left_channel"
+        app:layout_constraintBottom_toBottomOf="@+id/left_channel"
+        android:text="右声道"
+        android:visibility="invisible"
+        />
+
+    <Button
+        android:id="@+id/stereo_channel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/right_channel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/left_channel"
+        app:layout_constraintBottom_toBottomOf="@+id/left_channel"
+        android:text="立体声"
+        android:visibility="invisible"
+        />
+
+    <com.hjq.demo.ui.widget.BottomBar
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_120"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
