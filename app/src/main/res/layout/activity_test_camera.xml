@@ -43,7 +43,8 @@
             app:layout_constraintLeft_toRightOf="@+id/camera_preview"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/camera_preview"
-            app:layout_constraintBottom_toBottomOf="@+id/camera_preview"/>
+            app:layout_constraintBottom_toBottomOf="@+id/camera_preview"
+            android:scaleType="centerInside"/>
 
         <Button
             android:id="@+id/take_preview"

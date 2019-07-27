@@ -66,16 +66,15 @@ public class SpeakerTestActivity extends BaseTestActivity {
     }
 
     @Override
-    protected void initView() {
-
-    }
-
-    @Override
     protected void initData() {
 
     }
     @OnClick({R.id.left_channel, R.id.right_channel, R.id.stereo_channel})
     void onClick(View v) {
+        if(null != disposable && !disposable.isDisposed()) {
+            disposable.dispose();
+            disposable = null;
+        }
         if(null != mMediaPlayer) {
             mMediaPlayer.stop();
             mMediaPlayer = null;

@@ -68,6 +68,7 @@
         <activity android:name=".ui.act.AndroidActivity"/>
         <activity android:name=".ui.act.HardwareActivity"/>
         <activity android:name=".ui.act.TestHomeActivity"/>
+        <activity android:name=".ui.act.NewTestHomeActivity"/>
         <activity android:name=".ui.act.t.DemoTestActivity"/>
         <activity android:name=".ui.act.t.ScreenTestActivity"/>
         <activity android:name=".ui.act.t.TouchTestActivity"/>

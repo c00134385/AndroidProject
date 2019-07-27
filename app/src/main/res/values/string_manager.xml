@@ -54,7 +54,9 @@
     <string name="keypad">按键</string>
     <string name="back_light">背光亮度</string>
 
-    <string name="state_not_test">待测</string>
+    <string name="start_test">开始测试</string>
+    <string name="state_not_test">待测试</string>
+    <string name="state_testing">测试中</string>
     <string name="state_success">成功</string>
     <string name="state_failed">失败</string>
 

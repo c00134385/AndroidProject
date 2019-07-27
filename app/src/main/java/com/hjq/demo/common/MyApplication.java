@@ -72,11 +72,11 @@ public class MyApplication extends Application {
     }
 
     private void initManagers() {
-        MachineManager.init(MyApplication.this);
-        NetworkManager.init(MyApplication.this);
-        HardwareManager.init(MyApplication.this);
-        OrthManager.init(MyApplication.this);
-        OrthManager.getInstance().start();
+//        MachineManager.init(MyApplication.this);
+//        NetworkManager.init(MyApplication.this);
+//        HardwareManager.init(MyApplication.this);
+//        OrthManager.init(MyApplication.this);
+//        OrthManager.getInstance().start();
     }
 
     @Override

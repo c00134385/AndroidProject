@@ -9,24 +9,17 @@
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/screen"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="测试主页" />
 
-    <com.hjq.demo.ui.widget.BottomBar
-        android:id="@+id/bottom_bar"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_120"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <com.hjq.demo.ui.widget.PaintView
-        android:id="@+id/paint_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
 
 </android.support.constraint.ConstraintLayout>

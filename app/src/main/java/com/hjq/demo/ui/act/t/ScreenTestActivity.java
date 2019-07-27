@@ -82,12 +82,6 @@ public class ScreenTestActivity extends BaseTestActivity {
     }
 
     @Override
-    protected void initView() {
-
-    }
-
-    @Override
     protected void initData() {
-
     }
 }

@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.hjq.demo.R;
@@ -38,27 +39,31 @@ public class CardView extends ConstraintLayout {
     private void init(Context context) {
         this.context = context;
 
-        tvTitle = new TextView(context);
-        tvTitle.setTextSize(getResources().getDimension(R.dimen.font_size_76px));  // 方法2
-        addView(tvTitle);
-        LayoutParams layoutParams = (LayoutParams)tvTitle.getLayoutParams();
-        layoutParams.leftToLeft = ConstraintSet.PARENT_ID;
-        layoutParams.rightToRight = ConstraintSet.PARENT_ID;
-        layoutParams.topToTop = ConstraintSet.PARENT_ID;
-        layoutParams.bottomToBottom = ConstraintSet.PARENT_ID;
-        layoutParams.horizontalBias = 0.3f;
-        tvTitle.setLayoutParams(layoutParams);
-//
-        tvStatus = new TextView(context);
-        tvStatus.setTextSize(getResources().getDimension(R.dimen.font_size_40px));
-        addView(tvStatus);
+        LayoutInflater.from(context).inflate(R.layout.layout_card_view, this);
+        tvTitle = findViewById(R.id.tv_title);
+        tvStatus = findViewById(R.id.tv_state);
 
-        layoutParams = (LayoutParams)tvStatus.getLayoutParams();
-        layoutParams.rightToRight = ConstraintSet.PARENT_ID;
-        layoutParams.topToTop = ConstraintSet.PARENT_ID;
-        layoutParams.bottomToBottom = ConstraintSet.PARENT_ID;
-        layoutParams.rightMargin = DisplayUtil.dip2px(context, getResources().getDimension(R.dimen.space_40));
-        tvStatus.setLayoutParams(layoutParams);
+//        tvTitle = new TextView(context);
+//        tvTitle.setTextSize(getResources().getDimension(R.dimen.font_size_76px));  // 方法2
+//        addView(tvTitle);
+//        LayoutParams layoutParams = (LayoutParams)tvTitle.getLayoutParams();
+//        layoutParams.leftToLeft = ConstraintSet.PARENT_ID;
+//        layoutParams.rightToRight = ConstraintSet.PARENT_ID;
+//        layoutParams.topToTop = ConstraintSet.PARENT_ID;
+//        layoutParams.bottomToBottom = ConstraintSet.PARENT_ID;
+//        layoutParams.horizontalBias = 0.3f;
+//        tvTitle.setLayoutParams(layoutParams);
+////
+//        tvStatus = new TextView(context);
+//        tvStatus.setTextSize(getResources().getDimension(R.dimen.font_size_40px));
+//        addView(tvStatus);
+//
+//        layoutParams = (LayoutParams)tvStatus.getLayoutParams();
+//        layoutParams.rightToRight = ConstraintSet.PARENT_ID;
+//        layoutParams.topToTop = ConstraintSet.PARENT_ID;
+//        layoutParams.bottomToBottom = ConstraintSet.PARENT_ID;
+//        layoutParams.rightMargin = DisplayUtil.dip2px(context, getResources().getDimension(R.dimen.space_40));
+//        tvStatus.setLayoutParams(layoutParams);
     }
 
     private void initAttr(AttributeSet attrs) {

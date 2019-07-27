@@ -37,11 +37,6 @@ public class BacklightTestActivity extends BaseTestActivity {
     }
 
     @Override
-    protected void initView() {
-
-    }
-
-    @Override
     protected void initData() {
         currentBrightness = BacklightUtils.getScreenBrightness(this);
         BacklightUtils.setBrightness(BacklightTestActivity.this, currentBrightness + 1);

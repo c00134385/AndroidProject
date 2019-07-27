@@ -1,5 +1,6 @@
 package com.hjq.demo.ui.act.t;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -7,13 +8,15 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.hjq.demo.common.MyActivity;
+import com.hjq.demo.mananger.TestManager;
+import com.hjq.demo.model.StateEnum;
+import com.hjq.demo.model.TestItemModel;
 import com.hjq.demo.ui.widget.BottomBar;
-import com.hjq.toast.ToastUtils;
-
-import timber.log.Timber;
+import com.hjq.demo.utils.GsonUtil;
 
 abstract public class BaseTestActivity extends MyActivity {
 
+    static public String KEY_TEST_ITEM = "TEST_ITEM";
     protected boolean isTestRunning = false;
     private Handler mHandler = new Handler(){
         @Override
@@ -21,6 +24,8 @@ abstract public class BaseTestActivity extends MyActivity {
             super.handleMessage(msg);
         }
     };
+
+    protected TestItemModel testItem;
 
     @Override
     protected void initLayout() {
@@ -37,14 +42,26 @@ abstract public class BaseTestActivity extends MyActivity {
                     @Override
                     public void onMiddleClick(View v) {
 //                        ToastUtils.show("middle is clicked");
+                        onTestSuccess();
                     }
 
                     @Override
                     public void onRightClick(View v) {
 //                        ToastUtils.show("right is clicked");
+                        onTestFailed();
                     }
                 });
             }
+        }
+    }
+
+    @Override
+    protected void initView() {
+        Intent intent = getIntent();
+        String extraJson = intent.getStringExtra(BaseTestActivity.KEY_TEST_ITEM);
+        testItem = GsonUtil.getGson().fromJson(extraJson, TestItemModel.class);
+        if(null != getTitleBar()) {
+            getTitleBar().setTitle(testItem.getTitle().value());
         }
     }
 
@@ -60,10 +77,27 @@ abstract public class BaseTestActivity extends MyActivity {
     protected abstract int getBottomBarId();
 
     protected void onTestStart(){
-
+        if(null != testItem) {
+            testItem.setState(StateEnum.NOT_TEST);
+            TestManager.getInstance().updateTest(testItem);
+        }
     };
 
     protected void onTestEnd() {
 
+    }
+
+    protected void onTestSuccess() {
+        if(null != testItem) {
+            testItem.setState(StateEnum.SUCCESS);
+            TestManager.getInstance().updateTest(testItem);
+        }
+    }
+
+    protected void onTestFailed() {
+        if(null != testItem) {
+            testItem.setState(StateEnum.FAILED);
+            TestManager.getInstance().updateTest(testItem);
+        }
     }
 }

@@ -61,10 +61,6 @@ public class CameraTestActivity extends BaseTestActivity {
     }
 
     @Override
-    protected void initView() {
-    }
-
-    @Override
     protected void initData() {
         mSurfaceHolder = mSurfaceView.getHolder();// 取得holder
         mSurfaceHolder.addCallback(new SurfaceHolder.Callback() {
@@ -100,7 +96,10 @@ public class CameraTestActivity extends BaseTestActivity {
 //                    freeCameraResource();
         }
 
-        mCamera = Camera.open();
+        int count = Camera.getNumberOfCameras();
+        Timber.d("camera count:%d", count);
+
+        mCamera = Camera.open(0);
         if (mCamera == null) {
             ToastUtils.show("open camera failed.");
             return;
@@ -115,9 +114,9 @@ public class CameraTestActivity extends BaseTestActivity {
 
         Camera.Size size = parameters.getPreviewSize();
         Timber.d("h:%d w:%d", size.height, size.width);
-        resize(size.height, size.width);
+        resize(size.width, size.height);
         try {
-            mCamera.setDisplayOrientation(90);
+//            mCamera.setDisplayOrientation(90);
             mCamera.setPreviewDisplay(mSurfaceHolder);
             mCamera.startPreview();// 开始预览
         } catch (IOException e) {
@@ -132,9 +131,9 @@ public class CameraTestActivity extends BaseTestActivity {
             mSurfaceView.setLayoutParams(params);
         }
         {
-            ViewGroup.LayoutParams params = mPicView.getLayoutParams();
-            params.width = width * params.height / height;
-            mPicView.setLayoutParams(params);
+//            ViewGroup.LayoutParams params = mPicView.getLayoutParams();
+//            params.width = width * params.height / height;
+//            mPicView.setLayoutParams(params);
         }
     }
 

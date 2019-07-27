@@ -4,49 +4,66 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.hjq.demo.ui.widget.CardView
-        android:id="@+id/card_screen"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/space_210"
+    <com.hjq.bar.TitleBar
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/card_network"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/screen"
-        app:status="@string/state_not_test"
-        android:background="@drawable/content_bg"/>
-
-    <com.hjq.demo.ui.widget.CardView
-        android:id="@+id/card_network"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/space_210"
-        app:layout_constraintLeft_toRightOf="@+id/card_screen"
-        app:layout_constraintRight_toLeftOf="@+id/card_speaker"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/network"
-        app:status="@string/state_not_test"
-        android:background="@drawable/content_bg"/>
-
-    <com.hjq.demo.ui.widget.CardView
-        android:id="@+id/card_speaker"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/space_210"
-        app:layout_constraintLeft_toRightOf="@+id/card_network"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/speaker"
-        app:status="@string/state_not_test"
-        android:background="@drawable/content_bg"/>
+        app:title="测试主页" />
 
-    <com.hjq.demo.ui.widget.CardView
-        android:id="@+id/card_keypad"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/space_210"
-        app:layout_constraintLeft_toLeftOf="@+id/card_screen"
-        app:layout_constraintRight_toRightOf="@+id/card_screen"
-        app:layout_constraintTop_toBottomOf="@+id/card_screen"
-        app:title="@string/keypad"
-        app:status="@string/state_not_test"
-        android:background="@drawable/content_bg"/>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar">
+        <com.hjq.demo.ui.widget.CardView
+            android:id="@+id/card_screen"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_210"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/card_network"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/screen"
+            app:status="@string/state_not_test"
+            android:background="@drawable/content_bg"/>
+
+        <com.hjq.demo.ui.widget.CardView
+            android:id="@+id/card_network"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_210"
+            app:layout_constraintLeft_toRightOf="@+id/card_screen"
+            app:layout_constraintRight_toLeftOf="@+id/card_speaker"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/network"
+            app:status="@string/state_not_test"
+            android:background="@drawable/content_bg"/>
+
+        <com.hjq.demo.ui.widget.CardView
+            android:id="@+id/card_speaker"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_210"
+            app:layout_constraintLeft_toRightOf="@+id/card_network"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/speaker"
+            app:status="@string/state_not_test"
+            android:background="@drawable/content_bg"/>
+
+        <com.hjq.demo.ui.widget.CardView
+            android:id="@+id/card_keypad"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_210"
+            app:layout_constraintLeft_toLeftOf="@+id/card_screen"
+            app:layout_constraintRight_toRightOf="@+id/card_screen"
+            app:layout_constraintTop_toBottomOf="@+id/card_screen"
+            app:title="@string/keypad"
+            app:status="@string/state_not_test"
+            android:background="@drawable/content_bg"/>
+    </android.support.constraint.ConstraintLayout>
+
 
     <!--<android.support.constraint.ConstraintLayout-->
         <!--android:id="@+id/con_machine"-->

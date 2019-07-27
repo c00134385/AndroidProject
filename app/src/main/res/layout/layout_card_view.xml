@@ -1,37 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/space_240"
+    android:background="@drawable/content_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:id="@+id/btn_left"
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/btn_middle"
+        android:layout_marginLeft="@dimen/space_44"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/start_test"/>
+        android:textSize="@dimen/font_size_80px"
+        android:text="title"/>
 
-    <Button
-        android:id="@+id/btn_middle"
+    <TextView
+        android:id="@+id/tv_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@+id/btn_left"
-        app:layout_constraintRight_toLeftOf="@+id/btn_right"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/state_success"/>
-
-    <Button
-        android:id="@+id/btn_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@+id/btn_middle"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="@dimen/space_24"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/state_failed"/>
+        android:textSize="@dimen/font_size_32px"
+        android:text="state"/>
 
 </android.support.constraint.ConstraintLayout>
