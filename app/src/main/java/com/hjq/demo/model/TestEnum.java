@@ -7,6 +7,7 @@ public enum TestEnum {
     LAN("以太网"),
     FORG("4G"),
     SPEAKER("喇叭"),
+    HEADPHONE("耳机"),
     KEY("按键"),
     BACK_LIGHT("背光"),
     BLUETOOTH("蓝牙"),

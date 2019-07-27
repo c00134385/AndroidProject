@@ -2,7 +2,6 @@ package com.hjq.demo.ui.act.t;
 
 import android.hardware.Camera;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.hjq.image.ImageLoader;
 import com.hjq.toast.ToastUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -58,6 +56,11 @@ public class CameraTestActivity extends BaseTestActivity {
     @Override
     protected int getTitleId() {
         return R.id.top_bar;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.hjq.demo.ui.act.t;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Message;
@@ -15,8 +17,10 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class SpeakerTestActivity extends BaseTestActivity {
 
@@ -50,6 +54,11 @@ public class SpeakerTestActivity extends BaseTestActivity {
 
     Disposable disposable;
 
+    AudioManager audioManager;
+    int currentVolume;
+    int minVolume;
+    int maxVolume;
+
     @Override
     protected int getBottomBarId() {
         return R.id.bottom_bar;
@@ -66,9 +75,20 @@ public class SpeakerTestActivity extends BaseTestActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initView() {
 
     }
+
+    @Override
+    protected void initData() {
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        minVolume = audioManager.getStreamMinVolume(AudioManager.STREAM_MUSIC);
+        maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+//        audioManager.setStreamVolume();
+        level.setMax(maxVolume - minVolume);
+    }
+
     @OnClick({R.id.left_channel, R.id.right_channel, R.id.stereo_channel})
     void onClick(View v) {
         if(null != disposable && !disposable.isDisposed()) {
@@ -84,47 +104,55 @@ public class SpeakerTestActivity extends BaseTestActivity {
         if(v.getId() == R.id.left_channel) {
 //直接创建，不需要设置setDataSource
             currentChannel = 0;
-//            mMediaPlayer.setVolume(1, 0);
+            mMediaPlayer.setVolume(1f, 0f);
 //            mMediaPlayer.start();
         } else if(v.getId() == R.id.right_channel) {
             currentChannel = 1;
-//            mMediaPlayer.setVolume(0, 1);
+            mMediaPlayer.setVolume(0f, 1f);
 //            mMediaPlayer.start();
         } else if(v.getId() == R.id.stereo_channel) {
             currentChannel = 2;
-//            mMediaPlayer.setVolume(1, 1);
+            mMediaPlayer.setVolume(1f, 1f);
 //            mMediaPlayer.start();
         }
 
         mMediaPlayer.start();
 
-        disposable = Observable.intervalRange(0L, 11L, 0, 1, TimeUnit.SECONDS)
+        disposable = Observable.intervalRange(minVolume, maxVolume - minVolume + 1, 0, 1, TimeUnit.SECONDS)
                 .doOnNext(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        level.setProgress((int)(level.getMax() * aLong / 10));
+                        level.setProgress((int)(aLong - minVolume));
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
+                        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, aLong.intValue(), 0/*AudioManager.FLAG_SHOW_UI*/);
                         float aFloat = 0.1f * aLong;
                         switch (currentChannel) {
                             case 0:
-                                mMediaPlayer.setVolume(aFloat, 0);
+//                                mMediaPlayer.setVolume(aFloat, 0);
+//                                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, aLong.intValue(), AudioManager.FLAG_SHOW_UI);
                                 break;
                             case 1:
-                                mMediaPlayer.setVolume(0, aFloat);
+//                                mMediaPlayer.setVolume(0, aFloat);
                                 break;
                             default:
-                                mMediaPlayer.setVolume(aFloat, aFloat);
+//                                mMediaPlayer.setVolume(aFloat, aFloat);
                                 break;
                         }
-
-                        if(aLong >= 10) {
-                            handler.sendEmptyMessageDelayed(MSG_STOP_MP, 1000);
-                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Timber.e(throwable, throwable.getMessage());
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        handler.sendEmptyMessageDelayed(MSG_STOP_MP, 1000);
                     }
                 });
     }
@@ -143,5 +171,6 @@ public class SpeakerTestActivity extends BaseTestActivity {
         }
 
         handler.removeCallbacksAndMessages(null);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
     }
 }

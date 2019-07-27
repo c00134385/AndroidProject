@@ -11,7 +11,6 @@ import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class BacklightTestActivity extends BaseTestActivity {
@@ -34,6 +33,11 @@ public class BacklightTestActivity extends BaseTestActivity {
     @Override
     protected int getTitleId() {
         return R.id.top_bar;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     @Override

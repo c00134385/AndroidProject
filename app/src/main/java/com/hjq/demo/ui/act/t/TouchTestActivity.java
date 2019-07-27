@@ -28,6 +28,11 @@ public class TouchTestActivity extends BaseTestActivity {
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected void initData() {
         paintView.setVisibility(View.VISIBLE);
         paintView.setBackgroundResource(R.color.white);

@@ -22,6 +22,7 @@ import com.hjq.demo.ui.act.t.BacklightTestActivity;
 import com.hjq.demo.ui.act.t.BaseTestActivity;
 import com.hjq.demo.ui.act.t.BtTestActivity;
 import com.hjq.demo.ui.act.t.CameraTestActivity;
+import com.hjq.demo.ui.act.t.DemoTestActivity;
 import com.hjq.demo.ui.act.t.KeyTestActivity;
 import com.hjq.demo.ui.act.t.ScreenTestActivity;
 import com.hjq.demo.ui.act.t.SpeakerTestActivity;
@@ -166,6 +167,7 @@ public class NewTestHomeActivity extends MyActivity {
                         case FORG:
                             break;
                         default:
+                            startActivity(DemoTestActivity.class, s);
                             break;
                     }
                 }

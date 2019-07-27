@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -19,6 +20,8 @@ import timber.log.Timber;
 public class ScreenTestActivity extends BaseTestActivity {
     @BindView(R.id.foreground)
     View view;
+
+    Disposable disposable;
 
     @Override
     protected int getBottomBarId() {
@@ -38,7 +41,11 @@ public class ScreenTestActivity extends BaseTestActivity {
         colors.add(R.color.blue);
         colors.add(R.color.black);
 
-        Observable.intervalRange(0, colors.size() + 1, 1, 3, TimeUnit.SECONDS)
+        if(null != disposable && !disposable.isDisposed()) {
+            disposable.dispose();
+        }
+
+        disposable = Observable.intervalRange(0, colors.size() + 1, 1, 3, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
@@ -82,6 +89,24 @@ public class ScreenTestActivity extends BaseTestActivity {
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected void initData() {
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(null != disposable && !disposable.isDisposed()) {
+            disposable.dispose();
+        }
     }
 }

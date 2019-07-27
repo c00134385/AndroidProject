@@ -45,7 +45,6 @@ public class KeyTestActivity extends BaseTestActivity {
 
     @Override
     protected void initView() {
-        super.initView();
         mHomeListen = new HomeListener(this);
         mHomeListen.setInterface(new HomeListener.KeyFun() {
             @Override

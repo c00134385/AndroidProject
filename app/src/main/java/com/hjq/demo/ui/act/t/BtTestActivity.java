@@ -54,6 +54,11 @@ public class BtTestActivity extends BaseTestActivity {
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         IntentFilter intentFilter = new IntentFilter();//注册广播接收信号
