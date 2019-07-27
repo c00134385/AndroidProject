@@ -15,6 +15,7 @@ import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.model.StateEnum;
 import com.hjq.demo.model.TestItemModel;
 import com.hjq.demo.ui.act.frag.HPTestFragment;
+import com.hjq.demo.ui.act.frag.WifiTestFragment;
 import com.hjq.demo.ui.widget.BottomBar;
 import com.hjq.demo.utils.GsonUtil;
 
@@ -117,10 +118,15 @@ abstract public class BaseTestActivity extends MyActivity {
             case HEADPHONE:
                 fragment = new HPTestFragment();
                 break;
+            case WIFI:
+                fragment = new WifiTestFragment();
+                break;
         }
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frag_container, fragment);
-        transaction.commit();
+        if(null != fragment) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.frag_container, fragment);
+            transaction.commit();
+        }
     }
 }

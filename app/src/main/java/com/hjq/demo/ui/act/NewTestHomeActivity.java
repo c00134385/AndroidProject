@@ -161,11 +161,8 @@ public class NewTestHomeActivity extends MyActivity {
                             startActivity(BtTestActivity.class, s);
                             break;
                         case WIFI:
-                            break;
                         case LAN:
-                            break;
                         case FORG:
-                            break;
                         default:
                             startActivity(DemoTestActivity.class, s);
                             break;

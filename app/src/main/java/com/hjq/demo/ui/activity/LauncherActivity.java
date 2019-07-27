@@ -17,13 +17,8 @@ import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.mananger.TestManager;
-import com.hjq.demo.ui.act.NewHomeActivity;
+import com.hjq.demo.mananger.WifiAdmin;
 import com.hjq.demo.ui.act.NewTestHomeActivity;
-import com.hjq.demo.ui.act.TestHomeActivity;
-import com.hjq.demo.ui.act.t.BacklightTestActivity;
-import com.hjq.demo.ui.act.t.CameraTestActivity;
-import com.hjq.demo.ui.act.t.KeyTestActivity;
-import com.hjq.demo.ui.act.t.SpeakerTestActivity;
 import com.hjq.demo.utils.CommonUtils;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
@@ -169,6 +164,7 @@ public final class LauncherActivity extends MyActivity
                         OrthManager.init(MyApplication.getInstance());
                         OrthManager.getInstance().start();
                         TestManager.init(MyApplication.getInstance());
+                        WifiAdmin.init(MyApplication.getInstance());
                         return integer;
                     }
                 })

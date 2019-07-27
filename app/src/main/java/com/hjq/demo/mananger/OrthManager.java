@@ -66,6 +66,11 @@ public class OrthManager extends BaseManager{
                         public void accept(Boolean b) throws Exception {
                             orthValid = b;
                         }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            Timber.e(throwable, throwable.getMessage());
+                        }
                     });
             mHandler.postDelayed(mAction, mInterval);
         }

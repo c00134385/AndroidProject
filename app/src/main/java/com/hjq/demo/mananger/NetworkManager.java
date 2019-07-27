@@ -1,6 +1,5 @@
 package com.hjq.demo.mananger;
 
-import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -57,7 +56,6 @@ public class NetworkManager {
     private volatile ENetworkState networkState;
     private volatile EConnectionState connectionState;
 
-    @SuppressLint("WrongConstant")
     private NetworkManager(Context context) {
         this.context = context;
         wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);

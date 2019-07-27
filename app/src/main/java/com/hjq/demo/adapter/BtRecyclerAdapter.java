@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hjq.demo.R;
-import com.hjq.demo.common.MyRecyclerViewAdapter;
 
 import java.util.List;
 
