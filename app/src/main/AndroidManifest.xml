@@ -21,6 +21,11 @@
     <!--<uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>-->
     <!--<uses-permission android:name="android.permission.WRITE_SETTINGS"/>-->
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
     <application
         android:name=".common.MyApplication"
@@ -76,6 +81,7 @@
         <activity android:name=".ui.act.t.KeyTestActivity"/>
         <activity android:name=".ui.act.t.BacklightTestActivity"/>
         <activity android:name=".ui.act.t.CameraTestActivity"/>
+        <activity android:name=".ui.act.t.BtTestActivity"/>
 
         <!-- 主页界面 -->
         <activity

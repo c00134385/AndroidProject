@@ -59,7 +59,9 @@ public final class LauncherActivity extends MyActivity
     private static final String[] permissions = new String[]{
             Permission.READ_EXTERNAL_STORAGE,
             Permission.WRITE_EXTERNAL_STORAGE,
-            Permission.CAMERA};
+            Permission.CAMERA,
+            Permission.ACCESS_FINE_LOCATION,
+            Permission.ACCESS_COARSE_LOCATION};
 
     private static long startTimestamp;
     private boolean isInitialized = false;

@@ -20,6 +20,7 @@ import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.model.TestItemModel;
 import com.hjq.demo.ui.act.t.BacklightTestActivity;
 import com.hjq.demo.ui.act.t.BaseTestActivity;
+import com.hjq.demo.ui.act.t.BtTestActivity;
 import com.hjq.demo.ui.act.t.CameraTestActivity;
 import com.hjq.demo.ui.act.t.KeyTestActivity;
 import com.hjq.demo.ui.act.t.ScreenTestActivity;
@@ -156,6 +157,7 @@ public class NewTestHomeActivity extends MyActivity {
                             startActivity(CameraTestActivity.class, s);
                             break;
                         case BLUETOOTH:
+                            startActivity(BtTestActivity.class, s);
                             break;
                         case WIFI:
                             break;
