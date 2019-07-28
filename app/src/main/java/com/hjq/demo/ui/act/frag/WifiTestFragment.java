@@ -13,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.hjq.demo.R;
-import com.hjq.demo.adapter.BtRecyclerAdapter;
 import com.hjq.demo.adapter.WifiRecyclerAdapter;
 import com.hjq.demo.common.MyLazyFragment;
 import com.hjq.demo.mananger.WifiAdmin;

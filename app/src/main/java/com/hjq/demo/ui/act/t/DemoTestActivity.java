@@ -1,11 +1,8 @@
 package com.hjq.demo.ui.act.t;
 
-import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
 import com.hjq.demo.R;
-import com.hjq.demo.common.MyLazyFragment;
-import com.hjq.demo.ui.act.frag.HPTestFragment;
 
 import butterknife.BindView;
 

@@ -64,4 +64,8 @@ public class TestManager {
         testItemMap.put(item.getTitle().name(), item);
         SPUtils.setParam(mPreferences, item.getTitle().name(), item.getState().name());
     }
+
+    public static SharedPreferences getmPreferences() {
+        return mPreferences;
+    }
 }

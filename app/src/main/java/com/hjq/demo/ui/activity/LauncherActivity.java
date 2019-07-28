@@ -18,7 +18,9 @@ import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.mananger.WifiAdmin;
-import com.hjq.demo.ui.act.NewTestHomeActivity;
+import com.hjq.demo.ui.act.NewHome1Activity;
+import com.hjq.demo.ui.act.NewHomeActivity;
+import com.hjq.demo.ui.act.TempActivity;
 import com.hjq.demo.utils.CommonUtils;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
@@ -162,21 +164,20 @@ public final class LauncherActivity extends MyActivity
                         NetworkManager.init(MyApplication.getInstance());
                         HardwareManager.init(MyApplication.getInstance());
                         OrthManager.init(MyApplication.getInstance());
-                        OrthManager.getInstance().start();
                         TestManager.init(MyApplication.getInstance());
                         WifiAdmin.init(MyApplication.getInstance());
                         return integer;
                     }
                 })
-                .subscribeOn(Schedulers.io());
-
-        observable
                 .doOnNext(new Consumer<Integer>() {
                     @Override
                     public void accept(Integer integer) throws Exception {
-//                        Thread.sleep(10000);
+                        OrthManager.getInstance().start();
                     }
                 })
+                .subscribeOn(Schedulers.io());
+
+        observable
                 .doOnComplete(new Action() {
                     @Override
                     public void run() throws Exception {
@@ -199,7 +200,7 @@ public final class LauncherActivity extends MyActivity
         handler.sendEmptyMessage(MSG_WAITING);
     }
     private void goHome() {
-        startActivity(NewTestHomeActivity.class);
+        startActivity(NewHome1Activity.class);
         finish();
     }
 

@@ -14,6 +14,8 @@ import com.hjq.demo.common.MyLazyFragment;
 import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.model.StateEnum;
 import com.hjq.demo.model.TestItemModel;
+import com.hjq.demo.ui.act.frag.ForgTestFragment;
+import com.hjq.demo.ui.act.frag.LanTestFragment;
 import com.hjq.demo.ui.act.frag.HPTestFragment;
 import com.hjq.demo.ui.act.frag.WifiTestFragment;
 import com.hjq.demo.ui.widget.BottomBar;
@@ -120,6 +122,12 @@ abstract public class BaseTestActivity extends MyActivity {
                 break;
             case WIFI:
                 fragment = new WifiTestFragment();
+                break;
+            case LAN:
+                fragment = new LanTestFragment();
+                break;
+            case FORG:
+                fragment = new ForgTestFragment();
                 break;
         }
 

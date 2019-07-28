@@ -31,6 +31,9 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <!--<uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>-->
+
 
     <application
         android:name=".common.MyApplication"
@@ -78,6 +81,7 @@
         <activity android:name=".ui.act.AndroidActivity"/>
         <activity android:name=".ui.act.HardwareActivity"/>
         <activity android:name=".ui.act.TestHomeActivity"/>
+        <activity android:name=".ui.act.NewHome1Activity"/>
         <activity android:name=".ui.act.NewTestHomeActivity"/>
         <activity android:name=".ui.act.t.DemoTestActivity"/>
         <activity android:name=".ui.act.t.ScreenTestActivity"/>
@@ -87,6 +91,7 @@
         <activity android:name=".ui.act.t.BacklightTestActivity"/>
         <activity android:name=".ui.act.t.CameraTestActivity"/>
         <activity android:name=".ui.act.t.BtTestActivity"/>
+        <activity android:name=".ui.act.TempActivity"/>
 
         <!-- 主页界面 -->
         <activity

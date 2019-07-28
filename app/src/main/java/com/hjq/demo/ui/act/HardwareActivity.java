@@ -26,7 +26,7 @@ public class HardwareActivity extends MyActivity {
 
     @Override
     protected int getTitleId() {
-        return 0;
+        return R.id.top_bar;
     }
 
     @Override

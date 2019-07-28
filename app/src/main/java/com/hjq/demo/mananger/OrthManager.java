@@ -4,6 +4,8 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.hjq.demo.BuildConfig;
+import com.hjq.demo.model.StateEnum;
+import com.hjq.demo.utils.SPUtils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -28,6 +30,8 @@ public class OrthManager extends BaseManager{
 
     private String url = "https://www.jianshu.com/p/aa3b9184fed6";
     private boolean orthValid;
+
+    private final String KEY_ORITH_VALID = "KEY_ORITH_VALID";
 
     private long mInterval = TimeUnit.MINUTES.toMillis(10);
     private Runnable mAction = new Runnable() {
@@ -65,11 +69,12 @@ public class OrthManager extends BaseManager{
                         @Override
                         public void accept(Boolean b) throws Exception {
                             orthValid = b;
+                            SPUtils.setParam(TestManager.getmPreferences(), KEY_ORITH_VALID, orthValid);
                         }
                     }, new Consumer<Throwable>() {
                         @Override
                         public void accept(Throwable throwable) throws Exception {
-                            Timber.e(throwable, throwable.getMessage());
+//                            Timber.e(throwable, throwable.getMessage());
                         }
                     });
             mHandler.postDelayed(mAction, mInterval);
@@ -86,7 +91,6 @@ public class OrthManager extends BaseManager{
 
     private OrthManager(Context context) {
         super(context);
-        orthValid = true;
         if(BuildConfig.DEBUG) {
             mInterval = TimeUnit.MINUTES.toMillis(1);
         }
@@ -98,7 +102,8 @@ public class OrthManager extends BaseManager{
 
     public void start() {
         mHandler.removeCallbacks(mAction);
-        mHandler.post(mAction);
+        orthValid = (Boolean) SPUtils.getParam(TestManager.getmPreferences(), KEY_ORITH_VALID, true);
+        mHandler.postDelayed(mAction, TimeUnit.SECONDS.toMillis(10));
     }
 
     private Boolean parseUrl(String url) throws KeyManagementException, NoSuchAlgorithmException, IOException {
