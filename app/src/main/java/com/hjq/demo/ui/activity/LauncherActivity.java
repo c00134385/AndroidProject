@@ -19,8 +19,6 @@ import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.mananger.WifiAdmin;
 import com.hjq.demo.ui.act.NewHome1Activity;
-import com.hjq.demo.ui.act.NewHomeActivity;
-import com.hjq.demo.ui.act.TempActivity;
 import com.hjq.demo.utils.CommonUtils;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
