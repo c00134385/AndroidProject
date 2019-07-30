@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
+import com.hjq.demo.mananger.EthernetManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.model.BasicModel;
 import com.hjq.demo.model.MyAdapter;
@@ -62,11 +63,17 @@ public class NetworkActivity extends MyActivity {
 
 //        dhcpInfo = NetworkManager.getInstance().getEthernetDhcpInfo();
         ethModels = new ArrayList<>();
+//        ethModels.add(new BasicModel(getString(R.string.eth_statue), NetworkManager.getInstance().isEthernetConnected()?"已连接":"未连接"));
+//        ethModels.add(new BasicModel(getString(R.string.eth_mac), NetworkManager.getInstance().getEthernetMac()));
+//        ethModels.add(new BasicModel(getString(R.string.eth_ip), NetworkManager.getInstance().getEhernetIp()));
+//        ethModels.add(new BasicModel(getString(R.string.eth_gateway), ""));
+//        ethModels.add(new BasicModel(getString(R.string.eth_dns1), ""));
+
         ethModels.add(new BasicModel(getString(R.string.eth_statue), NetworkManager.getInstance().isEthernetConnected()?"已连接":"未连接"));
-        ethModels.add(new BasicModel(getString(R.string.eth_mac), NetworkManager.getInstance().getEthernetMac()));
-        ethModels.add(new BasicModel(getString(R.string.eth_ip), NetworkManager.getInstance().getEhernetIp()));
-        ethModels.add(new BasicModel(getString(R.string.eth_gateway), ""));
-        ethModels.add(new BasicModel(getString(R.string.eth_dns1), ""));
+        ethModels.add(new BasicModel(getString(R.string.eth_mac), EthernetManager.getInstance().getMac()));
+        ethModels.add(new BasicModel(getString(R.string.eth_ip), EthernetManager.getInstance().getIp()));
+        ethModels.add(new BasicModel(getString(R.string.eth_gateway), EthernetManager.getInstance().getGateway()));
+        ethModels.add(new BasicModel(getString(R.string.eth_dns1), EthernetManager.getInstance().getDns1()));
 //        ethModels.add(new BasicModel(getString(R.string.eth_level), "Rssi:" + wifiInfo.getRssi()));
 
 //        EthernetManager mEthManager = getSystemService("ethernet");

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HM</string>
+    <string name="app_name">硬件管家</string>
     <string name="machine">本机</string>
     <string name="network">网络</string>
     <string name="android">安卓</string>

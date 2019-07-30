@@ -128,24 +128,28 @@ android {
 
 // api 与 implementation 的区别：https://www.jianshu.com/p/8962d6ba936e
 dependencies {
+
     // 依赖 libs 目录下所有 jar 包
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     // 依赖 libs 目录下所有 aar 包
     implementation fileTree(include: ['*.aar'], dir: 'libs')
 
     // 基础库（不包任何第三方框架）
     implementation project(':base')
+
     // 自定义 View
     implementation project(':widget')
+
     // Dialog 封装
     implementation project(':dialog')
+
     // Glide 隔离
     implementation project(':image')
+
     // 友盟隔离
     implementation project(':umeng')
-
     implementation 'androidx.annotation:annotation:1.1.0'
-
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
@@ -160,18 +164,21 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
 
     // EventBus 事件总线
-    implementation "org.greenrobot:eventbus:3.1.1"
+    implementation 'org.greenrobot:eventbus:3.1.1'
     annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.1.1'
 
     // 状态栏沉浸：https://github.com/gyf-dev/ImmersionBar
     implementation 'com.gyf.immersionbar:immersionbar:2.3.3'
+
     // 侧滑功能：https://github.com/bingoogolapple/BGASwipeBackLayout-Android
     implementation 'cn.bingoogolapple:bga-swipebacklayout:1.2.0'
 
     // 权限请求框架：https://github.com/getActivity/XXPermissions
     implementation 'com.hjq:xxpermissions:5.5'
+
     // 标题栏：https://github.com/getActivity/TitleBar
     implementation 'com.hjq:titlebar:5.0'
+
     // 吐司工具类：https://github.com/getActivity/ToastUtils
     implementation 'com.hjq:toast:6.0'
 
@@ -182,32 +189,47 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 
     // 布局优化：https://github.com/getActivity/Layouts
+
     // 分割线：https://github.com/getActivity/RecyclerItemDecoration
+
     // 国际化：https://github.com/getActivity/MultiLanguages
+
     // 悬浮窗：https://github.com/getActivity/XToast
+
     // 网络请求：https://github.com/zhou-you/RxEasyHttp
+
     // RxJava: https://github.com/ReactiveX/RxAndroid
+
     // RecyclerView：https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+
     // 上拉刷新下拉加载：https://github.com/scwang90/SmartRefreshLayout
+
     // 工具类：https://github.com/Blankj/AndroidUtilCode
+
     // 图片选择：https://github.com/zhihu/Matisse
+
     // 轮播图：https://github.com/bingoogolapple/BGABanner-Android
+
     // 二维码：https://github.com/bingoogolapple/BGAQRCode-Android
+
     // 第三方支付：https://github.com/getActivity/RxPay
+
     // Log 打印：https://github.com/JakeWharton/timber
+
     // 重要数据存储：https://github.com/Tencent/MMKV
-
     implementation 'com.jakewharton.timber:timber:4.7.1'
-
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
     // Because RxAndroid releases are few and far between, it is recommended you also
+
     // explicitly depend on RxJava's latest version for bug fixes and new features.
+
     // (see https://github.com/ReactiveX/RxJava/releases for latest 2.x.x version)
     implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
     implementation 'org.apache.commons:commons-lang3:3.6'
 
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
-    implementation group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
-
+    implementation 'org.jsoup:jsoup:1.12.1'
     implementation 'com.google.code.gson:gson:2.3.1'
+    implementation files('libs/ZY-Interface.jar')
 }

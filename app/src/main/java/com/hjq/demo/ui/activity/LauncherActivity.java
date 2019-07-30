@@ -12,13 +12,14 @@ import com.gyf.barlibrary.BarHide;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.common.MyApplication;
+import com.hjq.demo.mananger.EthernetManager;
 import com.hjq.demo.mananger.HardwareManager;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.mananger.WifiAdmin;
-import com.hjq.demo.ui.act.NewHome1Activity;
+import com.hjq.demo.ui.act.NewHomeActivity;
 import com.hjq.demo.utils.CommonUtils;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
@@ -164,6 +165,7 @@ public final class LauncherActivity extends MyActivity
                         OrthManager.init(MyApplication.getInstance());
                         TestManager.init(MyApplication.getInstance());
                         WifiAdmin.init(MyApplication.getInstance());
+                        EthernetManager.init(MyApplication.getInstance());
                         return integer;
                     }
                 })
@@ -198,7 +200,7 @@ public final class LauncherActivity extends MyActivity
         handler.sendEmptyMessage(MSG_WAITING);
     }
     private void goHome() {
-        startActivity(NewHome1Activity.class);
+        startActivity(NewHomeActivity.class);
         finish();
     }
 

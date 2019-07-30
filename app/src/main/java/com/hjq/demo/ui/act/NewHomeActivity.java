@@ -3,10 +3,8 @@ package com.hjq.demo.ui.act;
 import android.app.Dialog;
 import android.os.Handler;
 import android.os.Message;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hjq.bar.OnTitleBarListener;
@@ -15,16 +13,14 @@ import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.ui.widget.CardView1;
-import com.hjq.demo.utils.ScreenUtils;
 import com.hjq.dialog.MessageDialog;
 
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import timber.log.Timber;
 
-public class NewHome1Activity extends MyActivity implements View.OnClickListener {
+public class NewHomeActivity extends MyActivity implements View.OnClickListener {
 
     @BindView(R.id.tv_info)
     TextView tvInfo;
@@ -69,7 +65,7 @@ public class NewHome1Activity extends MyActivity implements View.OnClickListener
     };
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_home_new1;
+        return R.layout.activity_home_new;
     }
 
     @Override
