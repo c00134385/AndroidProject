@@ -8,11 +8,12 @@ import android.widget.ListView;
 
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
-import com.hjq.demo.mananger.EthernetManager;
 import com.hjq.demo.mananger.NetworkManager;
+import com.hjq.demo.mananger.RkManager;
 import com.hjq.demo.model.BasicModel;
 import com.hjq.demo.model.MyAdapter;
 import com.hjq.demo.utils.CommonUtils;
+import com.ys.rkapi.MyManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,8 @@ public class NetworkActivity extends MyActivity {
 
     private List<BasicModel> wifiModels;
     private List<BasicModel> ethModels;
+
+//    private MyManager manager;
 
     @Override
     protected int getLayoutId() {
@@ -47,6 +50,9 @@ public class NetworkActivity extends MyActivity {
 
     @Override
     protected void initData() {
+//        manager = MyManager.getInstance(this);
+//        manager.bindAIDLService(this);
+
         WifiManager wifiManager =(WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         DhcpInfo dhcpInfo = wifiManager.getDhcpInfo();
@@ -70,10 +76,10 @@ public class NetworkActivity extends MyActivity {
 //        ethModels.add(new BasicModel(getString(R.string.eth_dns1), ""));
 
         ethModels.add(new BasicModel(getString(R.string.eth_statue), NetworkManager.getInstance().isEthernetConnected()?"已连接":"未连接"));
-        ethModels.add(new BasicModel(getString(R.string.eth_mac), EthernetManager.getInstance().getMac()));
-        ethModels.add(new BasicModel(getString(R.string.eth_ip), EthernetManager.getInstance().getIp()));
-        ethModels.add(new BasicModel(getString(R.string.eth_gateway), EthernetManager.getInstance().getGateway()));
-        ethModels.add(new BasicModel(getString(R.string.eth_dns1), EthernetManager.getInstance().getDns1()));
+        ethModels.add(new BasicModel(getString(R.string.eth_mac), RkManager.getInstance().getMac()));
+        ethModels.add(new BasicModel(getString(R.string.eth_ip), RkManager.getInstance().getIp()));
+//        ethModels.add(new BasicModel(getString(R.string.eth_gateway), EthernetManager.getInstance().getGateway()));
+//        ethModels.add(new BasicModel(getString(R.string.eth_dns1), EthernetManager.getInstance().getDns1()));
 //        ethModels.add(new BasicModel(getString(R.string.eth_level), "Rssi:" + wifiInfo.getRssi()));
 
 //        EthernetManager mEthManager = getSystemService("ethernet");
@@ -99,5 +105,11 @@ public class NetworkActivity extends MyActivity {
 //                dialog.dismiss();
 //            }
 //        }, 5000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        manager.unBindAIDLService(this);
     }
 }

@@ -15,6 +15,7 @@ import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.model.StateEnum;
 import com.hjq.demo.model.TestItemModel;
 import com.hjq.demo.ui.act.frag.ForgTestFragment;
+import com.hjq.demo.ui.act.frag.KeyboardTestFragment;
 import com.hjq.demo.ui.act.frag.LanTestFragment;
 import com.hjq.demo.ui.act.frag.HPTestFragment;
 import com.hjq.demo.ui.act.frag.WifiTestFragment;
@@ -128,6 +129,9 @@ abstract public class BaseTestActivity extends MyActivity {
                 break;
             case FORG:
                 fragment = new ForgTestFragment();
+                break;
+            case KEYBOARD:
+                fragment = new KeyboardTestFragment();
                 break;
         }
 

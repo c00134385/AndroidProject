@@ -12,6 +12,7 @@ public enum TestEnum {
     BACK_LIGHT("背光"),
     BLUETOOTH("蓝牙"),
     CAMERA("摄像头"),
+    KEYBOARD("键盘"),
     ;
 
     private final String content;
