@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_connect"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toLeftOf="@+id/btn_disconnect"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--android:layout_marginTop="@dimen/space_100"-->
+        <!--android:text="连接打印机"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_disconnect"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintLeft_toRightOf="@+id/btn_connect"-->
+        <!--app:layout_constraintRight_toLeftOf="@+id/btn_print"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/btn_connect"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/btn_connect"-->
+        <!--android:text="断开打印机"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_print"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintLeft_toRightOf="@+id/btn_disconnect"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/btn_connect"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/btn_connect"-->
+        <!--android:text="打印测试"/>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_connect"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" >
+
+            <LinearLayout
+                android:id="@+id/linearlayoutdevices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </ScrollView>
+        <Button
+            android:id="@+id/buttonDisconnect"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/buttonPrint"
+            android:layout_marginTop="10dp"
+            android:text="Disconnect" />
+        <Button
+            android:id="@+id/buttonPrint"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:text="Print" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

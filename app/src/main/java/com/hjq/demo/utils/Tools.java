@@ -1,10 +1,15 @@
 package com.hjq.demo.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Environment;
 import android.os.StatFs;
+import android.provider.Settings;
+import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
+
+import com.hjq.demo.ui.service.DetectionService;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -189,4 +194,50 @@ public class Tools {
 
         Timber.d("file:%s, %s", file.getAbsolutePath(), Formatter.formatFileSize(context, blockSize * totalBlocks));
     }
+
+    /**
+     *
+     * @param context
+     * @return true辅助功能开 false辅助功能关
+     */
+    public static boolean isAccessibilitySettingsOn(Context context) {
+        int accessibilityEnabled = 0;
+        final String service = context.getPackageName() + "/" + DetectionService.class.getCanonicalName();
+        try {
+            //获取setting里辅助功能的开启状态
+            accessibilityEnabled = Settings.Secure.getInt(
+                    context.getApplicationContext().getContentResolver(),
+                    android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
+        } catch (Settings.SettingNotFoundException e) {
+        }
+        TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
+        if (accessibilityEnabled == 1) {
+            //获取辅助功能里所有开启的服务 包名列表
+            String settingValue = Settings.Secure.getString(
+                    context.getApplicationContext().getContentResolver(),
+                    Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+            if (settingValue != null) {
+                //转换程集合
+                mStringColonSplitter.setString(settingValue);
+                while (mStringColonSplitter.hasNext()) {
+                    String accessibilityService = mStringColonSplitter.next();
+                    //判断当前包名是否在服务集合里
+                    if (accessibilityService.equalsIgnoreCase(service)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * 打开设置-辅助功能页
+     * @param context
+     */
+    public static void openAccessibilitySetting(Context context){
+        context.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
+    }
+
 }

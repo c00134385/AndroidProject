@@ -54,3 +54,13 @@
 
 # 3party
 -keep class com.geekmaker.** {*;}
+-keep class com.hoho.** {*;}
+-keep class android.app.** {*;}
+-keep class com.ys.** {*;}
+
+# scan gun
+-keep class com.chice.** {*;}
+
+-keep class com.lvrenyang.** {*;}
+-keep class android_serialport_api.** {*;}
+-keep class compress_lib_api.** {*;}

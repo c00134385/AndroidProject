@@ -18,6 +18,8 @@ import com.hjq.demo.ui.act.frag.ForgTestFragment;
 import com.hjq.demo.ui.act.frag.KeyboardTestFragment;
 import com.hjq.demo.ui.act.frag.LanTestFragment;
 import com.hjq.demo.ui.act.frag.HPTestFragment;
+import com.hjq.demo.ui.act.frag.PrinterTestFragment;
+import com.hjq.demo.ui.act.frag.ScanGunTestFragment;
 import com.hjq.demo.ui.act.frag.WifiTestFragment;
 import com.hjq.demo.ui.widget.BottomBar;
 import com.hjq.demo.utils.GsonUtil;
@@ -132,6 +134,12 @@ abstract public class BaseTestActivity extends MyActivity {
                 break;
             case KEYBOARD:
                 fragment = new KeyboardTestFragment();
+                break;
+            case SCAN_GUN:
+                fragment = new ScanGunTestFragment();
+                break;
+            case PRINTER:
+                fragment = new PrinterTestFragment();
                 break;
         }
 

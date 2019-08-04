@@ -233,4 +233,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.3.1'
     implementation files('libs/ZY-Interface.jar')
     implementation files('libs/rkapi.jar')
+    implementation files('libs/ChiceScanGun.jar')
+    implementation files('libs/printerlibs.jar')
 }

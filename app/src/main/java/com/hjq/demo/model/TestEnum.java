@@ -13,6 +13,8 @@ public enum TestEnum {
     BLUETOOTH("蓝牙"),
     CAMERA("摄像头"),
     KEYBOARD("键盘"),
+    SCAN_GUN("扫描枪"),
+    PRINTER("打印机"),
     ;
 
     private final String content;
