@@ -80,8 +80,9 @@
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.ROM\_FACTORY\_TEST" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
 
         <!-- 新加界面 -->

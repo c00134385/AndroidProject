@@ -154,9 +154,9 @@ public class NewTestHomeActivity extends MyActivity {
                         case BACK_LIGHT:
                             startActivity(BacklightTestActivity.class, s);
                             break;
-                        case CAMERA:
-                            startActivity(CameraTestActivity.class, s);
-                            break;
+//                        case CAMERA:
+//                            startActivity(CameraTestActivity.class, s);
+//                            break;
                         case BLUETOOTH:
                             startActivity(BtTestActivity.class, s);
                             break;

@@ -124,6 +124,12 @@ android {
     packagingOptions {
         exclude 'META-INF/proguard/androidx-annotations.pro'
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 // api 与 implementation 的区别：https://www.jianshu.com/p/8962d6ba936e
@@ -235,4 +241,5 @@ dependencies {
     implementation files('libs/rkapi.jar')
     implementation files('libs/ChiceScanGun.jar')
     implementation files('libs/printerlibs.jar')
+    implementation files('libs/ImiSDK.jar')
 }
