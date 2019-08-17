@@ -15,6 +15,7 @@ import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.model.StateEnum;
 import com.hjq.demo.model.TestItemModel;
 import com.hjq.demo.ui.act.frag.CameraTestFragment;
+import com.hjq.demo.ui.act.frag.SerialTestFragment;
 import com.hjq.demo.ui.act.frag.ForgTestFragment;
 import com.hjq.demo.ui.act.frag.KeyboardTestFragment;
 import com.hjq.demo.ui.act.frag.LanTestFragment;
@@ -148,6 +149,9 @@ abstract public class BaseTestActivity extends MyActivity {
                 break;
             case CAMERA:
                 fragment = new CameraTestFragment();
+                break;
+            case SERIAL:
+                fragment = new SerialTestFragment();
                 break;
         }
 

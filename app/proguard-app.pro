@@ -65,3 +65,5 @@
 -keep class android_serialport_api.** {*;}
 -keep class compress_lib_api.** {*;}
 -keep class com.hjimi.api.iminect.** {*;}
+-keep class com.hjq.demo.serial.** {*;}
+

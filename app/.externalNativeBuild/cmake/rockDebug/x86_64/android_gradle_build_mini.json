@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "/Users/jlc/Documents/github/AndroidProject/app/src/main/jni/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Users/jlc/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/jlc/Documents/github/AndroidProject/app/.externalNativeBuild/cmake/rockDebug/x86_64 --target clean"
+  ],
+  "libraries": {
+    "serial_port-Debug-x86_64": {
+      "artifactName": "serial_port",
+      "buildCommand": "/Users/jlc/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/jlc/Documents/github/AndroidProject/app/.externalNativeBuild/cmake/rockDebug/x86_64 --target serial_port",
+      "abi": "x86_64",
+      "output": "/Users/jlc/Documents/github/AndroidProject/app/build/intermediates/cmake/rock/debug/obj/x86_64/libserial_port.so"
+    }
+  }
+}

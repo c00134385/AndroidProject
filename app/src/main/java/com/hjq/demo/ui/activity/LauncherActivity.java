@@ -18,6 +18,7 @@ import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.mananger.RkManager;
+import com.hjq.demo.mananger.SerialManager;
 import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.mananger.WifiAdmin;
 import com.hjq.demo.ui.act.NewHomeActivity;
@@ -169,6 +170,7 @@ public final class LauncherActivity extends MyActivity
                         WifiAdmin.init(MyApplication.getInstance());
                         EthernetManager.init(MyApplication.getInstance());
                         RkManager.init(MyApplication.getInstance());
+                        SerialManager.init(MyApplication.getInstance());
                         return integer;
                     }
                 })

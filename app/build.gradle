@@ -93,6 +93,12 @@ android {
         }
     }
 
+    externalNativeBuild {
+        cmake {
+            path file('src/main/jni/CMakeLists.txt')
+        }
+    }
+
     // 执行配置
     applicationVariants.all { variant ->
 

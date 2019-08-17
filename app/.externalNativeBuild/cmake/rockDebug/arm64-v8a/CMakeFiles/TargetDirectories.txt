@@ -1,0 +1,3 @@
+/Users/jlc/Documents/github/AndroidProject/app/.externalNativeBuild/cmake/rockDebug/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/jlc/Documents/github/AndroidProject/app/.externalNativeBuild/cmake/rockDebug/arm64-v8a/CMakeFiles/rebuild_cache.dir
+/Users/jlc/Documents/github/AndroidProject/app/.externalNativeBuild/cmake/rockDebug/arm64-v8a/CMakeFiles/serial_port.dir
