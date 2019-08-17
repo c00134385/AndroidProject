@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/space_120"
+        android:text="00:00"
+        android:textSize="@dimen/font_size_50px"
+        android:textColor="@color/red"
+        android:max="100" />
+
+    <Button
+        android:id="@+id/record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/playback"
+        app:layout_constraintTop_toBottomOf="@+id/time"
+        android:layout_marginTop="@dimen/space_80"
+        android:text="开始录音"
+        />
+
+
+    <Button
+        android:id="@+id/playback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/record"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/record"
+        app:layout_constraintBottom_toBottomOf="@+id/record"
+        android:text="开始播放"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -58,7 +58,8 @@ public final class LauncherActivity extends MyActivity
             Permission.WRITE_EXTERNAL_STORAGE,
             Permission.CAMERA,
             Permission.ACCESS_FINE_LOCATION,
-            Permission.ACCESS_COARSE_LOCATION};
+            Permission.ACCESS_COARSE_LOCATION,
+            Permission.RECORD_AUDIO};
 
     private static long startTimestamp;
     private boolean isInitialized = false;

@@ -35,14 +35,14 @@ android {
         release {
             keyAlias 'key0'
             keyPassword '1111111'
-            storeFile file('D:\\github\\AndroidProject\\key.jks')
+            storeFile file('/Users/jlc/Documents/github/AndroidProject/key.jks')
             storePassword '1111111'
         }
 
         debug {
             keyAlias 'key0'
             keyPassword '1111111'
-            storeFile file('D:\\github\\AndroidProject\\key.jks')
+            storeFile file('/Users/jlc/Documents/github/AndroidProject/key.jks')
             storePassword '1111111'
         }
     }

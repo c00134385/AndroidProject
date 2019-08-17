@@ -20,6 +20,7 @@ import com.hjq.demo.ui.act.frag.KeyboardTestFragment;
 import com.hjq.demo.ui.act.frag.LanTestFragment;
 import com.hjq.demo.ui.act.frag.HPTestFragment;
 import com.hjq.demo.ui.act.frag.PrinterTestFragment;
+import com.hjq.demo.ui.act.frag.RecordTestFragment;
 import com.hjq.demo.ui.act.frag.ScanGunTestFragment;
 import com.hjq.demo.ui.act.frag.WifiTestFragment;
 import com.hjq.demo.ui.widget.BottomBar;
@@ -121,6 +122,9 @@ abstract public class BaseTestActivity extends MyActivity {
 
     private void addBody() {
         switch (testItem.getTitle()) {
+            case RECORD:
+                fragment = new RecordTestFragment();
+                break;
             case HEADPHONE:
                 fragment = new HPTestFragment();
                 break;

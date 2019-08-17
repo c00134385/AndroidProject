@@ -1,6 +1,7 @@
 package com.hjq.demo.model;
 
 public enum TestEnum {
+    RECORD("录音"),
     SCREEN("屏幕"),
     TOUCH("触摸"),
     WIFI("WIFI"),
