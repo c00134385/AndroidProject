@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,12 +20,10 @@ import com.hjq.demo.model.TestItemModel;
 import com.hjq.demo.ui.act.t.BacklightTestActivity;
 import com.hjq.demo.ui.act.t.BaseTestActivity;
 import com.hjq.demo.ui.act.t.BtTestActivity;
-import com.hjq.demo.ui.act.t.CameraTestActivity;
 import com.hjq.demo.ui.act.t.DemoTestActivity;
 import com.hjq.demo.ui.act.t.KeyTestActivity;
 import com.hjq.demo.ui.act.t.ScreenTestActivity;
 import com.hjq.demo.ui.act.t.SpeakerTestActivity;
-import com.hjq.demo.ui.act.t.TouchTestActivity;
 import com.hjq.demo.utils.GsonUtil;
 
 import java.util.ArrayList;
@@ -142,12 +139,12 @@ public class NewTestHomeActivity extends MyActivity {
                         case SCREEN:
                             startActivity(ScreenTestActivity.class, s);
                             break;
-                        case TOUCH:
-                            startActivity(TouchTestActivity.class, s);
-                            break;
-                        case SPEAKER:
-                            startActivity(SpeakerTestActivity.class, s);
-                            break;
+//                        case TOUCH:
+//                            startActivity(TouchTestActivity.class, s);
+//                            break;
+//                        case SPEAKER:
+//                            startActivity(SpeakerTestActivity.class, s);
+//                            break;
                         case KEY:
                             startActivity(KeyTestActivity.class, s);
                             break;

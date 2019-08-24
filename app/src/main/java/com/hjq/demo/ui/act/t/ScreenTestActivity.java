@@ -21,7 +21,16 @@ public class ScreenTestActivity extends BaseTestActivity {
     @BindView(R.id.foreground)
     View view;
 
+    @BindView(R.id.root_view)
+    View root_view;
+
+    @BindView(R.id.background)
+    View backgroundView;
+
+
     Disposable disposable;
+    private List<Integer> colors = new ArrayList<>();
+    private int colorIndex = 0;
 
     @Override
     protected int getBottomBarId() {
@@ -85,16 +94,42 @@ public class ScreenTestActivity extends BaseTestActivity {
 
     @Override
     protected int getTitleId() {
-        return R.id.top_bar;
+//        return R.id.top_bar;
+        return 0;
     }
 
     @Override
     protected void initView() {
+        root_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Timber.d("");
+            }
+        });
 
+        backgroundView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Timber.d("");
+                if(colorIndex < colors.size()) {
+                    view.bringToFront();
+                    view.setVisibility(View.VISIBLE);
+                    view.setBackgroundResource(colors.get(colorIndex++ ));
+                } else {
+                    view.setVisibility(View.GONE);
+                    colorIndex = 0;
+                }
+            }
+        });
     }
 
     @Override
     protected void initData() {
+        colors.add(R.color.red);
+        colors.add(R.color.green);
+        colors.add(R.color.blue);
+        colors.add(R.color.black);
+        colorIndex = 0;
     }
 
     @Override
@@ -109,4 +144,10 @@ public class ScreenTestActivity extends BaseTestActivity {
             disposable.dispose();
         }
     }
+
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        boolean result = super.dispatchTouchEvent(ev);
+//        return result;
+//    }
 }

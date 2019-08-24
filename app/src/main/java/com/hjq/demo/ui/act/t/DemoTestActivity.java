@@ -1,12 +1,16 @@
 package com.hjq.demo.ui.act.t;
 
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.hjq.demo.R;
 
 import butterknife.BindView;
 
 public class DemoTestActivity extends BaseTestActivity {
+
+    @BindView(R.id.test_item_name)
+    TextView testItemName;
 
     @BindView(R.id.frag_container)
     FrameLayout container;
@@ -33,7 +37,9 @@ public class DemoTestActivity extends BaseTestActivity {
 
     @Override
     protected void initData() {
-
+        if(null != testItem) {
+            testItemName.setText(testItem.getTitle().value());
+        }
     }
 
     @Override

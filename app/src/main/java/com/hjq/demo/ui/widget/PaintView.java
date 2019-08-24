@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
@@ -26,6 +27,9 @@ public class PaintView extends ConstraintLayout {
 
     private Button btnClear;
     private Button btnExit;
+
+    Paint p;
+    private Path path;
 
     public PaintView(Context context) {
         this(context, null, 0);
@@ -70,14 +74,15 @@ public class PaintView extends ConstraintLayout {
                     //Point类记录当前的X和Y坐标
                     Point p = new Point((int)event.getX(),(int)event.getY());
                     if(event.getAction() == MotionEvent.ACTION_DOWN) {  //判断抬起
-//                        allPoint = new ArrayList<Point>();  //开始新的记录
+                        allPoint = new ArrayList<Point>();  //开始新的记录
                         allPoint.add(p);   //记录坐标点
+                        path.moveTo(event.getX(), event.getY());
                     } else if(event.getAction() == MotionEvent.ACTION_UP) {
                         allPoint.add(p);   //记录坐标点
-
                     } else if(event.getAction() == MotionEvent.ACTION_MOVE) {
                         allPoint.add(p);   //记录坐标点
 //                        postInvalidate();  //重绘
+                        path.lineTo(event.getX(), event.getY());
                     }
                     postInvalidate();  //重绘
 
@@ -85,6 +90,12 @@ public class PaintView extends ConstraintLayout {
                 }
             }
         });
+
+        p = new Paint();
+        p.setColor(Color.RED);   //设置颜色
+        p.setAntiAlias(true);
+        p.setStyle(Paint.Style.STROKE);
+        path = new Path();
     }
 
     private void initStyle(AttributeSet attrs) {
@@ -93,9 +104,8 @@ public class PaintView extends ConstraintLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Paint p = new Paint();
-        p.setColor(Color.RED);   //设置颜色
-        if(allPoint.size()>1) {
+
+       /* if(allPoint.size()>1) {
             Iterator<Point> iter = allPoint.iterator();
             Point first = null;
             Point last = null;
@@ -110,7 +120,10 @@ public class PaintView extends ConstraintLayout {
                     canvas.drawLine(first.x,first.y,last.x,last.y,p);
                 }
             }
-        }
+        }*/
+       if(!path.isEmpty()) {
+           canvas.drawPath(path, p);
+       }
 
         super.onDraw(canvas);
     }

@@ -35,14 +35,14 @@ android {
         release {
             keyAlias 'key0'
             keyPassword '1111111'
-            storeFile file('/Users/jlc/Documents/github/AndroidProject/key.jks')
+            storeFile file('../key.jks')
             storePassword '1111111'
         }
 
         debug {
             keyAlias 'key0'
             keyPassword '1111111'
-            storeFile file('/Users/jlc/Documents/github/AndroidProject/key.jks')
+            storeFile file('../key.jks')
             storePassword '1111111'
         }
     }
@@ -93,11 +93,11 @@ android {
         }
     }
 
-    externalNativeBuild {
+    /*externalNativeBuild {
         cmake {
             path file('src/main/jni/CMakeLists.txt')
         }
-    }
+    }*/
 
     // 执行配置
     applicationVariants.all { variant ->
@@ -131,11 +131,11 @@ android {
         exclude 'META-INF/proguard/androidx-annotations.pro'
     }
 
-    sourceSets {
+    /*sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
         }
-    }
+    }*/
 }
 
 // api 与 implementation 的区别：https://www.jianshu.com/p/8962d6ba936e

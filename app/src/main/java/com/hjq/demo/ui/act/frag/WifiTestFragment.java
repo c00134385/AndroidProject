@@ -1,21 +1,32 @@
 package com.hjq.demo.ui.act.frag;
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hjq.demo.R;
-import com.hjq.demo.adapter.WifiRecyclerAdapter;
+import com.hjq.demo.adapter.MyRecyclerViewDivider;
 import com.hjq.demo.common.MyLazyFragment;
 import com.hjq.demo.mananger.WifiAdmin;
+import com.hjq.dialog.InputDialog;
+import com.hjq.toast.ToastUtils;
 import com.hjq.widget.SwitchButton;
 
 import java.util.ArrayList;
@@ -60,6 +71,7 @@ public class WifiTestFragment extends MyLazyFragment {
 //设置Adapter
         wifiRecyclerAdapter = new WifiRecyclerAdapter(getContext(), list);
         listView.setAdapter(wifiRecyclerAdapter);
+        listView.addItemDecoration(new MyRecyclerViewDivider(getContext(), LinearLayoutManager.HORIZONTAL,2, ContextCompat.getColor(getContext(),R.color.colorAccent)));
         //设置分隔线
 //        btList.addItemDecoration( new DividerGridItemDecoration(this ));
 //设置增加或删除条目的动画
@@ -141,4 +153,93 @@ public class WifiTestFragment extends MyLazyFragment {
             }
         }
     };
+
+
+    class WifiRecyclerAdapter extends RecyclerView.Adapter<WifiRecyclerAdapter.WifiViewHolder>{
+
+        private Context context;
+        private List<ScanResult> list;
+
+        public WifiRecyclerAdapter(Context context, List<ScanResult> list) {
+            this.context = context;
+            this.list = list;
+        }
+
+        @NonNull
+        @Override
+        public WifiRecyclerAdapter.WifiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            View view = LayoutInflater.from(context).inflate(R.layout.layout_item_wifi, viewGroup, false);
+            WifiRecyclerAdapter.WifiViewHolder holder = new WifiRecyclerAdapter.WifiViewHolder(view);
+            return holder;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull WifiRecyclerAdapter.WifiViewHolder wifiViewHolder, int i) {
+            final ScanResult scanResult = list.get(i);
+            View view = wifiViewHolder.itemView;
+            TextView wifiNo = view.findViewById(R.id.wifi_no);
+            TextView wifiName = view.findViewById(R.id.wifi_name);
+            TextView wifiState = view.findViewById(R.id.wifi_state);
+            TextView wifiLevel = view.findViewById(R.id.wifi_level);
+            wifiNo.setText(""+i);
+            wifiName.setText(scanResult.SSID);
+            Timber.d(scanResult.BSSID);
+            if(scanResult.BSSID.equals(WifiAdmin.getInstance().getWifiInfo().getBSSID())) {
+                wifiState.setText("已连接");
+            }
+//        wifiState.setText(scanResult.capabilities);
+            wifiLevel.setText(scanResult.level +"");
+
+            wifiViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Timber.d("");
+                    if(scanResult.BSSID.equals(WifiAdmin.getInstance().getWifiInfo().getBSSID())) {
+                        ToastUtils.show("已连接");
+                    } else {
+                        new InputDialog.Builder(getActivity())
+                                .setTitle(scanResult.SSID) // 标题可以不用填写
+//                                .setContent("密码")
+                                .setHint("请输入密码")
+                                .setConfirm("确定")
+                                .setCancel("取消") // 设置 null 表示不显示取消按钮
+                                //.setAutoDismiss(false) // 设置点击按钮后不关闭对话框
+                                .setListener(new InputDialog.OnListener() {
+
+                                    @Override
+                                    public void onConfirm(Dialog dialog, String content) {
+//                                        toast("确定了：" + content);
+                                        if(TextUtils.isEmpty(content) || content.trim().length() < 8) {
+                                            Toast.makeText(getContext(), "密码至少8位", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+                                        WifiAdmin.getInstance().addNetwork(WifiAdmin.getInstance().CreateWifiInfo(scanResult.SSID, content.trim(), 3));
+                                    }
+
+                                    @Override
+                                    public void onCancel(Dialog dialog) {
+//                                        toast("取消了");
+                                    }
+                                })
+                                .show();
+                    }
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            if(null == list) {
+                return 0;
+            }
+            return list.size();
+        }
+
+        final class WifiViewHolder extends RecyclerView.ViewHolder {
+
+            public WifiViewHolder(@NonNull View itemView) {
+                super(itemView);
+            }
+        }
+    }
 }
