@@ -14,7 +14,7 @@ import com.hjq.demo.common.MyLazyFragment;
 import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.model.StateEnum;
 import com.hjq.demo.model.TestItemModel;
-import com.hjq.demo.ui.act.frag.CameraTestFragment;
+import com.hjq.demo.ui.act.frag.CameraTestNewFragment;
 import com.hjq.demo.ui.act.frag.ForgTestFragment;
 import com.hjq.demo.ui.act.frag.HPTestFragment;
 import com.hjq.demo.ui.act.frag.KeyboardTestFragment;
@@ -166,7 +166,8 @@ abstract public class BaseTestActivity extends MyActivity {
                 fragment = new PrinterTestFragment();
                 break;
             case CAMERA:
-                fragment = new CameraTestFragment();
+//                fragment = new CameraTestFragment();
+                fragment = new CameraTestNewFragment();
                 break;
             case SERIAL:
                 fragment = new SerialTestFragment();

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -27,7 +26,7 @@ import com.hjq.demo.ui.imi.SimpleViewer;
 
 import timber.log.Timber;
 
-public class CameraTestFragment extends MyLazyFragment {
+public class CameraTestNewFragment extends MyLazyFragment {
 
     private SurfaceView mColorView;
     private GLPanel mGLColorPanel;
@@ -95,7 +94,7 @@ public class CameraTestFragment extends MyLazyFragment {
             @Override
             public void onClick(View v) {
                 if(bExiting) {
-                    Log.d("@@@@@", "EXITING...");
+                    Timber.d( "EXITING...");
                     return;
                 }
 
@@ -263,7 +262,8 @@ public class CameraTestFragment extends MyLazyFragment {
         public void run() {
             //get iminect instance.
 
-            ImiNect.initialize();
+            int ret = ImiNect.initialize();
+            Timber.d("ret:%d", ret);
             mDevice = ImiDevice.getInstance();
             mainlistener = new MainListener();
 

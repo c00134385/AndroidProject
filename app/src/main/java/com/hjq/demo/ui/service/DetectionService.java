@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Binder;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.InputDevice;
 import android.view.KeyEvent;
 import android.view.accessibility.AccessibilityEvent;
@@ -14,6 +13,8 @@ import android.widget.Toast;
 
 import com.chice.scangun.ScanGun;
 import com.chice.scangun.ScanGun.ScanGunCallBack;
+
+import timber.log.Timber;
 
 public class DetectionService extends AccessibilityService {
 
@@ -35,18 +36,24 @@ public class DetectionService extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent arg0) {
         // TODO Auto-generated method stub
-
+        Timber.d("");
     }
 
     @Override
     public void onInterrupt() {
         // TODO Auto-generated method stub
-
+        Timber.d("");
     }
 
     @Override
     protected boolean onKeyEvent(KeyEvent event) {
         // TODO Auto-generated method stub
+
+        if(null != onKeyEvent) {
+            return onKeyEvent.onKeyEvent(event);
+        }
+
+
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             int keyCode = event.getKeyCode();
             if (keyCode <= 6) {
@@ -73,7 +80,7 @@ public class DetectionService extends AccessibilityService {
                 }
             }
         });
-        mScanGun.setMaxKeysInterval(50);
+        ScanGun.setMaxKeysInterval(50);
         super.onCreate();
     }
 
@@ -98,6 +105,20 @@ public class DetectionService extends AccessibilityService {
         }
         Configuration cfg = context.getResources().getConfiguration();
         return cfg.keyboard != Configuration.KEYBOARD_UNDEFINED;
+    }
+
+    private static OnKeyEvent onKeyEvent;
+
+    public static void setOnKeyEvent(OnKeyEvent onKeyEvent){
+
+        DetectionService.onKeyEvent=onKeyEvent;
+
+    }
+
+    public interface OnKeyEvent{
+
+        boolean onKeyEvent(KeyEvent event);
+
     }
 
 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyLazyFragment;
 import com.hjq.demo.mananger.Prints;
+import com.hjq.demo.ui.act.t.BaseTestActivity;
 import com.lvrenyang.io.Pos;
 import com.lvrenyang.io.USBPrinting;
 import com.lvrenyang.io.base.IOCallBack;
@@ -29,7 +30,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import timber.log.Timber;
 
-public class PrinterTestFragment extends MyLazyFragment implements IOCallBack {
+public class PrinterTestFragment extends MyLazyFragment<BaseTestActivity> implements IOCallBack {
 
     public static int nPrintWidth = 384;
     public static boolean bCutter = false;
@@ -52,7 +53,7 @@ public class PrinterTestFragment extends MyLazyFragment implements IOCallBack {
     Button btnPrint;
 
     @BindView(R.id.linearlayoutdevices)
-    LinearLayout linearlayoutdevices;
+    LinearLayout linearLayoutDevices;
 
 //    Button btnDisconnect,btnPrint;
 
@@ -75,10 +76,6 @@ public class PrinterTestFragment extends MyLazyFragment implements IOCallBack {
     protected void initView() {
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 
     @Override
     public void onPause() {
@@ -121,7 +118,7 @@ public class PrinterTestFragment extends MyLazyFragment implements IOCallBack {
     }
 
     private void probe() {
-        linearlayoutdevices.removeAllViews();
+        linearLayoutDevices.removeAllViews();
         final UsbManager mUsbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
 
         HashMap<String, UsbDevice> deviceList = mUsbManager.getDeviceList();
@@ -134,7 +131,7 @@ public class PrinterTestFragment extends MyLazyFragment implements IOCallBack {
                 //Toast.makeText( this, device.toString(), Toast.LENGTH_SHORT).show();
 
                 Button btDevice = new Button(
-                        linearlayoutdevices.getContext());
+                        linearLayoutDevices.getContext());
                 btDevice.setLayoutParams(new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 btDevice.setGravity(android.view.Gravity.CENTER_VERTICAL
@@ -162,21 +159,21 @@ public class PrinterTestFragment extends MyLazyFragment implements IOCallBack {
                                     "没有权限", Toast.LENGTH_LONG)
                                     .show();
                         } else {
-                            Toast.makeText(mActivity, "Connecting...", Toast.LENGTH_SHORT).show();
-                            linearlayoutdevices.setEnabled(false);
-                            for(int i = 0; i < linearlayoutdevices.getChildCount(); ++i)
+                            Toast.makeText(getContext(), "Connecting...", Toast.LENGTH_SHORT).show();
+                            linearLayoutDevices.setEnabled(false);
+                            for(int i = 0; i < linearLayoutDevices.getChildCount(); ++i)
                             {
-                                Button btn = (Button)linearlayoutdevices.getChildAt(i);
+                                Button btn = (Button)linearLayoutDevices.getChildAt(i);
                                 btn.setEnabled(false);
                             }
                             btnDisconnect.setEnabled(false);
                             btnPrint.setEnabled(false);
-                            es.submit(new TaskOpen(mUsb,mUsbManager,device,mActivity));
-                            //es.submit(new TaskTest(mPos,mUsb,mUsbManager,device,mActivity));
+                            es.submit(new TaskOpen(mUsb,mUsbManager,device,getContext()));
+                            //es.submit(new TaskTest(mPos,mUsb,mUsbManager,device,getContext));
                         }
                     }
                 });
-                linearlayoutdevices.addView(btDevice);
+                linearLayoutDevices.addView(btDevice);
             }
         }
     }
@@ -259,12 +256,12 @@ public class PrinterTestFragment extends MyLazyFragment implements IOCallBack {
 
             final int bPrintResult = Prints.PrintTicket(getContext(), pos, nPrintWidth, bCutter, bDrawer, bBeeper, nPrintCount, nPrintContent, nCompressMethod);
             final boolean bIsOpened = pos.GetIO().IsOpened();
-
-            mActivity.runOnUiThread(new Runnable(){
+            Timber.d("bIsOpened: %b", bIsOpened);
+            getActivity().runOnUiThread(new Runnable(){
                 @Override
                 public void run() {
                     // TODO Auto-generated method stub
-                    Toast.makeText(mActivity.getApplicationContext(), (bPrintResult == 0) ? getResources().getString(R.string.printsuccess) : getResources().getString(R.string.printfailed) + " " + Prints.ResultCodeToString(bPrintResult), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), (bPrintResult == 0) ? getResources().getString(R.string.printsuccess) : getResources().getString(R.string.printfailed) + " " + Prints.ResultCodeToString(bPrintResult), Toast.LENGTH_SHORT).show();
                     btnPrint.setEnabled(bIsOpened);
                 }
             });
@@ -298,13 +295,13 @@ public class PrinterTestFragment extends MyLazyFragment implements IOCallBack {
             public void run() {
                 btnDisconnect.setEnabled(true);
                 btnPrint.setEnabled(true);
-                linearlayoutdevices.setEnabled(false);
-                for(int i = 0; i < linearlayoutdevices.getChildCount(); ++i)
+                linearLayoutDevices.setEnabled(false);
+                for(int i = 0; i < linearLayoutDevices.getChildCount(); ++i)
                 {
-                    Button btn = (Button)linearlayoutdevices.getChildAt(i);
+                    Button btn = (Button)linearLayoutDevices.getChildAt(i);
                     btn.setEnabled(false);
                 }
-                Toast.makeText(mActivity, "Connected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Connected", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -318,13 +315,13 @@ public class PrinterTestFragment extends MyLazyFragment implements IOCallBack {
             public void run() {
                 btnDisconnect.setEnabled(false);
                 btnPrint.setEnabled(false);
-                linearlayoutdevices.setEnabled(true);
-                for(int i = 0; i < linearlayoutdevices.getChildCount(); ++i)
+                linearLayoutDevices.setEnabled(true);
+                for(int i = 0; i < linearLayoutDevices.getChildCount(); ++i)
                 {
-                    Button btn = (Button)linearlayoutdevices.getChildAt(i);
+                    Button btn = (Button)linearLayoutDevices.getChildAt(i);
                     btn.setEnabled(true);
                 }
-                Toast.makeText(mActivity, "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -338,10 +335,10 @@ public class PrinterTestFragment extends MyLazyFragment implements IOCallBack {
             public void run() {
                 btnDisconnect.setEnabled(false);
                 btnPrint.setEnabled(false);
-                linearlayoutdevices.setEnabled(true);
-                for(int i = 0; i < linearlayoutdevices.getChildCount(); ++i)
+                linearLayoutDevices.setEnabled(true);
+                for(int i = 0; i < linearLayoutDevices.getChildCount(); ++i)
                 {
-                    Button btn = (Button)linearlayoutdevices.getChildAt(i);
+                    Button btn = (Button)linearLayoutDevices.getChildAt(i);
                     btn.setEnabled(true);
                 }
                 probe(); // 如果因为打印机关机导致Close。那么这里需要重新枚举一下。

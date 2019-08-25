@@ -105,8 +105,8 @@
         <activity android:name=".ui.act.t.SpeakerTestActivity"/>
         <activity android:name=".ui.act.t.KeyTestActivity"/>
         <activity android:name=".ui.act.t.BacklightTestActivity"/>
-        <activity android:name=".ui.act.t.CameraTestActivity"/>
         <activity android:name=".ui.act.t.BtTestActivity"/>
+        <activity android:name=".ui.act.t.CameraTestNewActivity"/>
 
         <service
             android:name=".ui.service.DetectionService"

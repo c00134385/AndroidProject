@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF999999">
+
+    <LinearLayout
+        android:background="#CCCCCC"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+
+        <Space
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <SurfaceView
+            android:id="@+id/color_view"
+            android:layout_width="640px"
+            android:layout_height="480px"/>
+
+        <com.hjq.demo.ui.imi.GLPanel
+            android:visibility="gone"
+            android:id="@+id/sv_color_view"
+            android:layout_width="640px"
+            android:layout_height="480px"/>
+
+        <Space
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.hjq.demo.ui.imi.GLPanel
+            android:id="@+id/sv_depth_view"
+            android:layout_width="640px"
+            android:layout_height="480px"/>
+
+        <Space
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_below="@+id/tv_depthvalue"
+        android:id="@+id/tv_show_attrs"
+        android:textColor="#0000ff"
+        android:textSize="40px"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="EXIT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff0000"
+        android:textSize="40px"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/button_Exit"
+        android:layout_gravity="right"
+        android:visibility="gone"/>
+
+    <com.hjq.demo.ui.widget.BottomBar
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"/>
+
+</FrameLayout>

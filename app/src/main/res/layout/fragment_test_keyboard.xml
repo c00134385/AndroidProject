@@ -72,11 +72,11 @@
         android:id="@+id/eventLog"
         android:layout_width="match_parent"
         android:layout_below="@id/container_info"
-
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="@dimen/space_180"
+        android:layout_marginTop="@dimen/space_180"
         android:ems="10"
         android:gravity="top|left"
         android:inputType="none|text|textMultiLine"
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/eventLog"
         android:text="清 除"/>
 
 </RelativeLayout>

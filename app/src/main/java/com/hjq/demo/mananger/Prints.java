@@ -26,11 +26,11 @@ public class Prints {
 			if ((status[0] & 0x08) == 0) {
 				if(pos.POS_QueryStatus(status, 3000, 2)) {
 					
-					Bitmap bm1 = getTestImage1(nPrintWidth, nPrintWidth);
-					Bitmap bm2 = getTestImage2(nPrintWidth, nPrintWidth);
-					Bitmap bmBlackWhite = getImageFromAssetsFile(ctx, "blackwhite.png");
-					Bitmap bmIu = getImageFromAssetsFile(ctx, "iu.jpeg");
-					Bitmap bmYellowmen = getImageFromAssetsFile(ctx, "yellowmen.png");
+//					Bitmap bm1 = getTestImage1(nPrintWidth, nPrintWidth);
+//					Bitmap bm2 = getTestImage2(nPrintWidth, nPrintWidth);
+//					Bitmap bmBlackWhite = getImageFromAssetsFile(ctx, "blackwhite.png");
+//					Bitmap bmIu = getImageFromAssetsFile(ctx, "iu.jpeg");
+//					Bitmap bmYellowmen = getImageFromAssetsFile(ctx, "yellowmen.png");
 					for(int i = 0; i < nCount; ++i)
 					{
 						if(!pos.GetIO().IsOpened())
@@ -55,30 +55,30 @@ public class Prints {
 						
 						if(nPrintContent >= 2)
 						{
-							if(bm1 != null)
-							{
-								pos.POS_PrintPicture(bm1, nPrintWidth, 1, nCompressMethod);
-							}
-							if(bm2 != null)
-							{
-								pos.POS_PrintPicture(bm2, nPrintWidth, 1, nCompressMethod);
-							}
+//							if(bm1 != null)
+//							{
+//								pos.POS_PrintPicture(bm1, nPrintWidth, 1, nCompressMethod);
+//							}
+//							if(bm2 != null)
+//							{
+//								pos.POS_PrintPicture(bm2, nPrintWidth, 1, nCompressMethod);
+//							}
 						}
 						
 						if(nPrintContent >= 3)
 						{
-							if(bmBlackWhite != null)
-							{
-								pos.POS_PrintPicture(bmBlackWhite, nPrintWidth, 1, nCompressMethod);
-							}
-							if(bmIu != null)
-							{
-								pos.POS_PrintPicture(bmIu, nPrintWidth, 0, nCompressMethod);
-							}
-							if(bmYellowmen != null)
-							{
-								pos.POS_PrintPicture(bmYellowmen, nPrintWidth, 0, nCompressMethod);
-							}
+//							if(bmBlackWhite != null)
+//							{
+//								pos.POS_PrintPicture(bmBlackWhite, nPrintWidth, 1, nCompressMethod);
+//							}
+//							if(bmIu != null)
+//							{
+//								pos.POS_PrintPicture(bmIu, nPrintWidth, 0, nCompressMethod);
+//							}
+//							if(bmYellowmen != null)
+//							{
+//								pos.POS_PrintPicture(bmYellowmen, nPrintWidth, 0, nCompressMethod);
+//							}
 						}
 					}
 					
@@ -89,7 +89,7 @@ public class Prints {
 					if(bDrawer)
 						pos.POS_KickDrawer(0, 100);
 					
-					bPrintResult = pos.POS_TicketSucceed(0, 30000);
+					bPrintResult = pos.POS_TicketSucceed(0, 10000);
 				} else {
 					bPrintResult = -8;
 				}
