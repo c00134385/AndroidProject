@@ -43,7 +43,7 @@
             android:id="@+id/baud_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/baudrates"/>
+            android:entries="@array/baudrates" />
 
     </LinearLayout>
 
@@ -58,6 +58,7 @@
             android:id="@+id/btn_open"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/space_40"
             android:text="打开设备"/>
 
         <TextView
@@ -71,6 +72,7 @@
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/space_40"
             android:text="发送数据"/>
 
     </LinearLayout>
@@ -85,7 +87,7 @@
         <EditText
             android:id="@+id/EditTextReception"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:hint="Reception"
@@ -97,8 +99,7 @@
             android:id="@+id/EditTextEmission"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Emission"
-            android:lines="1" >
+            android:layout_weight="1">
         </EditText>
 
     </LinearLayout>

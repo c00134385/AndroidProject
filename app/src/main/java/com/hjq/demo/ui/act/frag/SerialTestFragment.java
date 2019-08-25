@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -43,6 +44,10 @@ public class SerialTestFragment extends MyLazyFragment {
 
     @BindView(R.id.btn_send)
     Button btnSend;
+
+
+    @BindView(R.id.EditTextReception)
+    EditText recvEdit;
 
     String mDevice;
     String mBaudrate;
@@ -115,6 +120,7 @@ public class SerialTestFragment extends MyLazyFragment {
 
             }
         });
+        baudRate.setSelection(2);
 
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +141,10 @@ public class SerialTestFragment extends MyLazyFragment {
                     tvState.setText("打开设备成功");
                     mOutputStream = mSerialPort.getOutputStream();
                     mInputStream = mSerialPort.getInputStream();
-                } catch (IOException e) {
+
+                    mReadThread = new ReadThread();
+                    mReadThread.start();
+                } catch (Exception e) {
                     e.printStackTrace();
                     tvState.setText("打开设备失败");
                 }
@@ -184,6 +193,15 @@ public class SerialTestFragment extends MyLazyFragment {
                     size = mInputStream.read(buffer);
                     if (size > 0) {
 //                        onDataReceived(buffer, size);
+                        final String recv = new String(buffer, 0, size);
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                recvEdit.append(recv);
+                            }
+                        });
+
+                        Timber.d("%s", recv);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -214,4 +232,16 @@ public class SerialTestFragment extends MyLazyFragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(null != mReadThread) {
+            mReadThread.interrupt();
+        }
+    }
 }
