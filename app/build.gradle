@@ -15,8 +15,8 @@ android {
         applicationId "com.hjq.demo"
         minSdkVersion 18
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10102
-        versionName "1.1.2"
+        versionCode 10105
+        versionName "1.1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // 混淆配置
@@ -239,6 +239,22 @@ dependencies {
     // (see https://github.com/ReactiveX/RxJava/releases for latest 2.x.x version)
     implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
     implementation 'org.apache.commons:commons-lang3:3.6'
+
+
+//    // Retrofit库
+//    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+//    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+//    // gson解析，可以自行替换
+//    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+//    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+//    // 日志的拦截器，也可以自行选择
+//    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation 'org.jsoup:jsoup:1.12.1'

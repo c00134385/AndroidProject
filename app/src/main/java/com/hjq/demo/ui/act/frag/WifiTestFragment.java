@@ -108,6 +108,14 @@ public class WifiTestFragment extends MyLazyFragment {
         intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);//蓝牙状态改变的广播
         intentFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);//蓝牙状态改变的广播
         getContext().registerReceiver(mReceiver, intentFilter);//用BroadcastReceiver 来取得结果
+
+        if(WifiManager.WIFI_STATE_ENABLED == WifiAdmin.getInstance().getState()) {
+            btSwitch.setChecked(true);
+            btState.setText("WIFI已打开");
+        } else {
+            btSwitch.setChecked(false);
+            btState.setText("WIFI已关闭");
+        }
     }
 
     @Override
@@ -194,35 +202,36 @@ public class WifiTestFragment extends MyLazyFragment {
                 @Override
                 public void onClick(View v) {
                     Timber.d("");
-                    if(scanResult.BSSID.equals(WifiAdmin.getInstance().getWifiInfo().getBSSID())) {
-                        ToastUtils.show("已连接");
-                    } else {
-                        new InputDialog.Builder(getActivity())
-                                .setTitle(scanResult.SSID) // 标题可以不用填写
-//                                .setContent("密码")
-                                .setHint("请输入密码")
-                                .setConfirm("确定")
-                                .setCancel("取消") // 设置 null 表示不显示取消按钮
-                                //.setAutoDismiss(false) // 设置点击按钮后不关闭对话框
-                                .setListener(new InputDialog.OnListener() {
-
-                                    @Override
-                                    public void onConfirm(Dialog dialog, String content) {
-//                                        toast("确定了：" + content);
-                                        if(TextUtils.isEmpty(content) || content.trim().length() < 8) {
-                                            Toast.makeText(getContext(), "密码至少8位", Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
-                                        WifiAdmin.getInstance().addNetwork(WifiAdmin.getInstance().CreateWifiInfo(scanResult.SSID, content.trim(), 3));
-                                    }
-
-                                    @Override
-                                    public void onCancel(Dialog dialog) {
-//                                        toast("取消了");
-                                    }
-                                })
-                                .show();
-                    }
+                    startActivity(new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS));
+//                    if(scanResult.BSSID.equals(WifiAdmin.getInstance().getWifiInfo().getBSSID())) {
+//                        ToastUtils.show("已连接");
+//                    } else {
+//                        new InputDialog.Builder(getActivity())
+//                                .setTitle(scanResult.SSID) // 标题可以不用填写
+////                                .setContent("密码")
+//                                .setHint("请输入密码")
+//                                .setConfirm("确定")
+//                                .setCancel("取消") // 设置 null 表示不显示取消按钮
+//                                //.setAutoDismiss(false) // 设置点击按钮后不关闭对话框
+//                                .setListener(new InputDialog.OnListener() {
+//
+//                                    @Override
+//                                    public void onConfirm(Dialog dialog, String content) {
+////                                        toast("确定了：" + content);
+//                                        if(TextUtils.isEmpty(content) || content.trim().length() < 8) {
+//                                            Toast.makeText(getContext(), "密码至少8位", Toast.LENGTH_SHORT).show();
+//                                            return;
+//                                        }
+//                                        WifiAdmin.getInstance().addNetwork(WifiAdmin.getInstance().CreateWifiInfo(scanResult.SSID, content.trim(), 3));
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancel(Dialog dialog) {
+////                                        toast("取消了");
+//                                    }
+//                                })
+//                                .show();
+//                    }
                 }
             });
         }

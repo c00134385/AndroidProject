@@ -84,7 +84,6 @@ public class SerialTestFragment extends MyLazyFragment {
             for(int i = 0; i < entryValues.length; i++) {
                 Timber.d("entryValues[%d]:%s", i, entryValues[i]);
             }
-
         }
 
 //        / 建立Adapter并且绑定数据源
@@ -163,7 +162,9 @@ public class SerialTestFragment extends MyLazyFragment {
                         .map(new Function<String, String>() {
                             @Override
                             public String apply(String s) throws Exception {
-                                mOutputStream.write(s.getBytes());
+                                if(null != mOutputStream) {
+                                    mOutputStream.write(s.getBytes());
+                                }
                                 return s;
                             }
                         })

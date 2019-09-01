@@ -1,6 +1,7 @@
 package com.hjq.demo.ui.act;
 
 import android.app.Dialog;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -11,13 +12,22 @@ import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
+import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.OrthManager;
+import com.hjq.demo.service.RetrofitUtil;
 import com.hjq.demo.ui.widget.CardView1;
 import com.hjq.dialog.MessageDialog;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 import timber.log.Timber;
 
 public class NewHomeActivity extends MyActivity implements View.OnClickListener {
@@ -181,6 +191,7 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.cv_machine:
                 startActivity(MachineActivity.class);
+//                getToken();
                 break;
             case R.id.cv_network:
                 startActivity(NetworkActivity.class);
@@ -198,5 +209,44 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
                 finish();
                 break;
         }
+    }
+
+    private void getToken() {
+        RetrofitUtil.getInstance().getToken(MachineManager.getInstance().getSn())
+                .map(new Function<Map<String, Object>, String>() {
+                    @Override
+                    public String apply(Map<String, Object> response) throws Exception {
+                        Timber.d("");
+                        Boolean isSuccess = (boolean)response.get("success");
+                        if(isSuccess) {
+                            String token = (String)response.get("token");
+                            return token;
+                        } else {
+                            throw new RuntimeException("get token failed.");
+                        }
+                    }
+                })
+                .flatMap(new Function<String, ObservableSource<Map<String, Object>>>() {
+                    @Override
+                    public ObservableSource<Map<String, Object>> apply(String token) throws Exception {
+                        Map<String, Object> params = new HashMap<>();
+                        params.put("token", token);
+                        params.put("brand", Build.BRAND);
+                        params.put("model", Build.MODEL);
+                        return RetrofitUtil.getInstance().putDevice(MachineManager.getInstance().getSn(), params);
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<Map<String, Object>>() {
+                    @Override
+                    public void accept(Map<String, Object> stringObjectMap) throws Exception {
+                        Timber.d("");
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Timber.d("");
+                    }
+                });
     }
 }
