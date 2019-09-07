@@ -5,21 +5,12 @@
     android:orientation="horizontal">
 
     <Button
-        android:id="@+id/btn_left"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/start_test"
-        android:visibility="gone"/>
-
-    <Button
         android:id="@+id/btn_middle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="@dimen/font_size_90px"
         android:background="@color/green"
-        android:layout_marginRight="@dimen/space_2"
         android:text="@string/state_success"/>
 
     <Button
@@ -29,7 +20,17 @@
         android:layout_weight="1"
         android:textSize="@dimen/font_size_90px"
         android:background="@color/red"
-        android:layout_marginLeft="@dimen/space_2"
+        android:layout_marginLeft="@dimen/space_4"
         android:text="@string/state_failed"/>
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="@dimen/font_size_90px"
+        android:background="@color/gray"
+        android:layout_marginLeft="@dimen/space_4"
+        android:text="返回"/>
 
 </LinearLayout>

@@ -14,7 +14,7 @@ import com.hjq.demo.R;
 
 public class BottomBar extends FrameLayout implements View.OnClickListener {
 
-    private Button btnLeft;
+    private Button btnBack;
     private Button btnMiddle;
     private Button btnRight;
     private OnClickListener clickListener;
@@ -42,7 +42,7 @@ public class BottomBar extends FrameLayout implements View.OnClickListener {
 
     private void initView(Context context) {
         LayoutInflater.from(context).inflate(R.layout.layout_bottom_bar, this);
-        btnLeft = findViewById(R.id.btn_left);
+        btnBack = findViewById(R.id.btn_back);
         btnMiddle = findViewById(R.id.btn_middle);
         btnRight = findViewById(R.id.btn_right);
     }
@@ -55,7 +55,7 @@ public class BottomBar extends FrameLayout implements View.OnClickListener {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         // 设置监听
-        btnLeft.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
         btnMiddle.setOnClickListener(this);
         btnRight.setOnClickListener(this);
     }
@@ -63,7 +63,7 @@ public class BottomBar extends FrameLayout implements View.OnClickListener {
     @Override
     protected void onDetachedFromWindow() {
         // 移除监听
-        btnLeft.setOnClickListener(null);
+        btnBack.setOnClickListener(null);
         btnMiddle.setOnClickListener(null);
         btnRight.setOnClickListener(null);
         super.onDetachedFromWindow();
@@ -82,7 +82,7 @@ public class BottomBar extends FrameLayout implements View.OnClickListener {
         if (getClickListener() == null) return;
 
         final int id = v.getId();
-        if (id == R.id.btn_left) {
+        if (id == R.id.btn_back) {
             getClickListener().onLeftClick(v);
         }else if (id == R.id.btn_middle) {
             getClickListener().onMiddleClick(v);

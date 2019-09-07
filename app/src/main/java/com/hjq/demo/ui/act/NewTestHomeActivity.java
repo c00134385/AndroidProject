@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.mananger.TestManager;
+import com.hjq.demo.model.StateEnum;
 import com.hjq.demo.model.TestItemModel;
 import com.hjq.demo.ui.act.t.BacklightTestActivity;
 import com.hjq.demo.ui.act.t.BaseTestActivity;
@@ -28,11 +30,13 @@ import com.hjq.demo.ui.act.t.DemoTestActivity;
 import com.hjq.demo.ui.act.t.KeyTestActivity;
 import com.hjq.demo.ui.act.t.ScreenTestActivity;
 import com.hjq.demo.utils.GsonUtil;
+import com.hjq.toast.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -44,7 +48,12 @@ public class NewTestHomeActivity extends MyActivity {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    List<TestItemModel> list = new ArrayList<>();
+    @BindView(R.id.btn_reset)
+    Button btnReset;
+
+    @BindView(R.id.btn_save)
+    Button btnSave;
+
     RecyclerDemoAdapter recycleAdapter;
 
     @Override
@@ -66,7 +75,7 @@ public class NewTestHomeActivity extends MyActivity {
 //设置为垂直布局，这也是默认的
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
 //设置Adapter
-        recycleAdapter = new RecyclerDemoAdapter(this, list);
+        recycleAdapter = new RecyclerDemoAdapter(this, null);
         recyclerView.setAdapter(recycleAdapter);
         //设置分隔线
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
@@ -82,6 +91,36 @@ public class NewTestHomeActivity extends MyActivity {
 
     @Override
     protected void initData() {
+    }
+
+    @OnClick({R.id.btn_reset, R.id.btn_save})
+    void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_reset:
+                Observable.just(TestManager.getInstance().getTestItems())
+                        .doOnNext(new Consumer<List<TestItemModel>>() {
+                            @Override
+                            public void accept(List<TestItemModel> testItemModels) throws Exception {
+                                for(TestItemModel itemModel : testItemModels) {
+                                    itemModel.setState(StateEnum.NOT_TEST);
+                                }
+                            }
+                        })
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<List<TestItemModel>>() {
+                            @Override
+                            public void accept(List<TestItemModel> testItemModels) throws Exception {
+                                recycleAdapter.update(testItemModels);
+                            }
+                        });
+
+                break;
+
+            case R.id.btn_save:
+                ToastUtils.show("已保存成功");
+                break;
+        }
     }
 
     class RecyclerDemoAdapter extends RecyclerView.Adapter<RecyclerDemoAdapter.MyHolder> {
@@ -190,18 +229,12 @@ public class NewTestHomeActivity extends MyActivity {
     protected void onResume() {
         super.onResume();
         Observable.just(TestManager.getInstance().getTestItems())
-                .doOnNext(new Consumer<List<TestItemModel>>() {
-                    @Override
-                    public void accept(List<TestItemModel> testItemModels) throws Exception {
-                        list = TestManager.getInstance().getTestItems();
-                    }
-                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<TestItemModel>>() {
                     @Override
                     public void accept(List<TestItemModel> testItemModels) throws Exception {
-                        recycleAdapter.update(list);
+                        recycleAdapter.update(testItemModels);
                     }
                 });
     }

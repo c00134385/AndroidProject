@@ -62,7 +62,8 @@ abstract public class BaseTestActivity extends MyActivity {
                     @Override
                     public void onLeftClick(View v) {
 //                        ToastUtils.show("left is clicked");
-                        onTestStart();
+//                        onTestStart();
+                        finish();
                     }
 
                     @Override
