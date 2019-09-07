@@ -46,4 +46,14 @@ public class DemoTestActivity extends BaseTestActivity {
     protected int getBodyId() {
         return R.id.frag_container;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }

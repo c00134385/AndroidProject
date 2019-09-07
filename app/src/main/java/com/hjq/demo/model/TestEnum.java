@@ -12,14 +12,15 @@ public enum TestEnum {
     SPEAKER("音频测试", true),
     LAN("有线网卡", true),
     VIDEO("视频播放", true),
+    DEVICE("设备信息测试", true),
     SERIAL("串口", true),
+    KEY("按键", true),
+    KEYBOARD("键盘", false),
 
     BLUETOOTH("蓝牙", false),
-    KEYBOARD("键盘", false),
     RECORD("录音", false),
     FORG("4G", false),
     HEADPHONE("耳机", false),
-    KEY("按键", false),
     ;
     private final String content;
     private final boolean enabled;

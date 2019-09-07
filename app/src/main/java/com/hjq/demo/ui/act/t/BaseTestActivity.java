@@ -14,7 +14,9 @@ import com.hjq.demo.common.MyLazyFragment;
 import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.model.StateEnum;
 import com.hjq.demo.model.TestItemModel;
+import com.hjq.demo.ui.KeyboardStateObserver;
 import com.hjq.demo.ui.act.frag.CameraTestNewFragment;
+import com.hjq.demo.ui.act.frag.DeviceTestFragment;
 import com.hjq.demo.ui.act.frag.ForgTestFragment;
 import com.hjq.demo.ui.act.frag.HPTestFragment;
 import com.hjq.demo.ui.act.frag.KeyboardTestFragment;
@@ -30,6 +32,7 @@ import com.hjq.demo.ui.act.frag.VideoTestFragment;
 import com.hjq.demo.ui.act.frag.WifiTestV2Fragment;
 import com.hjq.demo.ui.widget.BottomBar;
 import com.hjq.demo.utils.GsonUtil;
+import com.hjq.toast.ToastUtils;
 
 abstract public class BaseTestActivity extends MyActivity {
 
@@ -48,6 +51,19 @@ abstract public class BaseTestActivity extends MyActivity {
     @Override
     protected void initLayout() {
         super.initLayout();
+
+        KeyboardStateObserver.getKeyboardStateObserver(this).
+                setKeyboardVisibilityListener(new KeyboardStateObserver.OnKeyboardVisibilityListener() {
+                    @Override
+                    public void onKeyboardShow() {
+//                        ToastUtils.show("键盘弹出");
+                    }
+
+                    @Override
+                    public void onKeyboardHide() {
+//                        ToastUtils.show("键盘收回");
+                    }
+                });
 
         Intent intent = getIntent();
         String extraJson = intent.getStringExtra(BaseTestActivity.KEY_TEST_ITEM);
@@ -167,8 +183,10 @@ abstract public class BaseTestActivity extends MyActivity {
                 fragment = new PrinterTestFragment();
                 break;
             case CAMERA:
-//                fragment = new CameraTestFragment();
                 fragment = new CameraTestNewFragment();
+                break;
+            case DEVICE:
+                fragment = new DeviceTestFragment();
                 break;
             case SERIAL:
                 fragment = new SerialTestFragment();

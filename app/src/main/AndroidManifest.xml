@@ -140,6 +140,8 @@
                 android:resource="@xml/detection_service_config" />
         </service>
 
+        <service android:name=".service.DeviceUploadService"/>
+
         <!-- 主页界面 -->
         <activity
             android:name=".ui.activity.HomeActivity"

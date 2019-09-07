@@ -1,6 +1,7 @@
 package com.hjq.demo.ui.act;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,7 @@ import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.OrthManager;
+import com.hjq.demo.service.DeviceUploadService;
 import com.hjq.demo.service.RetrofitUtil;
 import com.hjq.demo.ui.widget.CardView1;
 import com.hjq.dialog.MessageDialog;
@@ -115,7 +117,8 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
 
     @Override
     protected void initData() {
-
+        Intent intent = new Intent(this, DeviceUploadService.class);
+        startService(intent);
     }
 
     @Override

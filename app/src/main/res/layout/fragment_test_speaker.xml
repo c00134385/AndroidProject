@@ -13,6 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.3"
+        android:textSize="@dimen/font_size_36px"
         android:text="音频(扬声器)播放"/>
 
     <SeekBar
@@ -21,6 +22,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/start_play"
         android:max="100"
+        android:scaleY="2"
         android:layout_margin="@dimen/space_80"/>
 
 </android.support.constraint.ConstraintLayout>
