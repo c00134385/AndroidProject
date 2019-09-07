@@ -103,6 +103,7 @@ public class NewTestHomeActivity extends MyActivity {
                             public void accept(List<TestItemModel> testItemModels) throws Exception {
                                 for(TestItemModel itemModel : testItemModels) {
                                     itemModel.setState(StateEnum.NOT_TEST);
+                                    TestManager.getInstance().updateTest(itemModel);
                                 }
                             }
                         })

@@ -45,10 +45,12 @@ public class TestManager {
 //        testItems = new ArrayList<>();
         for (TestEnum e : TestEnum.values()) {
             Timber.d("%s", e.name());
-            String title = e.name();
-            String state = (String) SPUtils.getParam(mPreferences, title, StateEnum.NOT_TEST.name());
+            if(e.isEnabled()) {
+                String title = e.name();
+                String state = (String) SPUtils.getParam(mPreferences, title, StateEnum.NOT_TEST.name());
 //            testItems.add(new TestItemModel(TestEnum.valueOf(title), StateEnum.valueOf(state)));
-            testItemMap.put(title, new TestItemModel(TestEnum.valueOf(title), StateEnum.valueOf(state)));
+                testItemMap.put(title, new TestItemModel(TestEnum.valueOf(title), StateEnum.valueOf(state)));
+            }
         }
     }
 

@@ -1,33 +1,39 @@
 package com.hjq.demo.model;
 
 public enum TestEnum {
-    SCREEN("屏幕"),
-    TOUCH1("触摸1"),
-    TOUCH2("触摸2"),
-    BACK_LIGHT("背光"),
-    SPEAKER("喇叭"),
-    VIDEO("视频播放"),
-    WIFI("WIFI"),
-    BLUETOOTH("蓝牙"),
-    CAMERA("摄像头"),
-    SCAN_GUN("扫描枪"),
-    PRINTER("打印机"),
-    SERIAL("串口"),
-    KEYBOARD("键盘"),
-    RECORD("录音"),
-    LAN("以太网"),
-    FORG("4G"),
-    HEADPHONE("耳机"),
-    KEY("按键"),
-    ;
+    PRINTER("打印机", true),
+    SCAN_GUN("扫描枪", true),
+    CAMERA("摄像头", true),
+    WIFI("WIFI", true),
+    SCREEN("屏幕", true),
+    TOUCH1("触摸一", true),
+    TOUCH2("触摸二", true),
+    BACK_LIGHT("屏幕亮度", true),
+    SPEAKER("音频测试", true),
+    LAN("有线网卡", true),
+    VIDEO("视频播放", true),
+    SERIAL("串口", true),
 
+    BLUETOOTH("蓝牙", false),
+    KEYBOARD("键盘", false),
+    RECORD("录音", false),
+    FORG("4G", false),
+    HEADPHONE("耳机", false),
+    KEY("按键", false),
+    ;
     private final String content;
-    private TestEnum(String content)
+    private final boolean enabled;
+    private TestEnum(String content, boolean enable)
     {
-        this.content=content;
+        this.content = content;
+        this.enabled = enable;
     }
 
     public String value() {
         return content;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }

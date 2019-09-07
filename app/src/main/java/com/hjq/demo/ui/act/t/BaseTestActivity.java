@@ -27,7 +27,7 @@ import com.hjq.demo.ui.act.frag.SpeakerTestFragment;
 import com.hjq.demo.ui.act.frag.Touch2TestFragment;
 import com.hjq.demo.ui.act.frag.TouchTestFragment;
 import com.hjq.demo.ui.act.frag.VideoTestFragment;
-import com.hjq.demo.ui.act.frag.WifiTestFragment;
+import com.hjq.demo.ui.act.frag.WifiTestV2Fragment;
 import com.hjq.demo.ui.widget.BottomBar;
 import com.hjq.demo.utils.GsonUtil;
 
@@ -149,7 +149,7 @@ abstract public class BaseTestActivity extends MyActivity {
                 fragment = new HPTestFragment();
                 break;
             case WIFI:
-                fragment = new WifiTestFragment();
+                fragment = new WifiTestV2Fragment();
                 break;
             case LAN:
                 fragment = new LanTestFragment();
