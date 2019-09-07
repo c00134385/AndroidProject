@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_120"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:background="@drawable/content_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/img_state"
+        android:layout_width="@dimen/space_80"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/space_80"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerInside"
+        tool:src="@mipmap/check_error" />
+
+    <TextView
+        android:id="@+id/tv_state"
+        android:layout_width="@dimen/space_120"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_24"
+        app:layout_constraintLeft_toRightOf="@+id/img_state"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="@dimen/font_size_48px"
+        tool:text="state"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/tv_state"
+        android:layout_marginLeft="@dimen/space_44"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="@dimen/font_size_48px"
+        tool:text="1"/>
+
+    <TextView
+        android:id="@+id/tv_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/tv_no"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="@dimen/font_size_48px"
+        android:text=". "/>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toRightOf="@+id/tv_dot"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="@dimen/font_size_48px"
+        tool:text="title"/>
+</android.support.constraint.ConstraintLayout>
