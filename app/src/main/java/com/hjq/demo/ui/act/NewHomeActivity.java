@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -59,6 +60,9 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
     private long startTouchTime;
     private int validTouchCount;
 
+    int width;
+    int height;
+
     private static final int MSG_CHECK_ORTH = 0x1003;
 
     private Handler handler = new Handler(){
@@ -104,7 +108,7 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
                 @Override
                 public void onTitleClick(View v) {
                     Timber.d("onTitleClick v:%s", v.getClass().getSimpleName());
-                    processHideInfo();
+//                    processHideInfo();
                 }
 
                 @Override
@@ -116,9 +120,21 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
     }
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Timber.d("action:%d x:%f y:%f", event.getAction(), event.getX(), event.getY());
+        if(event.getAction() == MotionEvent.ACTION_DOWN && (event.getX() > width/2) && (event.getY() > height / 2)) {
+            processHideInfo();
+        }
+        return super.onTouchEvent(event);
+    }
+
+    @Override
     protected void initData() {
         Intent intent = new Intent(this, DeviceUploadService.class);
         startService(intent);
+
+        width = getResources().getDisplayMetrics().widthPixels;
+        height = getResources().getDisplayMetrics().heightPixels;
     }
 
     @Override
@@ -138,7 +154,7 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
         }
         validTouchCount++;
 
-        if(validTouchCount >= 3 && System.currentTimeMillis() - startTouchTime < TimeUnit.SECONDS.toMillis(2)) {
+        if(validTouchCount >= 5 && System.currentTimeMillis() - startTouchTime < TimeUnit.SECONDS.toMillis(2)) {
             if(findViewById(R.id.cv_test).getVisibility() != View.VISIBLE) {
                 findViewById(R.id.cv_test).setVisibility(View.VISIBLE);
             } else {
@@ -164,7 +180,7 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
     private void showDialog() {
         MessageDialog.Builder builder = new MessageDialog.Builder(this)
                 .setTitle("提示") // 标题可以不用填写
-                .setMessage("请确认是否已授权？")
+                .setMessage("")
                 .setConfirm("确定")
                 .setCancel("取消") // 设置 null 表示不显示取消按钮
                 .setCancelable(false)
@@ -194,7 +210,6 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.cv_machine:
                 startActivity(MachineActivity.class);
-//                getToken();
                 break;
             case R.id.cv_network:
                 startActivity(NetworkActivity.class);
@@ -212,44 +227,5 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
                 finish();
                 break;
         }
-    }
-
-    private void getToken() {
-        RetrofitUtil.getInstance().getToken(MachineManager.getInstance().getSn())
-                .map(new Function<Map<String, Object>, String>() {
-                    @Override
-                    public String apply(Map<String, Object> response) throws Exception {
-                        Timber.d("");
-                        Boolean isSuccess = (boolean)response.get("success");
-                        if(isSuccess) {
-                            String token = (String)response.get("token");
-                            return token;
-                        } else {
-                            throw new RuntimeException("get token failed.");
-                        }
-                    }
-                })
-                .flatMap(new Function<String, ObservableSource<Map<String, Object>>>() {
-                    @Override
-                    public ObservableSource<Map<String, Object>> apply(String token) throws Exception {
-                        Map<String, Object> params = new HashMap<>();
-                        params.put("token", token);
-                        params.put("brand", Build.BRAND);
-                        params.put("model", Build.MODEL);
-                        return RetrofitUtil.getInstance().putDevice(MachineManager.getInstance().getSn(), params);
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<Map<String, Object>>() {
-                    @Override
-                    public void accept(Map<String, Object> stringObjectMap) throws Exception {
-                        Timber.d("");
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Timber.d("");
-                    }
-                });
     }
 }

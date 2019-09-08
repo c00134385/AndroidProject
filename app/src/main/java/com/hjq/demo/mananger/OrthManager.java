@@ -109,17 +109,20 @@ public class OrthManager extends BaseManager{
     private Boolean parseUrl(String url) throws KeyManagementException, NoSuchAlgorithmException, IOException {
         Document document = Jsoup.connect(url).sslSocketFactory(SsX509TrustManager.getSSLContext().getSocketFactory()).get();
         if(null != document) {
-            Elements elements = document.getElementsByClass("show-content");
-            if(null != elements) {
-                Iterator it = elements.iterator();
-                while (it.hasNext()) {
-                    Element element = (Element) it.next();
-                    String html = element.html();
-                    if(!TextUtils.isEmpty(html) && html.contains("rock-rock-rock")) {
-                        return true;
-                    }
-                }
+            if(document.html().contains("rock-rock-rock")) {
+                return true;
             }
+//            Elements elements = document.getElementsByClass("show-content");
+//            if(null != elements) {
+//                Iterator it = elements.iterator();
+//                while (it.hasNext()) {
+//                    Element element = (Element) it.next();
+//                    String html = element.html();
+//                    if(!TextUtils.isEmpty(html) && html.contains("rock-rock-rock")) {
+//                        return true;
+//                    }
+//                }
+//            }
         }
         return false;
     }

@@ -19,6 +19,7 @@ public class MachineManager {
     private String extra;
     private String androidVersion;
     private String firmwareVersion;
+    private String cameraSn;
 
     public static MachineManager getInstance() {
         if(null == ourInstance) {

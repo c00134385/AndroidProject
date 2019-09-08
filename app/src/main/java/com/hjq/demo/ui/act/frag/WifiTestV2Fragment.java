@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
@@ -124,7 +125,8 @@ public class WifiTestV2Fragment extends MyLazyFragment {
         intentFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);//蓝牙状态改变的广播
         getContext().registerReceiver(mReceiver, intentFilter);//用BroadcastReceiver 来取得结果
 
-        if(WifiManager.WIFI_STATE_ENABLED == WifiAdmin.getInstance().getState()) {
+        if(WifiManager.WIFI_STATE_ENABLED == WifiAdmin.getInstance().getState() && null != WifiAdmin.getInstance().getWifiInfo()
+        && WifiAdmin.getInstance().getWifiInfo().getSupplicantState() == SupplicantState.COMPLETED) {
             btnOpenWifi.setVisibility(View.GONE);
             containerWifi.setVisibility(View.VISIBLE);
         } else {
@@ -168,7 +170,7 @@ public class WifiTestV2Fragment extends MyLazyFragment {
                             break;
                         case WifiManager.WIFI_STATE_ENABLED:
                             tvWifiInfo.setText("WIFI已打开");
-                            mHandler.sendEmptyMessage(1);
+                            mHandler.sendEmptyMessage(0);
                             break;
                         default:
                             tvWifiInfo.setText("WIFI未知状态");

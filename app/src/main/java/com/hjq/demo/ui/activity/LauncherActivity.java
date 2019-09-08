@@ -12,6 +12,7 @@ import com.gyf.barlibrary.BarHide;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.common.MyApplication;
+import com.hjq.demo.mananger.CameraManager;
 import com.hjq.demo.mananger.EthernetManager;
 import com.hjq.demo.mananger.HardwareManager;
 import com.hjq.demo.mananger.MachineManager;
@@ -162,6 +163,7 @@ public final class LauncherActivity extends MyActivity
                 .map(new Function<Integer, Integer>() {
                     @Override
                     public Integer apply(Integer integer) throws Exception {
+                        CameraManager.init(MyApplication.getInstance());
                         MachineManager.init(MyApplication.getInstance());
                         NetworkManager.init(MyApplication.getInstance());
                         HardwareManager.init(MyApplication.getInstance());
@@ -177,6 +179,7 @@ public final class LauncherActivity extends MyActivity
                 .doOnNext(new Consumer<Integer>() {
                     @Override
                     public void accept(Integer integer) throws Exception {
+                        CameraManager.getInstance().start();
                         OrthManager.getInstance().start();
                     }
                 })

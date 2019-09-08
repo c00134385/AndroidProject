@@ -11,6 +11,7 @@ import android.os.SystemClock;
 import androidx.annotation.Nullable;
 
 import com.hjq.demo.R;
+import com.hjq.demo.mananger.CameraManager;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.model.BasicModel;
@@ -91,7 +92,7 @@ public class DeviceUploadService extends Service {
                         params.put("token", token);
                         params.put("brand", Build.BRAND);
                         params.put("model", Build.MODEL);
-                        params.put("devicesn", MachineManager.getInstance().getSn());
+                        params.put("deviceSn", MachineManager.getInstance().getSn());
                         params.put("wifiMac", NetworkManager.getInstance().getWifiMac());
                         params.put("bluetoothMac", NetworkManager.getInstance().getBluetoothMac());
                         params.put("imei", NetworkManager.getInstance().getImei());
@@ -102,6 +103,7 @@ public class DeviceUploadService extends Service {
                         params.put("firmwareVersion", MachineManager.getInstance().getFirmwareVersion());
                         params.put("workingTime", timer);
 
+                        params.put("cameraSn", CameraManager.getInstance().getCameraSn());
                         return RetrofitUtil.getInstance().putDevice(MachineManager.getInstance().getSn(), params);
                     }
                 })

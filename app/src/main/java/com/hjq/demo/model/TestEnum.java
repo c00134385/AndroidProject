@@ -15,7 +15,7 @@ public enum TestEnum {
     DEVICE("设备信息测试", true),
     SERIAL("串口", true),
     KEY("按键", true),
-    KEYBOARD("键盘", false),
+    KEYBOARD("键盘", true),
 
     BLUETOOTH("蓝牙", false),
     RECORD("录音", false),
