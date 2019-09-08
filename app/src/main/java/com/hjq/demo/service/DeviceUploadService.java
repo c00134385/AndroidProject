@@ -6,10 +6,14 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.SystemClock;
 
 import androidx.annotation.Nullable;
 
+import com.hjq.demo.R;
 import com.hjq.demo.mananger.MachineManager;
+import com.hjq.demo.mananger.NetworkManager;
+import com.hjq.demo.model.BasicModel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +28,7 @@ import timber.log.Timber;
 public class DeviceUploadService extends Service {
 
     protected Handler mHandler;
-    private long mInterval = TimeUnit.MINUTES.toMillis(1);
+    private long mInterval = TimeUnit.MINUTES.toMillis(5);
     private Runnable mAction = new Runnable() {
 
         @Override
@@ -87,6 +91,17 @@ public class DeviceUploadService extends Service {
                         params.put("token", token);
                         params.put("brand", Build.BRAND);
                         params.put("model", Build.MODEL);
+                        params.put("devicesn", MachineManager.getInstance().getSn());
+                        params.put("wifiMac", NetworkManager.getInstance().getWifiMac());
+                        params.put("bluetoothMac", NetworkManager.getInstance().getBluetoothMac());
+                        params.put("imei", NetworkManager.getInstance().getImei());
+                        long timer = SystemClock.elapsedRealtime();
+                        params.put("workingTime", timer);
+
+                        params.put("androidVersion", MachineManager.getInstance().getAndroidVersion());
+                        params.put("firmwareVersion", MachineManager.getInstance().getFirmwareVersion());
+                        params.put("workingTime", timer);
+
                         return RetrofitUtil.getInstance().putDevice(MachineManager.getInstance().getSn(), params);
                     }
                 })

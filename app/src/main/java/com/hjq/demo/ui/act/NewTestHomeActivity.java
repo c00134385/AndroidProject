@@ -3,8 +3,8 @@ package com.hjq.demo.ui.act;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hjq.demo.R;
+import com.hjq.demo.adapter.MyRecyclerViewDivider;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.mananger.TestManager;
 import com.hjq.demo.model.StateEnum;
@@ -32,7 +33,6 @@ import com.hjq.demo.ui.act.t.ScreenTestActivity;
 import com.hjq.demo.utils.GsonUtil;
 import com.hjq.toast.ToastUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -78,12 +78,7 @@ public class NewTestHomeActivity extends MyActivity {
         recycleAdapter = new RecyclerDemoAdapter(this, null);
         recyclerView.setAdapter(recycleAdapter);
         //设置分隔线
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                super.onDraw(c, parent, state);
-            }
-        });
+        recyclerView.addItemDecoration(new MyRecyclerViewDivider(this, LinearLayoutManager.HORIZONTAL,2, ContextCompat.getColor(this,R.color.colorAccent)));
 //        recyclerView.addItemDecoration( new DividerGridItemDecoration(this ));
 //设置增加或删除条目的动画
         recyclerView.setItemAnimator( new DefaultItemAnimator());

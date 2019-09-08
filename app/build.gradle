@@ -106,7 +106,8 @@ android {
         variant.outputs.all { output ->
             def appName = "AndroidProject"
             if (variant.buildType.name == 'debug') {
-                outputFileName = appName + '_v' + versionName + '_' + variant.buildType.name + '.apk'
+//                outputFileName = appName + '_v' + versionName + '_' + variant.buildType.name + '.apk'
+                outputFileName = appName + '_v' + versionName + '_' + new Date().format("yyyyMMdd") + '_' + '_rel' + '.apk'
             } else {
                 outputFileName = appName + '_v' + versionName + '_' + new Date().format("yyyyMMdd") + '_' + variant.productFlavors[0].name + '_' + variant.buildType.name + '.apk'
             }
