@@ -7,8 +7,8 @@ import com.hjq.demo.common.MyActivity;
 import com.hjq.dialog.MenuDialog;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2019/04/17
  *    desc   : 加载使用案例
  */

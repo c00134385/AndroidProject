@@ -9,8 +9,8 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/10/18
  *    desc   : 验证码倒计时
  */

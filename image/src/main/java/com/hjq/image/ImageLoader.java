@@ -8,8 +8,8 @@ import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/12/26
  *    desc   : 图片加载器
  */

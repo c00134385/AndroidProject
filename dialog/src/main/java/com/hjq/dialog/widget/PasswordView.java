@@ -10,8 +10,8 @@ import android.util.TypedValue;
 import android.view.View;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/12/2
  *    desc   : 密码遮挡自定义控件
  */

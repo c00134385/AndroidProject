@@ -9,8 +9,8 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/10/18
  *    desc   : 禁用水平滑动的ViewPager（一般用于APP主页的 ViewPager + Fragment）
  */

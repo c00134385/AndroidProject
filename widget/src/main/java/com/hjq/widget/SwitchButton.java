@@ -22,8 +22,8 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2019/02/20
  *    desc   : 开关按钮
  */

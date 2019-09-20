@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.support.v4.util.ArrayMap;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/11/18
  *    desc   : Activity 栈管理
  */

@@ -3,8 +3,8 @@ package com.hjq.demo.mvp;
 import com.hjq.demo.common.MyActivity;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/11/17
  *    desc   : MVP Activity 基类
  */

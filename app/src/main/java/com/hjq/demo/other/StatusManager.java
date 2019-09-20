@@ -19,8 +19,8 @@ import com.hjq.widget.HintLayout;
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2019/04/18
  *    desc   : 界面状态管理类
  */

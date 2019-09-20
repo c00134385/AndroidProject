@@ -5,8 +5,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2019/04/02
  *    desc   : 获取清单文件中的值
  */

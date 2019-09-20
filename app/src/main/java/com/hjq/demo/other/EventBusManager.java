@@ -10,8 +10,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.greenrobot.eventbus.meta.SubscriberInfoIndex;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2019/04/02
  *    desc   : EventBus 管理类
  */

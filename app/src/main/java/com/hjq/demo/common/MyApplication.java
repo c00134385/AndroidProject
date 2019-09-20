@@ -20,8 +20,8 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 import timber.log.Timber;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/10/18
  *    desc   : 项目中的 Application 基类
  */

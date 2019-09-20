@@ -32,8 +32,8 @@ import java.util.List;
 import butterknife.OnClick;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/12/02
  *    desc   : 对话框使用案例
  */
@@ -265,7 +265,7 @@ public final class DialogActivity extends MyActivity {
                 new ShareDialog.Builder(this)
                         .setShareTitle("分享标题")
                         .setShareDescription("分享描述")
-                        .setShareUrl("https://github.com/getActivity/AndroidProject")
+                        .setShareUrl("https://github.com/")
                         .setShareLogo("https://www.baidu.com/img/bd_logo1.png")
                         .setListener(new UmengShare.OnShareListener() {
 

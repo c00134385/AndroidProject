@@ -23,8 +23,8 @@ import com.bumptech.glide.util.Util;
 import java.security.MessageDigest;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/12/26
  *    desc   : Glide 加载实现类
  */

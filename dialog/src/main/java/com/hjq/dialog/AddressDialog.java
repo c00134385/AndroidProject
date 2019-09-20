@@ -31,8 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2019/02/12
  *    desc   : 省市区选择对话框
  *    doc    : https://baijiahao.baidu.com/s?id=1615894776741007967

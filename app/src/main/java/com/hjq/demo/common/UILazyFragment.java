@@ -4,8 +4,8 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.base.BaseLazyFragment;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/10/18
  *    desc   : 支持沉浸式Fragment懒加载基类（默认不开启沉浸式）
  */

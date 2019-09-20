@@ -17,8 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2019/04/18
  *    desc   : 状态布局（网络错误，异常错误，空数据）
  */

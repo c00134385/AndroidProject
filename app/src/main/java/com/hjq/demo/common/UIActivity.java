@@ -12,8 +12,8 @@ import com.hjq.demo.R;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/10/18
  *    desc   : 支持沉浸式和侧滑的Activity基类（默认开启沉浸式状态栏和侧滑功能）
  */

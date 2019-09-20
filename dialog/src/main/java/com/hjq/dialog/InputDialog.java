@@ -13,8 +13,8 @@ import com.hjq.base.BaseDialog;
 import com.hjq.base.BaseDialogFragment;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2019/02/27
  *    desc   : 输入对话框
  */

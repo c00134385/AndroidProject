@@ -3,8 +3,8 @@ package com.hjq.widget.square;
 import android.view.View;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/10/27
  *    desc   : 用于限定正方形大小的控件的算法
  */

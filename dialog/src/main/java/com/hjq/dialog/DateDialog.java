@@ -10,8 +10,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/12/17
  *    desc   : 日期选择对话框
  */

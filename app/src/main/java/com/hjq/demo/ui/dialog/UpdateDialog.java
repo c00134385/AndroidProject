@@ -32,8 +32,8 @@ import java.io.File;
 import java.util.List;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2019/03/20
  *    desc   : 升级对话框
  */

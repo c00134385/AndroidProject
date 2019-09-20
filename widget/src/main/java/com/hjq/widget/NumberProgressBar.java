@@ -11,8 +11,8 @@ import android.util.TypedValue;
 import android.view.View;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2019/02/20
  *    desc   : 数字进度条
  */

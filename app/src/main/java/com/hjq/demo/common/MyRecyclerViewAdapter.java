@@ -17,8 +17,8 @@ import com.hjq.image.ImageLoader;
 import butterknife.ButterKnife;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/12/19
  *    desc   : 项目中 RecyclerView 适配器基类
  */

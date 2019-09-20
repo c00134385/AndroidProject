@@ -21,8 +21,8 @@ import com.hjq.demo.helper.WebViewLifecycleUtils;
 import butterknife.BindView;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
+ *    author : Android
+ *    github : https://github.com/
  *    time   : 2018/10/18
  *    desc   : 浏览器界面
  */
