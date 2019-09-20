@@ -394,7 +394,7 @@ public final class AddressDialog {
          */
         private static List<AddressBean> getProvinceList(Context context) {
             try {
-                // 省市区Json数据文件来源：https://github.com/getActivity/ProvinceJson
+                // 省市区Json数据文件来源：/ProvinceJson
                 JSONArray jsonArray = new JSONArray(getAssetsString(context, "province.json"));
 
                 int length = jsonArray.length();

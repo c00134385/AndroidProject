@@ -1,10 +1,6 @@
 package com.hjq.demo.ui.act;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,23 +10,12 @@ import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
-import com.hjq.demo.mananger.MachineManager;
-import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.service.DeviceUploadService;
-import com.hjq.demo.service.RetrofitUtil;
 import com.hjq.demo.ui.widget.CardView1;
-import com.hjq.dialog.MessageDialog;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import io.reactivex.ObservableSource;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.ResponseBody;
 import timber.log.Timber;
 
 public class NewHomeActivity extends MyActivity implements View.OnClickListener {
@@ -63,22 +48,6 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
     int width;
     int height;
 
-    private static final int MSG_CHECK_ORTH = 0x1003;
-
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case MSG_CHECK_ORTH:
-                    if(!OrthManager.getInstance().isOrthValid()) {
-                        showDialog();
-                    }
-                    break;
-            }
-
-        }
-    };
     @Override
     protected int getLayoutId() {
         return R.layout.activity_home_new;
@@ -140,7 +109,6 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        handler.removeCallbacksAndMessages(null);
     }
 
     private void processHideInfo() {
@@ -168,40 +136,11 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
     protected void onResume() {
         super.onResume();
         validTouchCount = 0;
-        handler.sendEmptyMessage(MSG_CHECK_ORTH);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        handler.removeCallbacksAndMessages(null);
-    }
-
-    private void showDialog() {
-        MessageDialog.Builder builder = new MessageDialog.Builder(this)
-                .setTitle("提示") // 标题可以不用填写
-                .setMessage("")
-                .setConfirm("确定")
-                .setCancel("取消") // 设置 null 表示不显示取消按钮
-                .setCancelable(false)
-//                .setAutoDismiss(false) // 设置点击按钮后不关闭对话框
-                .setListener(new MessageDialog.OnListener() {
-
-                    @Override
-                    public void onConfirm(Dialog dialog) {
-//                        ToastUtils.show("确定了");
-//                        handler.sendEmptyMessageDelayed(MSG_CHECK_ORTH, TimeUnit.SECONDS.toMillis(1));
-                        handler.sendEmptyMessage(MSG_CHECK_ORTH);
-                    }
-
-                    @Override
-                    public void onCancel(Dialog dialog) {
-//                        ToastUtils.show("取消了");
-//                        handler.sendEmptyMessageDelayed(MSG_CHECK_ORTH, TimeUnit.SECONDS.toMillis(1));
-                        handler.sendEmptyMessage(MSG_CHECK_ORTH);
-                    }
-                });
-        builder.show();
     }
 
     @Override

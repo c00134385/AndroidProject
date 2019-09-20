@@ -7,10 +7,6 @@ import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.hjq.demo.BuildConfig;
-import com.hjq.demo.mananger.HardwareManager;
-import com.hjq.demo.mananger.MachineManager;
-import com.hjq.demo.mananger.NetworkManager;
-import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.other.EventBusManager;
 import com.hjq.image.ImageLoader;
 import com.hjq.toast.ToastUtils;

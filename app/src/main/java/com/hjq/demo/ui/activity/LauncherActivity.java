@@ -17,7 +17,6 @@ import com.hjq.demo.mananger.EthernetManager;
 import com.hjq.demo.mananger.HardwareManager;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
-import com.hjq.demo.mananger.OrthManager;
 import com.hjq.demo.mananger.RkManager;
 import com.hjq.demo.mananger.SerialManager;
 import com.hjq.demo.mananger.TestManager;
@@ -167,7 +166,6 @@ public final class LauncherActivity extends MyActivity
                         MachineManager.init(MyApplication.getInstance());
                         NetworkManager.init(MyApplication.getInstance());
                         HardwareManager.init(MyApplication.getInstance());
-                        OrthManager.init(MyApplication.getInstance());
                         TestManager.init(MyApplication.getInstance());
                         WifiAdmin.init(MyApplication.getInstance());
                         EthernetManager.init(MyApplication.getInstance());
@@ -180,7 +178,6 @@ public final class LauncherActivity extends MyActivity
                     @Override
                     public void accept(Integer integer) throws Exception {
                         CameraManager.getInstance().start();
-                        OrthManager.getInstance().start();
                     }
                 })
                 .subscribeOn(Schedulers.io());

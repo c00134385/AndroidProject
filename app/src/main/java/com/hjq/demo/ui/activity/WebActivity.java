@@ -79,7 +79,7 @@ public final class WebActivity extends MyActivity {
         mWebView.setWebViewClient(new MyWebViewClient());
         mWebView.setWebChromeClient(new MyWebChromeClient());
 
-        String url = "https://github.com/getActivity/";
+        String url = "/";
         mWebView.loadUrl(url);
     }
 

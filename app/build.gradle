@@ -186,13 +186,13 @@ dependencies {
     // 侧滑功能：https://github.com/bingoogolapple/BGASwipeBackLayout-Android
     implementation 'cn.bingoogolapple:bga-swipebacklayout:1.2.0'
 
-    // 权限请求框架：https://github.com/getActivity/XXPermissions
+    // 权限请求框架：/XXPermissions
     implementation 'com.hjq:xxpermissions:5.5'
 
-    // 标题栏：https://github.com/getActivity/TitleBar
+    // 标题栏：/TitleBar
     implementation 'com.hjq:titlebar:5.0'
 
-    // 吐司工具类：https://github.com/getActivity/ToastUtils
+    // 吐司工具类：/ToastUtils
     implementation 'com.hjq:toast:6.0'
 
     // 圆形的ImageView：https://github.com/hdodenhof/CircleImageView
@@ -201,13 +201,13 @@ dependencies {
     // 支持放大缩放的ImageView：https://github.com/chrisbanes/PhotoView
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 
-    // 布局优化：https://github.com/getActivity/Layouts
+    // 布局优化：/Layouts
 
-    // 分割线：https://github.com/getActivity/RecyclerItemDecoration
+    // 分割线：/RecyclerItemDecoration
 
-    // 国际化：https://github.com/getActivity/MultiLanguages
+    // 国际化：/MultiLanguages
 
-    // 悬浮窗：https://github.com/getActivity/XToast
+    // 悬浮窗：/XToast
 
     // 网络请求：https://github.com/zhou-you/RxEasyHttp
 
@@ -225,7 +225,7 @@ dependencies {
 
     // 二维码：https://github.com/bingoogolapple/BGAQRCode-Android
 
-    // 第三方支付：https://github.com/getActivity/RxPay
+    // 第三方支付：/RxPay
 
     // Log 打印：https://github.com/JakeWharton/timber
 
