@@ -14,4 +14,14 @@
     <color name="colorButtonDisable">#DDDDDD</color>
     <!-- 分割线的颜色 -->
     <color name="colorLine">#ECECEC</color>
+
+    <color name="list_press_color">#3f000000</color>
+    <color name="horizontal_divider_color">#ff797878</color>
+    <color name="font_black">#1a1a1a</color>
+    <item name="line_gray" type="color">#cccccc</item>
+
+    <item name="normal_gray" type="color">#f5f5f5</item>
+    <color name="light_gray">#1a000000</color>
+    <item name="font_gray" type="color">#999999</item>
+
 </resources>

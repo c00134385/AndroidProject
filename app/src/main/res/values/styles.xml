@@ -82,4 +82,35 @@
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
+    <style name="line_right" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/line_gray</item>
+    </style>
+
+    <style name="list_item_txt_main" parent="android:Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_marginLeft">20dip</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/font_black</item>
+    </style>
+
+    <style name="list_item_txt" parent="android:Widget.TextView">
+        <item name="android:layout_width">150dip</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">20dip</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">@color/font_gray</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+
 </resources>

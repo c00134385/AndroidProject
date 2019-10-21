@@ -6,14 +6,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.SystemClock;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.hjq.demo.R;
+import com.hjq.demo.adapter.ListAdapter;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.model.BasicModel;
-import com.hjq.demo.model.MyAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +23,17 @@ import butterknife.BindView;
 
 public class MachineActivity extends MyActivity {
 
-    @BindView(R.id.list_view)
-    ListView listView;
+//    @BindView(R.id.list_view)
+//    ListView listView;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
     private List<BasicModel> basicModels;
+
+    private ListAdapter listAdapter;
+
+
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_machine;
@@ -61,8 +69,12 @@ public class MachineActivity extends MyActivity {
 
         basicModels.add(new BasicModel(getString(R.string.extra_info), ""));
 
-        MyAdapter myAdapter = new MyAdapter(this, basicModels);
-        listView.setAdapter(myAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        //MyAdapter myAdapter = new MyAdapter(this, basicModels);
+        listAdapter = new ListAdapter(basicModels);
+        recyclerView.setAdapter(listAdapter);
     }
 
     @Override

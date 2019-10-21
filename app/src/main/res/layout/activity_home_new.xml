@@ -10,11 +10,12 @@
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/app_name" />
 
+<!--
     <LinearLayout
         android:id="@+id/row_1"
         android:layout_width="match_parent"
@@ -79,6 +80,16 @@
             app:cv1_icon="@mipmap/ic_launcher"
             android:visibility="invisible"/>
     </LinearLayout>
+-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fun_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
+
 
     <Button
         android:id="@+id/btn_exit"

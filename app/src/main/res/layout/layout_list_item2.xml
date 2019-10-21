@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/basic_set_line"
+        style="@style/line_right" />
+
+    <RelativeLayout
+        android:id="@+id/setting_alarm_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/common_btn_selector5">
+
+        <TextView
+            android:id="@+id/item_text_title"
+            style="@style/list_item_txt_main"/>
+
+        <TextView
+            android:id="@+id/item_text"
+            style="@style/list_item_txt" />
+
+
+        <View
+            style="@style/line_right"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+
+</LinearLayout>

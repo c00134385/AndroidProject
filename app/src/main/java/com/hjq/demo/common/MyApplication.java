@@ -1,5 +1,6 @@
 package com.hjq.demo.common;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -28,11 +29,19 @@ public class MyApplication extends Application {
         return ourInstance;
     }
 
+    @SuppressLint("StaticFieldLeak")
+    private static Context _context;
+
+    public static synchronized Application context() {
+        return (Application) _context;
+    }
+
+
     @Override
     public void onCreate() {
         super.onCreate();
         ourInstance = MyApplication.this;
-
+        _context = getApplicationContext();
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         } else {

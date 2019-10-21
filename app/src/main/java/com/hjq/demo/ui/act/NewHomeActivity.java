@@ -1,46 +1,45 @@
 package com.hjq.demo.ui.act;
 
 import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.demo.R;
+import com.hjq.demo.adapter.FunctionAdapter;
+import com.hjq.demo.adapter.FunctionItem;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.service.DeviceUploadService;
-import com.hjq.demo.ui.widget.CardView1;
+import com.hjq.demo.ui.widget.SpaceItemDecoration;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import timber.log.Timber;
 
-public class NewHomeActivity extends MyActivity implements View.OnClickListener {
+public class NewHomeActivity extends MyActivity {
 
     @BindView(R.id.tv_info)
     TextView tvInfo;
 
-    @BindView(R.id.cv_android)
-    CardView1 cvAndroid;
-
-    @BindView(R.id.cv_machine)
-    CardView1 cvMachine;
-
-    @BindView(R.id.cv_network)
-    CardView1 cvNetwork;
-
-    @BindView(R.id.cv_hardware)
-    CardView1 cvHardware;
-
-    @BindView(R.id.cv_test)
-    CardView1 cvTest;
+    @BindView(R.id.fun_recyclerView)
+    RecyclerView funRecyclerView;
 
     @BindView(R.id.btn_exit)
     Button btnExit;
 
+
+    private FunctionAdapter functionAdapter;
+    private List<FunctionItem> functionItems = new ArrayList<>();
 
     private long startTouchTime;
     private int validTouchCount;
@@ -60,13 +59,15 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
 
     @Override
     protected void initView() {
-        cvAndroid.setOnClickListener(this);
-        cvMachine.setOnClickListener(this);
-        cvNetwork.setOnClickListener(this);
-        cvHardware.setOnClickListener(this);
-        cvTest.setOnClickListener(this);
-        btnExit.setOnClickListener(this);
-        if(null != getTitleBar()) {
+
+        GridLayoutManager glm = new GridLayoutManager(getActivity(), 3);
+        funRecyclerView.setLayoutManager(glm);
+        funRecyclerView.addItemDecoration(new SpaceItemDecoration(5, 5));
+
+        functionAdapter = new FunctionAdapter(functionItems);
+        functionAdapter.setOnItemChildClickListener(onItemChildClickListener);
+        funRecyclerView.setAdapter(functionAdapter);
+        if (null != getTitleBar()) {
             TitleBar titleBar = getTitleBar();
             titleBar.setOnTitleBarListener(new OnTitleBarListener() {
                 @Override
@@ -77,7 +78,7 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
                 @Override
                 public void onTitleClick(View v) {
                     Timber.d("onTitleClick v:%s", v.getClass().getSimpleName());
-//                    processHideInfo();
+                    processHideInfo();
                 }
 
                 @Override
@@ -91,7 +92,7 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Timber.d("action:%d x:%f y:%f", event.getAction(), event.getX(), event.getY());
-        if(event.getAction() == MotionEvent.ACTION_DOWN && (event.getX() > width/2) && (event.getY() > height / 2)) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN && (event.getX() > width / 2) && (event.getY() > height / 2)) {
             processHideInfo();
         }
         return super.onTouchEvent(event);
@@ -104,6 +105,13 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
 
         width = getResources().getDisplayMetrics().widthPixels;
         height = getResources().getDisplayMetrics().heightPixels;
+
+        functionItems.add(new FunctionItem(getString(R.string.machine), R.drawable.ic_fun_machine));
+        functionItems.add(new FunctionItem(getString(R.string.network), R.drawable.ic_fun_network));
+        functionItems.add(new FunctionItem(getString(R.string.android), R.drawable.ic_fun_android));
+        functionItems.add(new FunctionItem(getString(R.string.hardware), R.drawable.ic_fun_hardware));
+        functionItems.add(new FunctionItem(getString(R.string.gotest), R.drawable.ic_fun_test));
+        functionAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -113,21 +121,21 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
 
     private void processHideInfo() {
 
-        if(System.currentTimeMillis() - startTouchTime > TimeUnit.SECONDS.toMillis(2)) {
+        if (System.currentTimeMillis() - startTouchTime > TimeUnit.SECONDS.toMillis(2)) {
             validTouchCount = 0;
         }
 
-        if(validTouchCount == 0) {
+        if (validTouchCount == 0) {
             startTouchTime = System.currentTimeMillis();
         }
         validTouchCount++;
 
-        if(validTouchCount >= 5 && System.currentTimeMillis() - startTouchTime < TimeUnit.SECONDS.toMillis(2)) {
-            if(findViewById(R.id.cv_test).getVisibility() != View.VISIBLE) {
-                findViewById(R.id.cv_test).setVisibility(View.VISIBLE);
-            } else {
-                findViewById(R.id.cv_test).setVisibility(View.INVISIBLE);
-            }
+        if (validTouchCount >= 5 && System.currentTimeMillis() - startTouchTime < TimeUnit.SECONDS.toMillis(2)) {
+//            if(findViewById(R.id.cv_test).getVisibility() != View.VISIBLE) {
+//                findViewById(R.id.cv_test).setVisibility(View.VISIBLE);
+//            } else {
+//                findViewById(R.id.cv_test).setVisibility(View.INVISIBLE);
+//            }
             validTouchCount = 0;
         }
     }
@@ -143,28 +151,35 @@ public class NewHomeActivity extends MyActivity implements View.OnClickListener 
         super.onPause();
     }
 
-    @Override
-    public void onClick(View v) {
-        Timber.d("v:%s", v.getClass().getSimpleName());
-        switch (v.getId()) {
-            case R.id.cv_machine:
-                startActivity(MachineActivity.class);
-                break;
-            case R.id.cv_network:
-                startActivity(NetworkActivity.class);
-                break;
-            case R.id.cv_android:
-                startActivity(AndroidActivity.class);
-                break;
-            case R.id.cv_hardware:
-                startActivity(HardwareActivity.class);
-                break;
-            case R.id.cv_test:
-                startActivity(NewTestHomeActivity.class);
-                break;
+    @OnClick({R.id.btn_exit})
+    public void UiClick(View view) {
+        switch (view.getId()) {
             case R.id.btn_exit:
                 finish();
                 break;
         }
     }
+
+    private BaseQuickAdapter.OnItemChildClickListener onItemChildClickListener = new BaseQuickAdapter.OnItemChildClickListener() {
+        @Override
+        public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            switch (position){
+                case 0:
+                    startActivity(MachineActivity.class);
+                    break;
+                case 1:
+                    startActivity(NetworkActivity.class);
+                    break;
+                case 2:
+                    startActivity(AndroidActivity.class);
+                    break;
+                case 3:
+                    startActivity(HardwareActivity.class);
+                    break;
+                case 4:
+                    startActivity(NewTestHomeActivity.class);
+                    break;
+            }
+        }
+    };
 }

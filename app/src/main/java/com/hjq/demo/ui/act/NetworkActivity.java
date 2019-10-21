@@ -4,16 +4,16 @@ import android.content.Context;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.hjq.demo.R;
+import com.hjq.demo.adapter.ListAdapter;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.mananger.RkManager;
 import com.hjq.demo.model.BasicModel;
-import com.hjq.demo.model.MyAdapter;
 import com.hjq.demo.utils.CommonUtils;
-import com.ys.rkapi.MyManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +22,10 @@ import butterknife.BindView;
 
 public class NetworkActivity extends MyActivity {
 
-    @BindView(R.id.wifi_list_view)
-    ListView wifiListView;
-
-    @BindView(R.id.eth_list_view)
-    ListView ethListView;
+    @BindView(R.id.recyclerView_wifi)
+    RecyclerView recyclerViewWifi;
+    @BindView(R.id.recyclerView_eth)
+    RecyclerView recyclerViewEth;
 
     private List<BasicModel> wifiModels;
     private List<BasicModel> ethModels;
@@ -64,8 +63,12 @@ public class NetworkActivity extends MyActivity {
         wifiModels.add(new BasicModel(getString(R.string.wifi_gateway), CommonUtils.int2ip(dhcpInfo.gateway)));
         wifiModels.add(new BasicModel(getString(R.string.wifi_dns1), CommonUtils.int2ip(dhcpInfo.dns1)));
         wifiModels.add(new BasicModel(getString(R.string.wifi_level), wifiInfo.getRssi() + "db"));
-        MyAdapter wifiAdapter = new MyAdapter(this, wifiModels);
-        wifiListView.setAdapter(wifiAdapter);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
+        recyclerViewWifi.setLayoutManager(linearLayoutManager);
+
+        ListAdapter wifiAdapter = new ListAdapter(wifiModels);
+        recyclerViewWifi.setAdapter(wifiAdapter);
 
 //        dhcpInfo = NetworkManager.getInstance().getEthernetDhcpInfo();
         ethModels = new ArrayList<>();
@@ -84,8 +87,11 @@ public class NetworkActivity extends MyActivity {
 
 //        EthernetManager mEthManager = getSystemService("ethernet");
 
-        MyAdapter ethAdapter = new MyAdapter(this, ethModels);
-        ethListView.setAdapter(ethAdapter);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
+        recyclerViewEth.setLayoutManager(linearLayoutManager2);
+
+        ListAdapter ethAdapter = new ListAdapter(ethModels);
+        recyclerViewEth.setAdapter(ethAdapter);
     }
 
     @Override
