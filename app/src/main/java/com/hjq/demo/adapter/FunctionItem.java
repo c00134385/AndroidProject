@@ -8,10 +8,16 @@ public class FunctionItem {
 
     private String name;
     private int imgResId;
+    private boolean visiable;
 
-    public FunctionItem(String name, int imgResId) {
+    public FunctionItem(String name, int imgResId, boolean visiable) {
         this.name = name;
         this.imgResId = imgResId;
+        this.visiable = visiable;
+    }
+
+    public FunctionItem(String name, int imgResId) {
+        this(name, imgResId, true);
     }
 
     public String getName() {
@@ -28,6 +34,14 @@ public class FunctionItem {
 
     public void setImgResId(int imgResId) {
         this.imgResId = imgResId;
+    }
+
+    public boolean isVisiable() {
+        return visiable;
+    }
+
+    public void setVisiable(boolean visiable) {
+        this.visiable = visiable;
     }
 
     @Override

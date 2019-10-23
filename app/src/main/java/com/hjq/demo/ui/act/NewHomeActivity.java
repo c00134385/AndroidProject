@@ -41,6 +41,8 @@ public class NewHomeActivity extends MyActivity {
     private FunctionAdapter functionAdapter;
     private List<FunctionItem> functionItems = new ArrayList<>();
 
+    private FunctionItem testFunctionItem;
+
     private long startTouchTime;
     private int validTouchCount;
 
@@ -78,7 +80,6 @@ public class NewHomeActivity extends MyActivity {
                 @Override
                 public void onTitleClick(View v) {
                     Timber.d("onTitleClick v:%s", v.getClass().getSimpleName());
-                    processHideInfo();
                 }
 
                 @Override
@@ -110,7 +111,8 @@ public class NewHomeActivity extends MyActivity {
         functionItems.add(new FunctionItem(getString(R.string.network), R.drawable.ic_fun_network));
         functionItems.add(new FunctionItem(getString(R.string.android), R.drawable.ic_fun_android));
         functionItems.add(new FunctionItem(getString(R.string.hardware), R.drawable.ic_fun_hardware));
-        functionItems.add(new FunctionItem(getString(R.string.gotest), R.drawable.ic_fun_test));
+        testFunctionItem = new FunctionItem(getString(R.string.gotest), R.drawable.ic_fun_test, false);
+        functionItems.add(testFunctionItem);
         functionAdapter.notifyDataSetChanged();
     }
 
@@ -121,7 +123,7 @@ public class NewHomeActivity extends MyActivity {
 
     private void processHideInfo() {
 
-        if (System.currentTimeMillis() - startTouchTime > TimeUnit.SECONDS.toMillis(2)) {
+        if (System.currentTimeMillis() - startTouchTime > TimeUnit.SECONDS.toMillis(3)) {
             validTouchCount = 0;
         }
 
@@ -130,12 +132,9 @@ public class NewHomeActivity extends MyActivity {
         }
         validTouchCount++;
 
-        if (validTouchCount >= 5 && System.currentTimeMillis() - startTouchTime < TimeUnit.SECONDS.toMillis(2)) {
-//            if(findViewById(R.id.cv_test).getVisibility() != View.VISIBLE) {
-//                findViewById(R.id.cv_test).setVisibility(View.VISIBLE);
-//            } else {
-//                findViewById(R.id.cv_test).setVisibility(View.INVISIBLE);
-//            }
+        if (validTouchCount >= 5 && System.currentTimeMillis() - startTouchTime < TimeUnit.SECONDS.toMillis(3)) {
+            testFunctionItem.setVisiable(!testFunctionItem.isVisiable());
+            functionAdapter.notifyItemChanged(4);
             validTouchCount = 0;
         }
     }
