@@ -15,6 +15,7 @@ import com.hjq.demo.common.MyApplication;
 import com.hjq.demo.mananger.CameraManager;
 import com.hjq.demo.mananger.EthernetManager;
 import com.hjq.demo.mananger.HardwareManager;
+import com.hjq.demo.mananger.ImiCameraManager;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.mananger.RkManager;
@@ -166,6 +167,7 @@ public final class LauncherActivity extends MyActivity
                         MachineManager.init(MyApplication.getInstance());
                         NetworkManager.init(MyApplication.getInstance());
                         HardwareManager.init(MyApplication.getInstance());
+                        ImiCameraManager.init(MyApplication.getInstance());
                         TestManager.init(MyApplication.getInstance());
                         WifiAdmin.init(MyApplication.getInstance());
                         EthernetManager.init(MyApplication.getInstance());

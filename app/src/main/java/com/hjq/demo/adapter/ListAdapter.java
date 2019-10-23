@@ -1,6 +1,8 @@
 package com.hjq.demo.adapter;
 
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -24,5 +26,4 @@ public class ListAdapter extends BaseQuickAdapter<BasicModel, BaseViewHolder> {
         helper.setText(R.id.item_text_title, item.getKey() + "\b:");
         helper.setText(R.id.item_text, item.getValue());
     }
-
 }

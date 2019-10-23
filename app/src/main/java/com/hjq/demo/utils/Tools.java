@@ -130,8 +130,8 @@ public class Tools {
     public static String getRomTotalSize(Context context) {
         File path = Environment.getDataDirectory();
         StatFs stat = new StatFs(path.getPath());
-        long blockSize = stat.getBlockSize();
-        long totalBlocks = stat.getBlockCount();
+        long blockSize = stat.getBlockSizeLong();
+        long totalBlocks = stat.getBlockCountLong();
         return Formatter.formatFileSize(context, blockSize * totalBlocks);
     }
 
@@ -143,8 +143,8 @@ public class Tools {
     public static String getRomAvailableSize(Context context) {
         File path = Environment.getDataDirectory();
         StatFs stat = new StatFs(path.getPath());
-        long blockSize = stat.getBlockSize();
-        long availableBlocks = stat.getAvailableBlocks();
+        long blockSize = stat.getBlockSizeLong();
+        long availableBlocks = stat.getAvailableBlocksLong();
         return Formatter.formatFileSize(context, blockSize * availableBlocks);
     }
 

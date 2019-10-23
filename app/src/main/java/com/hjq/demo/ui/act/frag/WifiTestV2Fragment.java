@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -18,7 +19,9 @@ import android.widget.TextView;
 
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyLazyFragment;
+import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.mananger.WifiAdmin;
+import com.hjq.demo.utils.CommonUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -41,7 +44,7 @@ public class WifiTestV2Fragment extends MyLazyFragment {
     @BindView(R.id.web_view)
     WebView webView;
 
-    private final String url = "https://www.baidu.com/";
+    private final String url = "http://m.baidu.com/";
 
     private Handler mHandler = new Handler() {
         @Override
@@ -89,8 +92,8 @@ public class WifiTestV2Fragment extends MyLazyFragment {
         StringBuilder sb = new StringBuilder();
         sb.append("BSSID: " + wifiInfo.getBSSID());
         sb.append("\nSSID: " + wifiInfo.getSSID());
-        sb.append("\nIPAddress: " + wifiInfo.getIpAddress());
-        sb.append("\nMacAddress: " + wifiInfo.getMacAddress());
+        sb.append("\nIPAddress: " + CommonUtils.int2ip(wifiInfo.getIpAddress()));
+        sb.append("\nMacAddress: " + NetworkManager.getInstance().getWifiMac());
         sb.append("\nNetworkId: " + wifiInfo.getNetworkId());
         sb.append("\nLinkSpeed: " + wifiInfo.getLinkSpeed());
         sb.append("\nRssi: " + wifiInfo.getRssi());
@@ -101,7 +104,9 @@ public class WifiTestV2Fragment extends MyLazyFragment {
 
     private void loadUrl() {
         WebSettings settings = webView.getSettings();
-        settings.setDomStorageEnabled(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR_MR1) {
+            settings.setDomStorageEnabled(true);
+        }
         //解决一些图片加载问题
         settings.setJavaScriptEnabled(true);
         settings.setBlockNetworkImage(false);

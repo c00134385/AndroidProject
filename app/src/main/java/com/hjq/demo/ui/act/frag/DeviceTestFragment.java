@@ -3,6 +3,7 @@ package com.hjq.demo.ui.act.frag;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import com.hjimi.api.iminect.ImiNect;
 import com.hjimi.api.iminect.ImiPixelFormat;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyLazyFragment;
+import com.hjq.demo.mananger.ImiCameraManager;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.ui.act.t.BaseTestActivity;
 import com.hjq.toast.ToastUtils;
@@ -87,7 +89,11 @@ public class DeviceTestFragment extends MyLazyFragment<BaseTestActivity> {
     @Override
     public void onResume() {
         super.onResume();
-        new Thread(new OpenDeviceRunnable()).start();
+        if(TextUtils.isEmpty(ImiCameraManager.getInstance().getCameraSn())) {
+            new Thread(new OpenDeviceRunnable()).start();
+        } else {
+            updateCameraSn(ImiCameraManager.getInstance().getCameraSn());
+        }
     }
 
     @Override
@@ -101,9 +107,9 @@ public class DeviceTestFragment extends MyLazyFragment<BaseTestActivity> {
         ImiNect.destroy();
     }
 
-    private void updateCameraSn() {
+    private void updateCameraSn(String sn) {
         cameraSn.setText("Camera SN: " + mDeviceAttribute.getSerialNumber());
-        Observable.just(QRCodeEncoder.syncEncodeQRCode( mDeviceAttribute.getSerialNumber(), 300))
+        Observable.just(QRCodeEncoder.syncEncodeQRCode(sn, 300))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Bitmap>() {
@@ -132,7 +138,7 @@ public class DeviceTestFragment extends MyLazyFragment<BaseTestActivity> {
                     break;
                 case DEVICE_OPEN_SUCCESS:
 //                    runViewer();
-                    updateCameraSn();
+                    updateCameraSn(mDeviceAttribute.getSerialNumber());
                     break;
                 case MSG_EXIT:
 //                    Exit();

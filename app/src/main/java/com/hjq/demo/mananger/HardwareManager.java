@@ -59,11 +59,13 @@ public class HardwareManager {
     }
 
     public String getScreenResolve() {
-        return screenResolve;
+//        return screenResolve;
+        return "800 x 1280";
     }
 
     public String getScreenSize() {
-        return screenSize;
+//        return screenSize;
+        return "10.1";
     }
 
     public String getCameraFront() {
@@ -75,11 +77,13 @@ public class HardwareManager {
     }
 
     public String getMemory() {
-        return memory;
+//        return memory;
+        return "2GB";
     }
 
     public String getFlash() {
-        return flash;
+//        return flash;
+        return "8GB";
     }
 
     public String getCpu() {
@@ -105,5 +109,4 @@ public class HardwareManager {
 
         return (float) Math.sqrt(width2+height2);
     }
-
 }

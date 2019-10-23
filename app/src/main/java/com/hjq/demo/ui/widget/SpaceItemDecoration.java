@@ -31,17 +31,17 @@ public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
         //竖直方向的
         if (layoutManager.getOrientation() == LinearLayoutManager.VERTICAL) {
             //最后一项需要 bottom
-            if (parent.getChildAdapterPosition(view) == layoutManager.getItemCount() - 1) {
+//            if (parent.getChildAdapterPosition(view) == layoutManager.getItemCount() - 1) {
                 outRect.bottom = topBottom;
-            }
+//            }
             outRect.top = topBottom;
             outRect.left = leftRight;
             outRect.right = leftRight;
         } else {
             //最后一项需要right
-            if (parent.getChildAdapterPosition(view) == layoutManager.getItemCount() - 1) {
+//            if (parent.getChildAdapterPosition(view) == layoutManager.getItemCount() - 1) {
                 outRect.right = leftRight;
-            }
+//            }
             outRect.top = topBottom;
             outRect.left = leftRight;
             outRect.bottom = topBottom;
