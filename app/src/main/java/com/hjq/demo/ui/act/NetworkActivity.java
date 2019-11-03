@@ -82,8 +82,8 @@ public class NetworkActivity extends MyActivity {
 //        ethModels.add(new BasicModel(getString(R.string.eth_dns1), ""));
 
         ethModels.add(new BasicModel(getString(R.string.eth_statue), NetworkManager.getInstance().isEthernetConnected()?"已连接":"未连接"));
-        ethModels.add(new BasicModel(getString(R.string.eth_mac), RkManager.getInstance().getMac()));
-        ethModels.add(new BasicModel(getString(R.string.eth_ip), RkManager.getInstance().getIp()));
+        ethModels.add(new BasicModel(getString(R.string.eth_mac), NetworkManager.getInstance().getEthernetMac()));
+        ethModels.add(new BasicModel(getString(R.string.eth_ip), NetworkManager.getInstance().getEhernetIp()));
 //        ethModels.add(new BasicModel(getString(R.string.eth_gateway), EthernetManager.getInstance().getGateway()));
 //        ethModels.add(new BasicModel(getString(R.string.eth_dns1), EthernetManager.getInstance().getDns1()));
 //        ethModels.add(new BasicModel(getString(R.string.eth_level), "Rssi:" + wifiInfo.getRssi()));
@@ -98,8 +98,8 @@ public class NetworkActivity extends MyActivity {
 
         foreGModels = new ArrayList<>();
         foreGModels.add(new BasicModel(getString(R.string.eth_statue), NetworkManager.getInstance().isEthernetConnected()?"已连接":"未连接"));
-        foreGModels.add(new BasicModel(getString(R.string.eth_mac), RkManager.getInstance().getMac()));
         foreGModels.add(new BasicModel(getString(R.string.eth_ip), RkManager.getInstance().getIp()));
+        foreGModels.add(new BasicModel("信号强度",""));
 
         LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
         recyclerView4g.setLayoutManager(linearLayoutManager3);

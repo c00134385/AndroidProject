@@ -57,19 +57,30 @@ public class MachineActivity extends MyActivity {
         basicModels = new ArrayList<>();
         basicModels.add(new BasicModel(getString(R.string.model), MachineManager.getInstance().getModel()));
         basicModels.add(new BasicModel(getString(R.string.sn), MachineManager.getInstance().getSn()));
-        basicModels.add(new BasicModel(getString(R.string.version_code), MachineManager.getInstance().getVersionName()));
-        basicModels.add(new BasicModel(getString(R.string.ip), NetworkManager.getInstance().getIpAddress()));
-        basicModels.add(new BasicModel(getString(R.string.wlan_mac), NetworkManager.getInstance().getWifiMac()));
-        basicModels.add(new BasicModel(getString(R.string.ba), NetworkManager.getInstance().getBluetoothMac()));
-        cameraModel = new BasicModel(getString(R.string.imei), "");
+        cameraModel = new BasicModel("摄像头序列号", "");
         basicModels.add(cameraModel);
+        basicModels.add(new BasicModel(getString(R.string.wlan_mac), NetworkManager.getInstance().getWifiMac()));
+        basicModels.add(new BasicModel("以太网 MAC地址", NetworkManager.getInstance().getEthernetMac()));
+        basicModels.add(new BasicModel(getString(R.string.ba), NetworkManager.getInstance().getBluetoothMac()));
+        basicModels.add(new BasicModel("4G 模块IMEI", ""));
+        basicModels.add(new BasicModel("当前位置经度", ""));
+        basicModels.add(new BasicModel("当前位置纬度", ""));
+        basicModels.add(new BasicModel("注册时间", ""));
+        basicModels.add(new BasicModel("注册状态", ""));
+        basicModels.add(new BasicModel("出厂时间", ""));
+        basicModels.add(new BasicModel("所属客户", ""));
+        basicModels.add(new BasicModel(getString(R.string.version_code), MachineManager.getInstance().getVersionName()));
+        basicModels.add(new BasicModel(getString(R.string.android_version), MachineManager.getInstance().getAndroidVersion()));
+        basicModels.add(new BasicModel(getString(R.string.firmware_version), MachineManager.getInstance().getFirmwareVersion()));
 
+
+//        basicModels.add(new BasicModel(getString(R.string.ip), NetworkManager.getInstance().getIpAddress()));
 
         //从某一时间开始计时
-        long startTime = SystemClock.elapsedRealtime();
-        long timer = (startTime)/1000;//得到从开始计时到现在的时间,单位:s
-        String sTime = String.format("%02d:%02d:%02d", timer/3600,timer%3600/60,timer%60);//转为标准格式
-        basicModels.add(new BasicModel(getString(R.string.worktime), sTime));
+//        long startTime = SystemClock.elapsedRealtime();
+//        long timer = (startTime)/1000;//得到从开始计时到现在的时间,单位:s
+//        String sTime = String.format("%02d:%02d:%02d", timer/3600,timer%3600/60,timer%60);//转为标准格式
+//        basicModels.add(new BasicModel(getString(R.string.worktime), sTime));
 
 //        basicModels.add(new BasicModel(getString(R.string.extra_info), ""));
 

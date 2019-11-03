@@ -8,11 +8,11 @@
     <string name="gotest">启动测试</string>
 
     <string name="model">型号</string>
-    <string name="sn">设备SN码</string>
+    <string name="sn">设备序列号</string>
     <string name="version_code">硬件管家版本号</string>
     <string name="ip">IP地址</string>
     <string name="wlan_mac">WLAN MAC地址</string>
-    <string name="ba">蓝牙地址</string>
+    <string name="ba">蓝牙 MAC地址</string>
     <string name="imei">IMEI信息</string>
     <string name="worktime">已开机时间</string>
     <string name="extra_info">扩展设备信息</string>
@@ -34,16 +34,16 @@
     <string name="eth_level">信号强度</string>
 
     <string name="android_version">安卓版本</string>
-    <string name="firmware_version">版本号</string>
+    <string name="firmware_version">ROM版本号</string>
     <string name="firmware_info">固件日期、大小</string>
 
-    <string name="screen_resolve">主屏分辨率</string>
-    <string name="screen_size">屏幕尺寸</string>
+    <string name="screen_resolve">显示屏分辨率</string>
+    <string name="screen_size">显示屏尺寸</string>
     <string name="camera_front">摄像头</string>
     <string name="camera_back">后置摄像头</string>
     <string name="memory">运行内存</string>
     <string name="flash">存储空间</string>
-    <string name="cpu">CPU类型</string>
+    <string name="cpu">CPU型号</string>
     <string name="cpu_hz">主频HZ</string>
 
     <string name="exit">退  出</string>

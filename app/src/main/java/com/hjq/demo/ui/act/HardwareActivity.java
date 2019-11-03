@@ -15,6 +15,7 @@ import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.mananger.HardwareManager;
 import com.hjq.demo.mananger.ImiCameraManager;
 import com.hjq.demo.mananger.ImiCameraWrapper;
+import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.model.BasicModel;
 import com.hjq.toast.ToastUtils;
 
@@ -51,20 +52,24 @@ public class HardwareActivity extends MyActivity {
     @Override
     protected void initData() {
         basicModels = new ArrayList<>();
-        basicModels.add(new BasicModel(getString(R.string.screen_resolve), HardwareManager.getInstance().getScreenResolve()));
         basicModels.add(new BasicModel(getString(R.string.screen_size), HardwareManager.getInstance().getScreenSize()));
-        cameraNameModel = new BasicModel("摄像头型号", "");
-        basicModels.add(cameraNameModel);
-        cameraSnModel = new BasicModel("摄像头SN", "");
-        basicModels.add(cameraSnModel);
-
-//        basicModels.add(new BasicModel(getString(R.string.camera_back), HardwareManager.getInstance().getCameraBack()));
+        basicModels.add(new BasicModel(getString(R.string.screen_resolve), HardwareManager.getInstance().getScreenResolve()));
+        basicModels.add(new BasicModel(getString(R.string.cpu), HardwareManager.getInstance().getCpu()));
         basicModels.add(new BasicModel(getString(R.string.memory), HardwareManager.getInstance().getMemory()));
         basicModels.add(new BasicModel(getString(R.string.flash), HardwareManager.getInstance().getFlash()));
-        basicModels.add(new BasicModel(getString(R.string.cpu), HardwareManager.getInstance().getCpu()));
+//        cameraNameModel = new BasicModel("摄像头型号", "");
+//        basicModels.add(cameraNameModel);
+//        cameraSnModel = new BasicModel("摄像头SN", "");
+//        basicModels.add(cameraSnModel);
+
+//        basicModels.add(new BasicModel(getString(R.string.camera_back), HardwareManager.getInstance().getCameraBack()));
+
+
         basicModels.add(new BasicModel("喇叭功率", HardwareManager.getInstance().getSpeakerPower()));
         basicModels.add(new BasicModel("WIFI版本", HardwareManager.getInstance().getWifiVer()));
         basicModels.add(new BasicModel("蓝牙版本", HardwareManager.getInstance().getBluetoothVer()));
+//        basicModels.add(new BasicModel(getString(R.string.android_version), MachineManager.getInstance().getAndroidVersion()));
+//        basicModels.add(new BasicModel(getString(R.string.firmware_version), MachineManager.getInstance().getFirmwareVersion()));
 //        basicModels.add(new BasicModel(getString(R.string.cpu_hz), HardwareManager.getInstance().getCpuHz()));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
@@ -72,25 +77,24 @@ public class HardwareActivity extends MyActivity {
 
         listAdapter = new ListAdapter(basicModels);
         recyclerView.setAdapter(listAdapter);
-//        new Thread(new OpenDeviceRunnable()).start();
-        new ImiCameraWrapper(this, new ImiCameraWrapper.ImiCallback() {
-            @Override
-            public void onImiInfo(String name, String sn) {
-                cameraSnModel.setValue(sn);
-                cameraNameModel.setValue(name);
-                HardwareActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        listAdapter.notifyDataSetChanged();
-                    }
-                });
-            }
-
-            @Override
-            public void onError(String errMsg) {
-                ToastUtils.show(errMsg);
-            }
-        });
+//        new ImiCameraWrapper(this, new ImiCameraWrapper.ImiCallback() {
+//            @Override
+//            public void onImiInfo(String name, String sn) {
+//                cameraSnModel.setValue(sn);
+//                cameraNameModel.setValue(name);
+//                HardwareActivity.this.runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        listAdapter.notifyDataSetChanged();
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onError(String errMsg) {
+//                ToastUtils.show(errMsg);
+//            }
+//        });
     }
 
     private MainListener mainlistener;

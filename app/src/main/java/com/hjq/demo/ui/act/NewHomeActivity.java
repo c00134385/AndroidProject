@@ -1,6 +1,7 @@
 package com.hjq.demo.ui.act;
 
 import android.content.Intent;
+import android.location.Location;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
@@ -17,6 +18,7 @@ import com.hjq.demo.adapter.FunctionItem;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.service.DeviceUploadService;
 import com.hjq.demo.ui.widget.SpaceItemDecoration;
+import com.hjq.demo.utils.LocationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +111,7 @@ public class NewHomeActivity extends MyActivity {
 
         functionItems.add(new FunctionItem(getString(R.string.machine), R.drawable.ic_fun_machine));
         functionItems.add(new FunctionItem(getString(R.string.network), R.drawable.ic_fun_network));
-        functionItems.add(new FunctionItem(getString(R.string.android), R.drawable.ic_fun_android));
+//        functionItems.add(new FunctionItem(getString(R.string.android), R.drawable.ic_fun_android));
         functionItems.add(new FunctionItem(getString(R.string.hardware), R.drawable.ic_fun_hardware));
         testFunctionItem = new FunctionItem(getString(R.string.gotest), R.drawable.ic_fun_test, false);
         functionItems.add(testFunctionItem);
@@ -134,7 +136,7 @@ public class NewHomeActivity extends MyActivity {
 
         if (validTouchCount >= 5 && System.currentTimeMillis() - startTouchTime < TimeUnit.SECONDS.toMillis(3)) {
             testFunctionItem.setVisiable(!testFunctionItem.isVisiable());
-            functionAdapter.notifyItemChanged(4);
+            functionAdapter.notifyItemChanged(3);
             validTouchCount = 0;
         }
     }
@@ -143,7 +145,21 @@ public class NewHomeActivity extends MyActivity {
     protected void onResume() {
         super.onResume();
         validTouchCount = 0;
+
+//        LocationUtil.getCurrentLocation(this, callBack);
     }
+
+    private LocationUtil.LocationCallBack callBack = new LocationUtil.LocationCallBack() {
+        @Override
+        public void onSuccess(Location location) {
+            tvInfo.append("经度: " + location.getLongitude() + " 纬度: " + location.getLatitude()+ "\n");
+        }
+
+        @Override
+        public void onFail(String msg) {
+            tvInfo.append(msg + "\n");
+        }
+    };
 
     @Override
     protected void onPause() {
@@ -170,14 +186,15 @@ public class NewHomeActivity extends MyActivity {
                     startActivity(NetworkActivity.class);
                     break;
                 case 2:
-                    startActivity(AndroidActivity.class);
-                    break;
-                case 3:
                     startActivity(HardwareActivity.class);
                     break;
-                case 4:
+                case 3:
                     startActivity(NewTestHomeActivity.class);
                     break;
+
+//                case 2:
+//                    startActivity(AndroidActivity.class);
+//                    break;
             }
         }
     };

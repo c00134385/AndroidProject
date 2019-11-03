@@ -61,7 +61,8 @@ public final class LauncherActivity extends MyActivity
             Permission.CAMERA,
             Permission.ACCESS_FINE_LOCATION,
             Permission.ACCESS_COARSE_LOCATION,
-            Permission.RECORD_AUDIO};
+            Permission.RECORD_AUDIO,
+            Permission.ACCESS_FINE_LOCATION};
 
     private static long startTimestamp;
     private boolean isInitialized = false;
