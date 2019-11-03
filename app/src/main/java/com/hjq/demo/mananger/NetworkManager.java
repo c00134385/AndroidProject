@@ -239,6 +239,12 @@ public class NetworkManager {
         return networkInfo != null && networkInfo.isConnected() && networkInfo.getType() != ConnectivityManager.TYPE_ETHERNET;
     }
 
+    public WifiInfo getWifiInfo() {
+        WifiManager wifiManager =(WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        return wifiInfo;
+    }
+
     /**
      * Ethernet是否连接
      */

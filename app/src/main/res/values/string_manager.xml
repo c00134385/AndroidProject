@@ -42,7 +42,7 @@
     <string name="camera_front">摄像头</string>
     <string name="camera_back">后置摄像头</string>
     <string name="memory">运行内存</string>
-    <string name="flash">EMMC容量</string>
+    <string name="flash">存储空间</string>
     <string name="cpu">CPU类型</string>
     <string name="cpu_hz">主频HZ</string>
 

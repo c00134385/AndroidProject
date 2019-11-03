@@ -2,6 +2,7 @@ package com.hjq.demo.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -12,9 +13,11 @@ import androidx.annotation.Nullable;
 
 import com.hjq.demo.R;
 import com.hjq.demo.mananger.CameraManager;
+import com.hjq.demo.mananger.HardwareManager;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.model.BasicModel;
+import com.hjq.demo.utils.CommonUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +32,7 @@ import timber.log.Timber;
 public class DeviceUploadService extends Service {
 
     protected Handler mHandler;
-    private long mInterval = TimeUnit.MINUTES.toMillis(5);
+    private long mInterval = TimeUnit.MINUTES.toMillis(1);
     private Runnable mAction = new Runnable() {
 
         @Override
@@ -92,18 +95,57 @@ public class DeviceUploadService extends Service {
                         params.put("token", token);
                         params.put("brand", Build.BRAND);
                         params.put("model", Build.MODEL);
-                        params.put("deviceSn", MachineManager.getInstance().getSn());
-                        params.put("wifiMac", NetworkManager.getInstance().getWifiMac());
-                        params.put("bluetoothMac", NetworkManager.getInstance().getBluetoothMac());
-                        params.put("imei", NetworkManager.getInstance().getImei());
-                        long timer = SystemClock.elapsedRealtime();
-                        params.put("workingTime", timer);
+                        params.put("device_sn", MachineManager.getInstance().getSn());
+                        params.put("camera_sn", CameraManager.getInstance().getCameraSn());
 
-                        params.put("androidVersion", MachineManager.getInstance().getAndroidVersion());
-                        params.put("firmwareVersion", MachineManager.getInstance().getFirmwareVersion());
-                        params.put("workingTime", timer);
+                        params.put("wireless_mac", NetworkManager.getInstance().getWifiMac());
+                        params.put("wire_mac", NetworkManager.getInstance().getEthernetMac());
+                        params.put("wire_ip", NetworkManager.getInstance().getEhernetIp());
+                        params.put("bluetooth_mac", NetworkManager.getInstance().getBluetoothMac());
+                        params.put("4G_imei", NetworkManager.getInstance().getImei());
 
-                        params.put("cameraSn", CameraManager.getInstance().getCameraSn());
+                        params.put("real_longitude", "");
+                        params.put("real_latitude", "");
+                        params.put("reg_time", "");
+                        params.put("reg_statue", "");
+                        params.put("leave_time", "");
+                        params.put("belong_custom", "");
+                        params.put("hwmanager_version", MachineManager.getInstance().getVersionName());
+                        params.put("android_version", MachineManager.getInstance().getAndroidVersion());
+                        params.put("rom_version", MachineManager.getInstance().getFirmwareVersion());
+
+                        params.put("wireless_statue", NetworkManager.getInstance().isWifiConnected()?"已连接":"未连接");
+                        WifiInfo wifiInfo = NetworkManager.getInstance().getWifiInfo();
+                        params.put("wireless_ssid", wifiInfo.getSSID());
+                        params.put("wireless_ip", CommonUtils.int2ip(wifiInfo.getIpAddress()));
+                        params.put("signal_strength", wifiInfo.getRssi() + "db");
+
+                        params.put("wire_status", NetworkManager.getInstance().getNetworkState().name());
+                        params.put("wire_ip", NetworkManager.getInstance().getEhernetIp());
+
+                        params.put("4G_statue", "");
+                        params.put("4G_ip", "");
+                        params.put("4G_strength", "");
+
+
+
+                        params.put("android_ver", MachineManager.getInstance().getAndroidVersion());
+                        params.put("firmware_ver", MachineManager.getInstance().getFirmwareVersion());
+
+                        params.put("panel_size", HardwareManager.getInstance().getScreenSize());
+                        params.put("panel_resolution", HardwareManager.getInstance().getScreenResolve());
+                        params.put("CPU_model", HardwareManager.getInstance().getCpu());
+                        params.put("ram_size", HardwareManager.getInstance().getMemory());
+                        params.put("rom_size", HardwareManager.getInstance().getFlash());
+                        params.put("speaker_power", HardwareManager.getInstance().getSpeakerPower());
+                        params.put("wifi_version", HardwareManager.getInstance().getWifiVer());
+                        params.put("bluetooth_version", HardwareManager.getInstance().getBluetoothVer());
+
+
+                        params.put("app_name", MachineManager.getInstance().getAppName());
+                        params.put("package_name", MachineManager.getInstance().getPackageName());
+                        params.put("app_version", MachineManager.getInstance().getVersionName());
+
                         return RetrofitUtil.getInstance().putDevice(MachineManager.getInstance().getSn(), params);
                     }
                 })

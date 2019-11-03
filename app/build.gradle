@@ -15,8 +15,8 @@ android {
         applicationId "com.hjq.demo"
         minSdkVersion 18
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10105
-        versionName "1.1.5"
+        versionCode 10106
+        versionName "1.1.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // 混淆配置

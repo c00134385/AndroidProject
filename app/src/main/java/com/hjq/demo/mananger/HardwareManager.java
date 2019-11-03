@@ -91,6 +91,21 @@ public class HardwareManager {
         return "RK3288";
     }
 
+    public String getSpeakerPower() {
+//        return cpu;
+        return "2W";
+    }
+
+    public String getWifiVer() {
+//        return cpu;
+        return "2.4G";
+    }
+
+    public String getBluetoothVer() {
+//        return cpu;
+        return "4.0";
+    }
+
     public String getCpuHz() {
         return cpuHz;
     }

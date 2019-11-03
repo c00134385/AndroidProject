@@ -62,6 +62,9 @@ public class HardwareActivity extends MyActivity {
         basicModels.add(new BasicModel(getString(R.string.memory), HardwareManager.getInstance().getMemory()));
         basicModels.add(new BasicModel(getString(R.string.flash), HardwareManager.getInstance().getFlash()));
         basicModels.add(new BasicModel(getString(R.string.cpu), HardwareManager.getInstance().getCpu()));
+        basicModels.add(new BasicModel("喇叭功率", HardwareManager.getInstance().getSpeakerPower()));
+        basicModels.add(new BasicModel("WIFI版本", HardwareManager.getInstance().getWifiVer()));
+        basicModels.add(new BasicModel("蓝牙版本", HardwareManager.getInstance().getBluetoothVer()));
 //        basicModels.add(new BasicModel(getString(R.string.cpu_hz), HardwareManager.getInstance().getCpuHz()));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);

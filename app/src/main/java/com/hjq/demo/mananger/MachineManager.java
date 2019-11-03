@@ -3,6 +3,7 @@ package com.hjq.demo.mananger;
 import android.content.Context;
 import android.os.Build;
 
+import com.hjq.demo.R;
 import com.hjq.demo.utils.CommonUtils;
 
 public class MachineManager {
@@ -14,6 +15,8 @@ public class MachineManager {
     private String sn;
     private int versionCode;
     private String versionName;
+    private String appName;
+    private String packageName;
     private String imei;
     private long powerOnTime;
     private String extra;
@@ -35,6 +38,8 @@ public class MachineManager {
         sn = Build.SERIAL;
         versionCode = CommonUtils.packageCode(context);
         versionName = CommonUtils.packageVersionName(context);
+        packageName = CommonUtils.packageName(context);
+        appName = context.getString(R.string.app_name);
         androidVersion = Build.VERSION.RELEASE;
         firmwareVersion = Build.DISPLAY;
     }
@@ -85,5 +90,17 @@ public class MachineManager {
 
     public String getFirmwareVersion() {
         return firmwareVersion;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public String getCameraSn() {
+        return cameraSn;
     }
 }
