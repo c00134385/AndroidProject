@@ -26,9 +26,12 @@ public class NetworkActivity extends MyActivity {
     RecyclerView recyclerViewWifi;
     @BindView(R.id.recyclerView_eth)
     RecyclerView recyclerViewEth;
+    @BindView(R.id.recyclerView_4g)
+    RecyclerView recyclerView4g;
 
     private List<BasicModel> wifiModels;
     private List<BasicModel> ethModels;
+    private List<BasicModel> foreGModels;
 
 //    private MyManager manager;
 
@@ -92,6 +95,17 @@ public class NetworkActivity extends MyActivity {
 
         ListAdapter ethAdapter = new ListAdapter(ethModels);
         recyclerViewEth.setAdapter(ethAdapter);
+
+        foreGModels = new ArrayList<>();
+        foreGModels.add(new BasicModel(getString(R.string.eth_statue), NetworkManager.getInstance().isEthernetConnected()?"已连接":"未连接"));
+        foreGModels.add(new BasicModel(getString(R.string.eth_mac), RkManager.getInstance().getMac()));
+        foreGModels.add(new BasicModel(getString(R.string.eth_ip), RkManager.getInstance().getIp()));
+
+        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
+        recyclerView4g.setLayoutManager(linearLayoutManager3);
+
+        ListAdapter forGAdapter = new ListAdapter(foreGModels);
+        recyclerView4g.setAdapter(ethAdapter);
     }
 
     @Override

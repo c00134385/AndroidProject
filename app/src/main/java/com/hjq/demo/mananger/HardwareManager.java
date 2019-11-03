@@ -87,7 +87,8 @@ public class HardwareManager {
     }
 
     public String getCpu() {
-        return cpu;
+//        return cpu;
+        return "RK3288";
     }
 
     public String getCpuHz() {

@@ -12,9 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import com.hjq.demo.R;
 import com.hjq.demo.adapter.ListAdapter;
 import com.hjq.demo.common.MyActivity;
+import com.hjq.demo.mananger.ImiCameraWrapper;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.mananger.NetworkManager;
 import com.hjq.demo.model.BasicModel;
+import com.hjq.toast.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ import butterknife.BindView;
 
 public class MachineActivity extends MyActivity {
 
-//    @BindView(R.id.list_view)
+    //    @BindView(R.id.list_view)
 //    ListView listView;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -32,6 +34,7 @@ public class MachineActivity extends MyActivity {
 
     private ListAdapter listAdapter;
 
+    private BasicModel cameraModel;
 
 
     @Override
@@ -58,7 +61,8 @@ public class MachineActivity extends MyActivity {
         basicModels.add(new BasicModel(getString(R.string.ip), NetworkManager.getInstance().getIpAddress()));
         basicModels.add(new BasicModel(getString(R.string.wlan_mac), NetworkManager.getInstance().getWifiMac()));
         basicModels.add(new BasicModel(getString(R.string.ba), NetworkManager.getInstance().getBluetoothMac()));
-        basicModels.add(new BasicModel(getString(R.string.imei), NetworkManager.getInstance().getImei()));
+        cameraModel = new BasicModel(getString(R.string.imei), "");
+        basicModels.add(cameraModel);
 
 
         //从某一时间开始计时
@@ -67,7 +71,7 @@ public class MachineActivity extends MyActivity {
         String sTime = String.format("%02d:%02d:%02d", timer/3600,timer%3600/60,timer%60);//转为标准格式
         basicModels.add(new BasicModel(getString(R.string.worktime), sTime));
 
-        basicModels.add(new BasicModel(getString(R.string.extra_info), ""));
+//        basicModels.add(new BasicModel(getString(R.string.extra_info), ""));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -75,18 +79,36 @@ public class MachineActivity extends MyActivity {
         //MyAdapter myAdapter = new MyAdapter(this, basicModels);
         listAdapter = new ListAdapter(basicModels);
         recyclerView.setAdapter(listAdapter);
+
+        new ImiCameraWrapper(this, new ImiCameraWrapper.ImiCallback() {
+            @Override
+            public void onImiInfo(String name, String sn) {
+                cameraModel.setValue(sn);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        listAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+
+            @Override
+            public void onError(String errMsg) {
+                ToastUtils.show(errMsg);
+            }
+        });
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        unRegisterReceiver();
+//        unRegisterReceiver();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver();
+//        registerReceiver();
     }
 
     private void registerReceiver() {

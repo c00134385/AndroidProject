@@ -14,21 +14,75 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="网络" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView_wifi"
+    <LinearLayout
+        android:id="@+id/container_wifi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/layout_list_item2"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar">
+        <TextView
+            android:layout_width="@dimen/space_150"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="WIFI"
+            android:background="@color/black10"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_wifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/layout_list_item2"/>
+    </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView_eth"
+
+    <LinearLayout
+        android:id="@+id/container_eth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_wifi" />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/container_wifi" >
+
+        <TextView
+            android:layout_width="@dimen/space_150"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="以太网"
+            android:background="@color/black20"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_eth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/container_4g"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/container_eth" >
+
+        <TextView
+            android:layout_width="@dimen/space_150"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="4G"
+            android:background="@color/black30"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_4g"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

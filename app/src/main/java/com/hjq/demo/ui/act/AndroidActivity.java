@@ -42,7 +42,7 @@ public class AndroidActivity extends MyActivity {
         basicModels = new ArrayList<>();
         basicModels.add(new BasicModel(getString(R.string.android_version), MachineManager.getInstance().getAndroidVersion()));
         basicModels.add(new BasicModel(getString(R.string.firmware_version), MachineManager.getInstance().getFirmwareVersion()));
-        basicModels.add(new BasicModel(getString(R.string.firmware_info), ""));
+//        basicModels.add(new BasicModel(getString(R.string.firmware_info), ""));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 

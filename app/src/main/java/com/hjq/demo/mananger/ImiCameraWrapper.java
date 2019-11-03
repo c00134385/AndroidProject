@@ -11,29 +11,22 @@ import com.hjimi.api.iminect.ImiPixelFormat;
 
 import timber.log.Timber;
 
-public class ImiCameraManager {
-    private static ImiCameraManager ourInstance ;
+public class ImiCameraWrapper {
 
-    public static ImiCameraManager getInstance() {
-        return ourInstance;
-    }
-
-    private Context context;
-    private String cameraSn;
-    private String cameraName;
-    private ImiCameraManager(Context context) {
-        this.context = context;
-//        new Thread(new OpenDeviceRunnable()).start();
-    }
-
-
-    public static void init(Context context) {
-        ourInstance = new ImiCameraManager(context);
-    }
+    Context context;
+    ImiCallback callback;
 
     private MainListener mainlistener;
     private ImiDevice mDevice;
     private ImiDeviceAttribute mDeviceAttribute = null;
+    private String cameraSn;
+    private String cameraName;
+
+    public ImiCameraWrapper(Context context, ImiCallback callback) {
+        this.context = context;
+        this.callback = callback;
+        new Thread(new OpenDeviceRunnable()).start();
+    }
 
     private class OpenDeviceRunnable implements Runnable {
 
@@ -66,12 +59,18 @@ public class ImiCameraManager {
             mDeviceAttribute = mDevice.getAttribute();
             cameraSn = mDeviceAttribute.getSerialNumber();
             cameraName = mDeviceAttribute.getDeviceDescribeName();
+            if(null != callback) {
+                callback.onImiInfo(cameraName, cameraSn);
+            }
             closeCamera();
         }
 
         @Override
         public void onOpenDeviceFailed(String errorMsg) {
             //open device falied.
+            if(null != callback) {
+                callback.onError(errorMsg);
+            }
             closeCamera();
         }
 
@@ -87,5 +86,19 @@ public class ImiCameraManager {
             ImiDevice.destroy();
         }
         ImiNect.destroy();
+    }
+
+    public String getCameraSn() {
+        return cameraSn;
+    }
+
+    public String getCameraName() {
+        return cameraName;
+    }
+
+    public interface ImiCallback {
+        void onImiInfo(String name, String sn);
+
+        void onError(String errMsg);
     }
 }

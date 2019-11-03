@@ -3,7 +3,6 @@ package com.hjq.demo.ui.act.frag;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +15,7 @@ import com.hjimi.api.iminect.ImiNect;
 import com.hjimi.api.iminect.ImiPixelFormat;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyLazyFragment;
-import com.hjq.demo.mananger.ImiCameraManager;
+import com.hjq.demo.mananger.ImiCameraWrapper;
 import com.hjq.demo.mananger.MachineManager;
 import com.hjq.demo.ui.act.t.BaseTestActivity;
 import com.hjq.toast.ToastUtils;
@@ -89,32 +88,44 @@ public class DeviceTestFragment extends MyLazyFragment<BaseTestActivity> {
     @Override
     public void onResume() {
         super.onResume();
-        if(TextUtils.isEmpty(ImiCameraManager.getInstance().getCameraSn())) {
-            new Thread(new OpenDeviceRunnable()).start();
-        } else {
-            updateCameraSn(ImiCameraManager.getInstance().getCameraSn());
-        }
+//        if(TextUtils.isEmpty(ImiCameraManager.getInstance().getCameraSn())) {
+//            new Thread(new OpenDeviceRunnable()).start();
+//        } else {
+//            updateCameraSn(ImiCameraManager.getInstance().getCameraSn());
+//        }
+
+        new ImiCameraWrapper(getContext(), new ImiCameraWrapper.ImiCallback() {
+            @Override
+            public void onImiInfo(String name, String sn) {
+                updateCameraSn(sn);
+            }
+
+            @Override
+            public void onError(String errMsg) {
+                ToastUtils.show(errMsg);
+            }
+        });
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if(mDevice != null) {
-            mDevice.close();
-            mDevice = null;
-            ImiDevice.destroy();
-        }
-        ImiNect.destroy();
+//        if(mDevice != null) {
+//            mDevice.close();
+//            mDevice = null;
+//            ImiDevice.destroy();
+//        }
+//        ImiNect.destroy();
     }
 
-    private void updateCameraSn(String sn) {
-        cameraSn.setText("Camera SN: " + mDeviceAttribute.getSerialNumber());
+    private void updateCameraSn(final String sn) {
         Observable.just(QRCodeEncoder.syncEncodeQRCode(sn, 300))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Bitmap>() {
                     @Override
                     public void accept(Bitmap bitmap) throws Exception {
+                        cameraSn.setText("Camera SN: " + sn);
                         cameraQr.setImageBitmap(bitmap);
                     }
                 }, new Consumer<Throwable>() {

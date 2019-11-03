@@ -8,7 +8,7 @@
     <string name="gotest">启动测试</string>
 
     <string name="model">型号</string>
-    <string name="sn">SN码</string>
+    <string name="sn">设备SN码</string>
     <string name="version_code">硬件管家版本号</string>
     <string name="ip">IP地址</string>
     <string name="wlan_mac">WLAN MAC地址</string>
@@ -39,7 +39,7 @@
 
     <string name="screen_resolve">主屏分辨率</string>
     <string name="screen_size">屏幕尺寸</string>
-    <string name="camera_front">前置摄像头</string>
+    <string name="camera_front">摄像头</string>
     <string name="camera_back">后置摄像头</string>
     <string name="memory">运行内存</string>
     <string name="flash">EMMC容量</string>

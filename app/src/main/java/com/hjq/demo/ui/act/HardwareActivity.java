@@ -14,7 +14,9 @@ import com.hjq.demo.adapter.ListAdapter;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.mananger.HardwareManager;
 import com.hjq.demo.mananger.ImiCameraManager;
+import com.hjq.demo.mananger.ImiCameraWrapper;
 import com.hjq.demo.model.BasicModel;
+import com.hjq.toast.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,8 @@ public class HardwareActivity extends MyActivity {
 
     private List<BasicModel> basicModels;
     private ListAdapter listAdapter;
-    private BasicModel cameraModel;
+    private BasicModel cameraSnModel;
+    private BasicModel cameraNameModel;
 
     @Override
     protected int getLayoutId() {
@@ -50,26 +53,48 @@ public class HardwareActivity extends MyActivity {
         basicModels = new ArrayList<>();
         basicModels.add(new BasicModel(getString(R.string.screen_resolve), HardwareManager.getInstance().getScreenResolve()));
         basicModels.add(new BasicModel(getString(R.string.screen_size), HardwareManager.getInstance().getScreenSize()));
-        cameraModel = new BasicModel(getString(R.string.camera_front), ImiCameraManager.getInstance().getCameraSn());
-        basicModels.add(cameraModel);
-        basicModels.add(new BasicModel(getString(R.string.camera_back), HardwareManager.getInstance().getCameraBack()));
+        cameraNameModel = new BasicModel("摄像头型号", "");
+        basicModels.add(cameraNameModel);
+        cameraSnModel = new BasicModel("摄像头SN", "");
+        basicModels.add(cameraSnModel);
+
+//        basicModels.add(new BasicModel(getString(R.string.camera_back), HardwareManager.getInstance().getCameraBack()));
         basicModels.add(new BasicModel(getString(R.string.memory), HardwareManager.getInstance().getMemory()));
         basicModels.add(new BasicModel(getString(R.string.flash), HardwareManager.getInstance().getFlash()));
         basicModels.add(new BasicModel(getString(R.string.cpu), HardwareManager.getInstance().getCpu()));
-        basicModels.add(new BasicModel(getString(R.string.cpu_hz), HardwareManager.getInstance().getCpuHz()));
+//        basicModels.add(new BasicModel(getString(R.string.cpu_hz), HardwareManager.getInstance().getCpuHz()));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         listAdapter = new ListAdapter(basicModels);
         recyclerView.setAdapter(listAdapter);
-        new Thread(new OpenDeviceRunnable()).start();
+//        new Thread(new OpenDeviceRunnable()).start();
+        new ImiCameraWrapper(this, new ImiCameraWrapper.ImiCallback() {
+            @Override
+            public void onImiInfo(String name, String sn) {
+                cameraSnModel.setValue(sn);
+                cameraNameModel.setValue(name);
+                HardwareActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        listAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+
+            @Override
+            public void onError(String errMsg) {
+                ToastUtils.show(errMsg);
+            }
+        });
     }
 
     private MainListener mainlistener;
     private ImiDevice mDevice;
     private ImiDeviceAttribute mDeviceAttribute = null;
     private String cameraSn;
+    private String cameraType;
 
     private class OpenDeviceRunnable implements Runnable {
 
@@ -101,7 +126,9 @@ public class HardwareActivity extends MyActivity {
             //open device success.
             mDeviceAttribute = mDevice.getAttribute();
             cameraSn = mDeviceAttribute.getSerialNumber();
-            cameraModel.setValue(cameraSn);
+            cameraType = mDeviceAttribute.getDeviceDescribeName();
+            cameraSnModel.setValue(cameraSn);
+            cameraNameModel.setValue(cameraType);
             HardwareActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
